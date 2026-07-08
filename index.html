@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jin Ramen Physical</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:#050505;
+    color:white;
+}
+
+/* 배경 */
+body::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    background:
+    radial-gradient(circle,#ff2d55 0%,transparent 60%);
+    top:-250px;
+    left:-150px;
+    filter:blur(80px);
+    animation:float1 8s ease-in-out infinite alternate;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    background:
+    radial-gradient(circle,#00d4ff 0%,transparent 60%);
+    bottom:-250px;
+    right:-150px;
+    filter:blur(80px);
+    animation:float2 10s ease-in-out infinite alternate;
+}
+
+.container{
+    position:relative;
+    z-index:2;
+
+    padding:60px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:25px;
+    backdrop-filter:blur(20px);
+    background:rgba(255,255,255,.05);
+
+    text-align:center;
+
+    box-shadow:
+    0 0 30px rgba(255,255,255,.08),
+    inset 0 0 20px rgba(255,255,255,.04);
+}
+
+h1{
+    font-size:4rem;
+    font-weight:900;
+    letter-spacing:5px;
+
+    background:linear-gradient(90deg,#ffffff,#00d4ff,#ff2d55);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+p{
+    margin-top:20px;
+    font-size:1.4rem;
+    color:#ddd;
+    letter-spacing:2px;
+}
+
+.line{
+    width:120px;
+    height:4px;
+    margin:25px auto;
+    border-radius:50px;
+    background:linear-gradient(90deg,#00d4ff,#ff2d55);
+}
+
+@keyframes float1{
+    from{
+        transform:translateY(0) rotate(0deg);
+    }
+    to{
+        transform:translateY(80px) rotate(25deg);
+    }
+}
+
+@keyframes float2{
+    from{
+        transform:translateY(0) rotate(0deg);
+    }
+    to{
+        transform:translateY(-80px) rotate(-25deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>JIN RAMEN</h1>
+    <div class="line"></div>
+    <p>진라면에 의한 피지컬 소유 사이트</p>
+</div>
+
+</body>
+</html>

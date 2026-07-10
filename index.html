@@ -1,1 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Lab</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Orbitron',sans-serif;
+}
+
+body{
+overflow:hidden;
+background:#050914;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+color:white;
+}
+
+/* 별 */
+
+.star{
+position:absolute;
+background:white;
+border-radius:50%;
+animation:twinkle linear infinite;
+}
+
+@keyframes twinkle{
+0%,100%{
+opacity:.2;
+transform:scale(.5);
+}
+50%{
+opacity:1;
+transform:scale(1.3);
+}
+}
+
+/* 스캔라인 */
+
+body::after{
+content:"";
+position:absolute;
+inset:0;
+background:repeating-linear-gradient(
+transparent 0px,
+transparent 3px,
+rgba(0,255,255,.03) 4px
+);
+pointer-events:none;
+}
+
+/* 성운 */
+
+.glow{
+position:absolute;
+width:700px;
+height:700px;
+background:radial-gradient(circle,#00d9ff33,transparent 70%);
+filter:blur(80px);
+animation:moveGlow 12s infinite alternate ease-in-out;
+}
+
+@keyframes moveGlow{
+
+from{
+transform:translate(-150px,-80px);
+}
+
+to{
+transform:translate(150px,80px);
+}
+
+}
+
+/* 중앙 */
+
+.center{
+z-index:10;
+text-align:center;
+}
+
+/* HUD */
+
+.hud{
+
+width:240px;
+height:240px;
+margin:auto;
+position:relative;
+margin-bottom:40px;
+
+}
+
+.ring{
+
+position:absolute;
+border:2px solid #00e5ff;
+
+border-radius:50%;
+
+}
+
+.r1{
+
+width:240px;
+height:240px;
+
+animation:spin 18s linear infinite;
+
+}
+
+.r2{
+
+width:180px;
+height:180px;
+
+top:30px;
+left:30px;
+
+border-style:dashed;
+
+animation:spinReverse 10s linear infinite;
+
+}
+
+.r3{
+
+width:120px;
+height:120px;
+
+top:60px;
+left:60px;
+
+animation:spin 6s linear infinite;
+
+}
+
+.core{
+
+width:30px;
+height:30px;
+background:#00e5ff;
+border-radius:50%;
+
+position:absolute;
+
+left:105px;
+top:105px;
+
+box-shadow:
+
+0 0 20px cyan,
+
+0 0 60px cyan,
+
+0 0 100px cyan;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes spin{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+@keyframes spinReverse{
+
+from{
+transform:rotate(360deg);
+}
+
+to{
+transform:rotate(0deg);
+}
+
+}
+
+@keyframes pulse{
+
+0%,100%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.4);
+}
+
+}
+
+/* 텍스트 */
+
+.status{
+
+color:#00e5ff;
+letter-spacing:4px;
+font-size:14px;
+
+margin-bottom:15px;
+
+animation:blink 2s infinite;
+
+}
+
+@keyframes blink{
+
+50%{
+opacity:.4;
+}
+
+}
+
+h1{
+
+font-size:55px;
+
+letter-spacing:6px;
+
+text-shadow:
+
+0 0 15px cyan,
+
+0 0 40px cyan;
+
+}
+
+p{
+
+margin-top:10px;
+
+color:#8ecfff;
+
+letter-spacing:2px;
+
+margin-bottom:40px;
+
+}
+
+/* 버튼 */
+
+button{
+
+width:220px;
+
+height:65px;
+
+background:transparent;
+
+border:2px solid cyan;
+
+color:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+transition:.3s;
+
+position:relative;
+
+overflow:hidden;
+
+box-shadow:
+
+0 0 20px rgba(0,255,255,.4);
+
+}
+
+button::before{
+
+content:"";
+
+position:absolute;
+
+left:-100%;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.5),
+
+transparent
+
+);
+
+transition:.5s;
+
+}
+
+button:hover::before{
+
+left:100%;
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+background:rgba(0,255,255,.15);
+
+box-shadow:
+
+0 0 15px cyan,
+
+0 0 40px cyan,
+
+0 0 80px cyan;
+
+}
+
+/* 모서리 */
+
+.corner{
+
+position:absolute;
+
+width:120px;
+height:120px;
+
+border:2px solid rgba(0,255,255,.3);
+
+}
+
+.tl{
+top:30px;
+left:30px;
+border-right:none;
+border-bottom:none;
+}
+
+.tr{
+top:30px;
+right:30px;
+border-left:none;
+border-bottom:none;
+}
+
+.bl{
+bottom:30px;
+left:30px;
+border-right:none;
+border-top:none;
+}
+
+.br{
+bottom:30px;
+right:30px;
+border-left:none;
+border-top:none;
+}
+
+/* 하단 */
+
+.footer{
+
+position:absolute;
+
+bottom:25px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-size:12px;
+
+letter-spacing:3px;
+
+color:#4ec9ff;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="corner tl"></div>
+<div class="corner tr"></div>
+<div class="corner bl"></div>
+<div class="corner br"></div>
+
+<div class="center">
+
+<div class="status">
+SYSTEM READY
+</div>
+
+<div class="hud">
+
+<div class="ring r1"></div>
+<div class="ring r2"></div>
+<div class="ring r3"></div>
+<div class="core"></div>
+
+</div>
+
+<h1>FUTURE LAB</h1>
+
+<p>Artificial Intelligence Research Center</p>
+
+<button onclick="start()">
+시작하기
+</button>
+
+</div>
+
+<div class="footer">
+SECURE CONNECTION ESTABLISHED
+</div>
+
+<script>
+
+// 별 생성
+
+for(let i=0;i<180;i++){
+
+const s=document.createElement("div");
+
+s.className="star";
+
+const size=Math.random()*3+1;
+
+s.style.width=size+"px";
+s.style.height=size+"px";
+
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+
+s.style.animationDuration=2+Math.random()*5+"s";
+
+document.body.appendChild(s);
+
+}
+
+function start(){
+
+document.body.animate([
+
+{
+opacity:1,
+transform:"scale(1)"
+},
+
+{
+opacity:0,
+transform:"scale(1.2)"
+}
+
+],{
+
+duration:900,
+fill:"forwards"
+
+});
+
+setTimeout(()=>{
+
+location.href="main.html";
+
+},900);
+
+}
+
+</script>
+
+</body>
+</html>

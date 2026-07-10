@@ -591,12 +591,94 @@ opacity:.5;
 }
 
 }
+    /* =========================
+      CURSOR CORE
+========================= */
+
+#cursorCore{
+
+position:fixed;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:#00e5ff;
+
+box-shadow:
+0 0 20px cyan,
+0 0 45px cyan,
+0 0 80px cyan;
+
+pointer-events:none;
+
+z-index:99999;
+
+transform:translate(-50%,-50%);
+
+transition:
+left .08s linear,
+top .08s linear;
+
+}
+
+/* =========================
+        HUD
+========================= */
+
+.hud{
+
+position:absolute;
+
+border:2px solid rgba(0,255,255,.18);
+
+clip-path:polygon(
+25% 0%,
+75% 0%,
+100% 50%,
+75% 100%,
+25% 100%,
+0% 50%
+);
+
+animation:hudFloat 8s ease-in-out infinite;
+
+}
+
+@keyframes hudFloat{
+
+0%{
+
+transform:
+translateY(0px)
+rotate(0deg);
+
+}
+
+50%{
+
+transform:
+translateY(-18px)
+rotate(10deg);
+
+}
+
+100%{
+
+transform:
+translateY(0px)
+rotate(0deg);
+
+}
+
+}
 </style>
 
 </head>
 
 <body>
-
+<div id="cursorCore"></div>
 <div id="bg"></div>
 <div id="solarSystem">
     <div id="dna"></div>
@@ -888,6 +970,44 @@ line.style.height="15px";
 line.style.transform="rotate("+(i*15)+"deg)";
 
 dna.appendChild(line);
+
+}
+    /* =====================
+CURSOR
+===================== */
+
+const cursor=document.getElementById("cursorCore");
+
+document.addEventListener("mousemove",e=>{
+
+cursor.style.left=e.clientX+"px";
+
+cursor.style.top=e.clientY+"px";
+
+});
+    /* =====================
+HUD
+===================== */
+
+for(let i=0;i<18;i++){
+
+const hud=document.createElement("div");
+
+hud.className="hud";
+
+const size=60+Math.random()*120;
+
+hud.style.width=size+"px";
+
+hud.style.height=size+"px";
+
+hud.style.left=Math.random()*100+"vw";
+
+hud.style.top=Math.random()*100+"vh";
+
+hud.style.animationDelay=Math.random()*8+"s";
+
+document.body.appendChild(hud);
 
 }
 </script>

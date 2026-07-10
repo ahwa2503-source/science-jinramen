@@ -673,12 +673,455 @@ rotate(0deg);
 }
 
 }
-</style>
+    /* =========================
+      NEBULA
+========================= */
 
+#nebula{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+background:
+
+radial-gradient(circle at 20% 40%,rgba(0,255,255,.12),transparent 30%),
+
+radial-gradient(circle at 80% 20%,rgba(90,0,255,.12),transparent 35%),
+
+radial-gradient(circle at 60% 80%,rgba(0,100,255,.10),transparent 30%);
+
+animation:nebulaMove 20s linear infinite;
+
+z-index:-15;
+
+}
+
+@keyframes nebulaMove{
+
+0%{
+
+transform:scale(1) rotate(0deg);
+
+}
+
+50%{
+
+transform:scale(1.15) rotate(2deg);
+
+}
+
+100%{
+
+transform:scale(1) rotate(0deg);
+
+}
+
+}
+
+/* =========================
+      SHOOTING STAR
+========================= */
+
+.shooting{
+
+position:fixed;
+
+width:180px;
+height:2px;
+
+background:linear-gradient(90deg,#fff,#00e5ff,transparent);
+
+transform:rotate(-35deg);
+
+opacity:.8;
+
+pointer-events:none;
+
+animation:shoot 2s linear forwards;
+
+}
+
+@keyframes shoot{
+
+0%{
+
+transform:
+translate(-200px,-200px)
+rotate(-35deg);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+translate(1800px,900px)
+rotate(-35deg);
+
+opacity:0;
+
+}
+
+}
+    #start{
+
+position:relative;
+
+}
+
+#start::after{
+
+content:"";
+
+position:absolute;
+
+left:-3px;
+top:-3px;
+
+width:calc(100% + 6px);
+height:calc(100% + 6px);
+
+border:2px solid cyan;
+
+opacity:0;
+
+animation:electric 1.2s infinite;
+
+}
+
+@keyframes electric{
+
+0%{
+
+opacity:0;
+
+transform:scale(1);
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+transform:scale(1.08);
+
+}
+
+}
+    /* ==========================
+   PLANET INFO HUD
+========================== */
+
+#planetInfo{
+
+position:fixed;
+
+right:40px;
+
+bottom:40px;
+
+width:280px;
+
+padding:20px;
+
+background:rgba(0,15,35,.75);
+
+border:1px solid rgba(0,255,255,.4);
+
+backdrop-filter:blur(10px);
+
+border-radius:12px;
+
+box-shadow:
+0 0 20px rgba(0,255,255,.25);
+
+color:white;
+
+opacity:0;
+
+transition:.35s;
+
+pointer-events:none;
+
+z-index:9999;
+
+}
+
+#planetInfo h2{
+
+color:#00e5ff;
+
+margin-bottom:12px;
+
+font-size:24px;
+
+}
+
+#planetInfo p{
+
+line-height:28px;
+
+font-size:15px;
+
+color:#d8f7ff;
+
+}
+    .sun{
+
+animation:
+sunPulse 4s ease-in-out infinite;
+
+}
+
+@keyframes sunPulse{
+
+0%{
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+box-shadow:
+0 0 25px #ffd54f,
+0 0 60px orange,
+0 0 120px gold;
+
+}
+
+50%{
+
+transform:
+translate(-50%,-50%)
+scale(1.18);
+
+box-shadow:
+0 0 50px #fff176,
+0 0 120px orange,
+0 0 220px gold;
+
+}
+
+100%{
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+}
+}
+    @keyframes earthSpin{
+
+0%{
+
+filter:hue-rotate(0deg);
+
+}
+
+100%{
+
+filter:hue-rotate(360deg);
+
+}
+
+}
+    .flare{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+width:12px;
+
+height:180px;
+
+background:
+
+linear-gradient(
+
+transparent,
+
+orange,
+
+transparent);
+
+transform-origin:bottom;
+
+opacity:.25;
+
+animation:
+
+flareSpin 10s linear infinite;
+
+}
+
+@keyframes flareSpin{
+
+from{
+
+transform:
+translate(-50%,-100%)
+rotate(0deg);
+
+}
+
+to{
+
+transform:
+translate(-50%,-100%)
+rotate(360deg);
+
+}
+
+}
+    #boot{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:#000;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+font-size:30px;
+
+color:#00e5ff;
+
+z-index:999999;
+
+animation:
+
+bootHide 4s forwards;
+
+}
+
+@keyframes bootHide{
+
+0%{
+
+opacity:1;
+
+}
+
+85%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+visibility:hidden;
+
+}
+}
+</style>
+/* =========================
+      WARP EFFECT
+========================= */
+
+.warpLine{
+
+position:fixed;
+
+left:50%;
+top:50%;
+
+width:3px;
+height:0;
+
+background:white;
+
+box-shadow:
+0 0 10px cyan,
+0 0 30px cyan;
+
+transform-origin:center;
+
+opacity:0;
+
+pointer-events:none;
+
+animation:warp .9s linear forwards;
+
+}
+
+@keyframes warp{
+
+0%{
+
+height:0;
+
+opacity:1;
+
+}
+
+100%{
+
+height:220vh;
+
+opacity:0;
+
+}
+}
 </head>
 
 <body>
+    <div id="boot">
+
+SCIENCE CORE<br><br>
+
+Initializing...<br>
+
+Loading AI...<br>
+
+Connecting Satellites...<br>
+
+Access Granted
+
+</div>
+    <div id="nebula"></div>
 <div id="cursorCore"></div>
+    <div id="planetInfo">
+
+<h2 id="planetTitle"></h2>
+
+<p id="planetText"></p>
+
+</div>
 <div id="bg"></div>
 <div id="solarSystem">
     <div id="dna"></div>
@@ -833,9 +1276,28 @@ sys();
 
 document.getElementById("start").onclick=()=>{
 
+for(let i=0;i<120;i++){
+
+const line=document.createElement("div");
+
+line.className="warpLine";
+
+line.style.transform=
+`translate(-50%,-50%) rotate(${Math.random()*360}deg)`;
+
+line.style.animationDelay=Math.random()*0.3+"s";
+
+document.body.appendChild(line);
+
+setTimeout(()=>line.remove(),1000);
+
+}
+
 document.body.style.transition="1.5s";
 
-document.body.style.transform="scale(1.4)";
+document.body.style.transform="scale(2)";
+
+document.body.style.filter="brightness(4)";
 
 document.body.style.opacity="0";
 
@@ -887,7 +1349,15 @@ planets.forEach(p=>{
     orbit.style.animationDuration=p.speed+"s";
 
     const planet=document.createElement("div");
+if(p.name==="지구"){
 
+planet.style.animation="earthSpin 5s linear infinite";
+
+planet.style.background=
+
+"linear-gradient(90deg,#2ea7ff,#45ff9d,#2ea7ff)";
+
+}
     planet.className="planet";
 
     planet.style.width=p.size+"px";
@@ -1010,4 +1480,74 @@ hud.style.animationDelay=Math.random()*8+"s";
 document.body.appendChild(hud);
 
 }
+    /* =====================
+SHOOTING STAR
+===================== */
+
+function shootingStar(){
+
+const s=document.createElement("div");
+
+s.className="shooting";
+
+s.style.left=Math.random()*window.innerWidth+"px";
+
+s.style.top=Math.random()*300+"px";
+
+document.body.appendChild(s);
+
+setTimeout(()=>{
+
+s.remove();
+
+},2000);
+
+}
+
+setInterval(shootingStar,3500);
+    const info={
+
+"수성":"태양에서 가장 가까운 행성",
+
+"금성":"가장 뜨거운 행성",
+
+"지구":"생명체가 존재하는 행성",
+
+"화성":"붉은 행성",
+
+"목성":"태양계 최대 행성",
+
+"토성":"아름다운 고리를 가진 행성",
+
+"천왕성":"옆으로 누워 자전하는 행성",
+
+"해왕성":"태양계에서 가장 강한 바람"
+
+};
+
+const panel=document.getElementById("planetInfo");
+
+const title=document.getElementById("planetTitle");
+
+const text=document.getElementById("planetText");
+
+document.querySelectorAll(".planet").forEach(p=>{
+
+p.addEventListener("mouseenter",()=>{
+
+panel.style.opacity=1;
+
+title.innerHTML=p.title;
+
+text.innerHTML=info[p.title];
+
+});
+
+p.addEventListener("mouseleave",()=>{
+
+panel.style.opacity=0;
+
+});
+
+});
 </script>

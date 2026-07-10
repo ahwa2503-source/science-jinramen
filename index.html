@@ -1,244 +1,375 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GALAXY EXPLORER</title>
+<title>SPACE ODYSSEY</title>
+
 
 <style>
 
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Arial', sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
+
 
 body{
-    height:100vh;
-    overflow:hidden;
-    background:black;
-    color:white;
+
+height:100vh;
+
+overflow:hidden;
+
+background:#000;
+
+color:white;
+
+font-family:
+'Segoe UI',
+sans-serif;
+
 }
 
 
-/* 우주 배경 */
+
+/* =================
+우주 배경
+================= */
+
 
 .space{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:
-    radial-gradient(circle at center,#182848,#000);
-    overflow:hidden;
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+background:
+
+radial-gradient(
+circle at center,
+#162447,
+#000 70%
+);
+
 }
+
 
 
 /* 별 */
 
 .star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
-    border-radius:50%;
-    animation:twinkle 3s infinite;
+
+position:absolute;
+
+width:3px;
+
+height:3px;
+
+background:white;
+
+border-radius:50%;
+
+animation:blink 3s infinite;
+
 }
 
 
-@keyframes twinkle{
+@keyframes blink{
 
-0%,100%{
-opacity:.2;
-}
 
 50%{
-opacity:1;
-}
+
+opacity:.2;
 
 }
 
 
-/* 메인 */
+}
 
-.container{
+
+
+/* =================
+마우스 빛
+================= */
+
+
+.light{
+
+position:fixed;
+
+width:300px;
+
+height:300px;
+
+pointer-events:none;
+
+border-radius:50%;
+
+
+background:
+
+radial-gradient(
+circle,
+rgba(0,255,255,.25),
+transparent 70%
+);
+
+
+transform:translate(-50%,-50%);
+
+z-index:5;
+
+}
+
+
+
+
+
+/* =================
+메인 화면
+================= */
+
+
+.main{
+
 
 position:relative;
-z-index:5;
 
 height:100vh;
 
 display:flex;
 
-flex-direction:column;
+justify-content:center;
 
 align-items:center;
 
-justify-content:center;
+z-index:2;
+
 
 }
+
+
 
 
 /* 제목 */
 
-h1{
 
-font-size:70px;
-
-letter-spacing:15px;
-
-text-shadow:
-0 0 20px cyan,
-0 0 40px blue;
-
-animation:titleGlow 3s infinite;
-
-}
-
-
-@keyframes titleGlow{
-
-50%{
-text-shadow:
-0 0 40px white,
-0 0 80px cyan;
-}
-
-}
-
-
-
-/* 시작 버튼 */
-
-.start{
-
-margin-top:50px;
-
-padding:20px 70px;
-
-font-size:30px;
-
-border-radius:50px;
-
-border:2px solid cyan;
-
-background:transparent;
-
-color:white;
-
-cursor:pointer;
-
-transition:.5s;
-
-box-shadow:
-0 0 20px cyan;
-
-
-}
-
-
-.start:hover{
-
-background:cyan;
-
-color:black;
-
-transform:scale(1.15);
-
-box-shadow:
-0 0 60px cyan;
-
-}
-
-
-
-/* 행성 공간 */
-
-.planets{
+.title{
 
 position:absolute;
 
-bottom:-250px;
+top:8%;
 
-width:100%;
+text-align:center;
 
-height:400px;
+}
 
-display:flex;
 
-justify-content:center;
+.title h1{
 
-align-items:center;
 
-gap:35px;
+font-size:70px;
+
+letter-spacing:20px;
+
+
+text-shadow:
+
+0 0 20px cyan,
+
+0 0 50px blue;
+
+
+}
+
+
+
+.title p{
+
+font-size:20px;
+
+color:#aaa;
+
+letter-spacing:8px;
+
+}
+
+
+
+
+/* =================
+태양
+================= */
+
+
+.sun{
+
+
+position:absolute;
+
+
+width:120px;
+
+height:120px;
+
+
+border-radius:50%;
+
+
+background:
+
+radial-gradient(
+circle,
+#fff700,
+orange,
+red
+);
+
+
+
+box-shadow:
+
+0 0 50px orange,
+
+0 0 120px yellow;
+
+
+}
+
+
+
+/* =================
+행성 공통
+================= */
+
+
+.orbit{
+
+
+position:absolute;
+
+border-radius:50%;
+
+animation:rotate linear infinite;
+
 
 }
 
 
 .planet{
 
-border-radius:50%;
-
-cursor:pointer;
-
-transition:.5s;
-
-box-shadow:
-inset -20px -20px 40px black,
-0 0 30px white;
-
-
-}
-
-
-.planet:hover{
-
-transform:translateY(-40px) scale(1.2);
-
-}
-
-
-/* 정보창 */
-
-.info{
 
 position:absolute;
 
-top:50%;
 
-right:50px;
+border-radius:50%;
 
-transform:translateY(-50%);
 
-width:300px;
+box-shadow:
 
-padding:30px;
+inset -15px -15px 25px #000,
 
-background:rgba(0,0,0,.7);
+0 0 20px white;
 
-border:1px solid cyan;
 
-border-radius:20px;
+cursor:pointer;
 
-display:none;
-
-box-shadow:0 0 40px cyan;
 
 }
 
 
-.info h2{
 
-color:cyan;
+@keyframes rotate{
 
-margin-bottom:15px;
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+
+}
+
+
+
+
+/* 시작 버튼 */
+
+
+.start{
+
+
+position:absolute;
+
+bottom:8%;
+
+
+padding:
+
+18px 70px;
+
+
+font-size:30px;
+
+
+border-radius:50px;
+
+
+background:transparent;
+
+
+border:2px solid cyan;
+
+
+color:white;
+
+
+cursor:pointer;
+
+
+box-shadow:
+
+0 0 30px cyan;
+
+
+transition:.5s;
+
+
+}
+
+
+
+.start:hover{
+
+
+background:cyan;
+
+
+color:black;
+
+
+transform:scale(1.15);
+
 
 }
 
 
 </style>
-
 
 </head>
 
@@ -246,63 +377,79 @@ margin-bottom:15px;
 <body>
 
 
-<div class="space" id="space"></div>
+<div class="space"></div>
 
 
-<div class="container">
+<div class="light"></div>
 
-<h1>GALAXY</h1>
+
+
+<div class="main">
+
+
+<div class="title">
+
+<h1>SPACE</h1>
+
+<p>EXPLORE THE UNIVERSE</p>
+
+</div>
+
+
+
+<div class="sun"></div>
+
+
+
+<div id="solar"></div>
+
+
 
 <button class="start">
-시작하기 🚀
+START 🚀
 </button>
 
-
-<div class="planets">
-
-</div>
-
-
-</div>
-
-
-<div class="info" id="info">
-
-<h2 id="planetName"></h2>
-
-<p id="planetText"></p>
 
 </div>
 <script>
 
 
 // ======================
-// 별 자동 생성
+// 별 생성
 // ======================
 
-const space = document.getElementById("space");
+
+const space=document.querySelector(".space");
 
 
-for(let i=0;i<250;i++){
+for(let i=0;i<300;i++){
 
-    let star=document.createElement("div");
+let star=document.createElement("div");
 
-    star.className="star";
+star.className="star";
 
-    star.style.left=Math.random()*100+"%";
-    star.style.top=Math.random()*100+"%";
 
-    let size=Math.random()*3;
+star.style.left=Math.random()*100+"%";
 
-    star.style.width=size+"px";
-    star.style.height=size+"px";
+star.style.top=Math.random()*100+"%";
 
-    star.style.animationDelay=
-    Math.random()*5+"s";
 
-    space.appendChild(star);
+let size=Math.random()*3+1;
+
+star.style.width=size+"px";
+
+star.style.height=size+"px";
+
+
+star.style.animationDelay=
+Math.random()*5+"s";
+
+
+space.appendChild(star);
 
 }
+
+
 
 
 
@@ -311,74 +458,123 @@ for(let i=0;i<250;i++){
 // ======================
 
 
-const planetData=[
+const planets=[
+
 
 {
-name:"수성 Mercury",
-color:"#9e9e9e",
+name:"수성",
+size:18,
+distance:100,
+color:"#aaa",
+speed:12
+},
+
+
+{
+name:"금성",
+size:30,
+distance:150,
+color:"#d9a441",
+speed:18
+},
+
+
+{
+name:"지구",
+size:34,
+distance:200,
+color:"#1687ff",
+speed:25
+},
+
+
+{
+name:"화성",
+size:25,
+distance:250,
+color:"#c1440e",
+speed:32
+},
+
+
+{
+name:"목성",
+size:75,
+distance:330,
+color:"#d6a06b",
+speed:45
+},
+
+
+{
+name:"토성",
+size:65,
+distance:420,
+color:"#e6d58a",
+speed:60
+},
+
+
+{
+name:"천왕성",
 size:45,
-text:"태양과 가장 가까운 행성. 공전 속도가 매우 빠른 작은 행성."
+distance:500,
+color:"#7de3ff",
+speed:75
 },
 
-{
-name:"금성 Venus",
-color:"#e8c27a",
-size:70,
-text:"두꺼운 대기와 강한 온실효과를 가진 뜨거운 행성."
-},
 
 {
-name:"지구 Earth",
-color:"#1e90ff",
-size:80,
-text:"생명체가 존재하는 것으로 알려진 유일한 행성."
-},
-
-{
-name:"화성 Mars",
-color:"#b33b1e",
-size:60,
-text:"붉은 행성. 과거 물이 존재했을 가능성이 연구되고 있다."
-},
-
-{
-name:"목성 Jupiter",
-color:"#d39b6a",
-size:130,
-text:"태양계 최대 행성. 거대한 가스 행성."
-},
-
-{
-name:"토성 Saturn",
-color:"#e6d28a",
-size:115,
-text:"아름다운 고리를 가진 행성."
-},
-
-{
-name:"천왕성 Uranus",
-color:"#8de8ff",
-size:90,
-text:"옆으로 누운 듯 자전하는 얼음 거대 행성."
-},
-
-{
-name:"해왕성 Neptune",
+name:"해왕성",
+size:42,
+distance:570,
 color:"#4169e1",
-size:85,
-text:"태양계 가장 바깥쪽의 푸른 행성."
+speed:90
 }
 
 
 ];
 
 
-const planetBox=document.querySelector(".planets");
 
 
+
+const solar=document.getElementById("solar");
+
+
+
+
+// ======================
 // 행성 생성
+// ======================
 
-planetData.forEach((p)=>{
+
+planets.forEach((p,index)=>{
+
+
+// 궤도 생성
+
+let orbit=document.createElement("div");
+
+
+orbit.className="orbit";
+
+
+orbit.style.width=
+p.distance*2+"px";
+
+
+orbit.style.height=
+p.distance*2+"px";
+
+
+orbit.style.border=
+"1px solid rgba(255,255,255,.15)";
+
+
+orbit.style.animationDuration=
+p.speed+"s";
+
 
 
 let planet=document.createElement("div");
@@ -387,34 +583,33 @@ let planet=document.createElement("div");
 planet.className="planet";
 
 
-planet.style.width=p.size+"px";
-
-planet.style.height=p.size+"px";
-
-planet.style.background=p.color;
+planet.style.width=
+p.size+"px";
 
 
-
-planet.onclick=()=>{
-
-
-document.getElementById("planetName")
-.innerHTML=p.name;
+planet.style.height=
+p.size+"px";
 
 
-document.getElementById("planetText")
-.innerHTML=p.text;
-
-
-document.getElementById("info")
-.style.display="block";
-
-
-};
+planet.style.background=
+p.color;
 
 
 
-planetBox.appendChild(planet);
+planet.style.left=
+"calc(50% - "+p.size/2+"px)";
+
+
+planet.style.top=
+"-"+p.size/2+"px";
+
+
+
+orbit.appendChild(planet);
+
+
+solar.appendChild(orbit);
+
 
 
 });
@@ -422,213 +617,60 @@ planetBox.appendChild(planet);
 
 
 
+
 // ======================
-// 시작 버튼 효과
-// ======================
-
-
-const button=document.querySelector(".start");
-
-
-button.onclick=()=>{
-
-
-button.innerHTML="🚀 탐험 시작";
-
-
-document.querySelector(".container")
-.style.transform="scale(1.2)";
-
-
-document.querySelector(".container")
-.style.transition="2s";
-
-
-setTimeout(()=>{
-
-
-alert("은하 탐험 모드 ON 🌌");
-
-
-},1000);
-
-
-};
-
-
-
-</script>
-
-
-</body>
-
-</html>
-/* ======================
-   마우스 따라오는 빛
-====================== */
-
-
-.cursor-light{
-
-position:fixed;
-
-width:250px;
-
-height:250px;
-
-border-radius:50%;
-
-pointer-events:none;
-
-background:
-radial-gradient(circle,
-rgba(0,255,255,.35),
-rgba(0,255,255,0) 70%);
-
-transform:translate(-50%,-50%);
-
-z-index:10;
-
-}
-
-
-
-/* ======================
-   행성 공전 효과
-====================== */
-
-
-.planet{
-
-animation:floatPlanet 5s infinite ease-in-out;
-
-}
-
-
-@keyframes floatPlanet{
-
-
-0%,100%{
-
-margin-top:0;
-
-}
-
-
-50%{
-
-margin-top:-25px;
-
-}
-
-
-}
-
-
-
-/* ======================
-토성 고리
-====================== */
-
-
-.ring{
-
-position:absolute;
-
-width:180%;
-
-height:35%;
-
-border:5px solid rgba(255,230,150,.8);
-
-border-radius:50%;
-
-transform:rotate(-20deg);
-
-}
-
-
-
-/* ======================
-화면 등장 효과
-====================== */
-
-
-.container{
-
-animation:appear 2s;
-
-}
-
-
-@keyframes appear{
-
-
-from{
-
-opacity:0;
-
-transform:scale(.7);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:scale(1);
-
-}
-
-
-}
-
-
-/* 정보창 등장 */
-
-.info{
-
-animation:popup .5s;
-
-}
-
-
-@keyframes popup{
-
-
-from{
-
-transform:translateY(-50%) scale(0);
-
-}
-
-
-to{
-
-transform:translateY(-50%) scale(1);
-
-}
-
-
-}
-// ======================
-// 마우스 빛 효과
+// 토성 고리
 // ======================
 
 
-let light=document.createElement("div");
+let saturn=
+document.querySelectorAll(".planet")[5];
 
-light.className="cursor-light";
 
-document.body.appendChild(light);
+let ring=document.createElement("div");
 
+
+ring.style.position="absolute";
+
+ring.style.width="150%";
+
+ring.style.height="40%";
+
+ring.style.left="-25%";
+
+ring.style.top="30%";
+
+
+ring.style.border=
+"3px solid rgba(255,230,150,.8)";
+
+
+ring.style.borderRadius="50%";
+
+
+ring.style.transform=
+"rotate(-25deg)";
+
+
+saturn.appendChild(ring);
+
+
+
+
+
+// ======================
+// 마우스 빛 이동
+// ======================
+
+
+const light=document.querySelector(".light");
 
 
 document.addEventListener("mousemove",(e)=>{
 
 
 light.style.left=e.clientX+"px";
+
 
 light.style.top=e.clientY+"px";
 
@@ -637,77 +679,362 @@ light.style.top=e.clientY+"px";
 
 
 
+</script>
+<style>
+
+
+/* ======================
+HUD UI
+====================== */
+
+
+.hud{
+
+
+position:absolute;
+
+top:30px;
+
+left:30px;
+
+
+padding:20px;
+
+
+border-left:3px solid cyan;
+
+
+background:
+
+rgba(0,0,0,.4);
+
+
+font-size:14px;
+
+
+letter-spacing:3px;
+
+
+color:#8ff;
+
+
+z-index:10;
+
+
+}
+
+
+
+
+
+/* 행성 정보창 */
+
+
+.info{
+
+
+position:absolute;
+
+
+right:40px;
+
+top:50%;
+
+
+transform:translateY(-50%);
+
+
+width:280px;
+
+
+padding:25px;
+
+
+background:
+
+rgba(0,0,0,.75);
+
+
+border:
+
+1px solid cyan;
+
+
+border-radius:20px;
+
+
+box-shadow:
+
+0 0 40px cyan;
+
+
+display:none;
+
+
+z-index:20;
+
+
+}
+
+
+
+.info h2{
+
+
+color:#00ffff;
+
+
+margin-bottom:15px;
+
+
+font-size:30px;
+
+
+}
+
+
+
+.info p{
+
+
+line-height:1.7;
+
+
+color:#ddd;
+
+
+}
+
+
+
+/* 시작 연출 */
+
+
+.zoom{
+
+
+animation:
+
+zoomSpace 3s forwards;
+
+
+}
+
+
+
+@keyframes zoomSpace{
+
+
+to{
+
+
+transform:scale(5);
+
+
+opacity:0;
+
+
+}
+
+
+}
+
+
+
+/* 클릭 효과 */
+
+
+.planet:active{
+
+
+box-shadow:
+
+0 0 80px cyan;
+
+
+}
+
+
+
+@media(max-width:700px){
+
+
+.title h1{
+
+
+font-size:40px;
+
+letter-spacing:10px;
+
+
+}
+
+
+.start{
+
+
+font-size:20px;
+
+padding:15px 40px;
+
+
+}
+
+
+.info{
+
+
+right:10px;
+
+width:240px;
+
+
+}
+
+
+}
+
+
+</style>
+
+
+
+
+
+<div class="hud">
+
+SYSTEM ONLINE<br>
+GALAXY MAP : ACTIVE<br>
+PLANETS : 8<br>
+MISSION : EXPLORE
+
+</div>
+
+
+
+<div class="info" id="info">
+
+<h2 id="planetName">
+</h2>
+
+<p id="planetDesc">
+</p>
+
+</div>
+
+
+
+
+<script>
 
 
 // ======================
-// 토성 고리 추가
+// 행성 설명
 // ======================
 
 
-const planets=document.querySelectorAll(".planet");
+const descriptions=[
 
 
-planets[5].style.position="relative";
+"태양과 가장 가까운 작은 암석 행성.",
 
+"강력한 온실효과를 가진 뜨거운 행성.",
 
-let ring=document.createElement("div");
+"생명체가 존재하는 푸른 행성.",
 
-ring.className="ring";
+"붉은색 표면을 가진 화성.",
 
+"태양계 최대의 가스 행성.",
 
-planets[5].appendChild(ring);
+"아름다운 고리를 가진 행성.",
 
+"옆으로 누워 회전하는 얼음 행성.",
 
+"태양계 가장 먼 푸른 행성."
 
-
-
-// ======================
-// 행성 랜덤 회전
-// ======================
-
-
-planets.forEach((planet)=>{
-
-
-let speed=Math.random()*3+3;
-
-
-planet.style.animationDuration=speed+"s";
-
-
-});
+];
 
 
 
+const allPlanets=
+document.querySelectorAll(".planet");
 
 
-// ======================
-// 클릭하면 우주 확대 효과
-// ======================
+const info=
+document.getElementById("info");
 
 
-document.querySelectorAll(".planet")
-.forEach((planet)=>{
+
+allPlanets.forEach((planet,index)=>{
 
 
 planet.addEventListener("click",()=>{
 
 
-document.body.style.background=
-"radial-gradient(circle,#243b55,#000)";
+document.getElementById("planetName")
+.innerHTML=
+planets[index].name;
+
+
+
+document.getElementById("planetDesc")
+.innerHTML=
+descriptions[index];
+
+
+
+info.style.display="block";
+
+
+
+});
+
+
+
+});
+
+
+
+
+// ======================
+// START 버튼
+// ======================
+
+
+const start=
+document.querySelector(".start");
+
+
+start.onclick=()=>{
+
+
+document.querySelector(".main")
+.classList.add("zoom");
+
+
+start.innerHTML=
+"ENTERING SPACE 🚀";
+
 
 
 setTimeout(()=>{
 
 
-document.body.style.background="black";
+document.querySelector(".main")
+.classList.remove("zoom");
 
 
-},1000);
+start.innerHTML=
+"START 🚀";
+
+
+},3000);
 
 
 
-});
+};
 
 
-});
+
+
+</script>

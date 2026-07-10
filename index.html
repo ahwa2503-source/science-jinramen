@@ -509,7 +509,9 @@ box-shadow:0 0 10px rgba(255,255,255,.6);
 <body>
 
 <div id="bg"></div>
-
+<div id="solarSystem">
+    <div class="sun"></div>
+</div>
 <div class="scan"></div>
 
 <h1 class="title">
@@ -673,7 +675,88 @@ location.href="main.html";
 
 }
 
+
+  /* ===========================
+   SOLAR SYSTEM
+=========================== */
+
+const planets = [
+
+{ name:"수성", color:"#b8b8b8", size:8, orbit:70, speed:5 },
+
+{ name:"금성", color:"#d8b56a", size:11, orbit:100, speed:8 },
+
+{ name:"지구", color:"#2ea7ff", size:12, orbit:140, speed:11 },
+
+{ name:"화성", color:"#ff5a36", size:10, orbit:175, speed:14 },
+
+{ name:"목성", color:"#c89c74", size:24, orbit:220, speed:20 },
+
+{ name:"토성", color:"#edd28c", size:20, orbit:270, speed:24 },
+
+{ name:"천왕성", color:"#79ecff", size:17, orbit:320, speed:29 },
+
+{ name:"해왕성", color:"#2f6dff", size:17, orbit:370, speed:35 }
+
+];
+
+const solar = document.getElementById("solarSystem");
+
+planets.forEach(p=>{
+
+    const orbit=document.createElement("div");
+
+    orbit.className="orbit";
+
+    orbit.style.width=p.orbit*2+"px";
+
+    orbit.style.height=p.orbit*2+"px";
+
+    orbit.style.animationDuration=p.speed+"s";
+
+    const planet=document.createElement("div");
+
+    planet.className="planet";
+
+    planet.style.width=p.size+"px";
+
+    planet.style.height=p.size+"px";
+
+    planet.style.background=p.color;
+
+    planet.style.left=(p.orbit-p.size/2)+"px";
+
+    planet.title=p.name;
+
+    if(p.name==="토성"){
+
+        const ring=document.createElement("div");
+
+        ring.style.position="absolute";
+
+        ring.style.left="-8px";
+
+        ring.style.top="5px";
+
+        ring.style.width="36px";
+
+        ring.style.height="10px";
+
+        ring.style.border="2px solid rgba(255,230,170,.8)";
+
+        ring.style.borderRadius="50%";
+
+        ring.style.transform="rotate(-25deg)";
+
+        planet.appendChild(ring);
+
+    }
+
+    orbit.appendChild(planet);
+
+    solar.appendChild(orbit);
+
+});
 </script>
 
-</body>
-</html>
+

@@ -502,6 +502,95 @@ transform:translateY(-50%);
 box-shadow:0 0 10px rgba(255,255,255,.6);
 
 }
+    /* =======================
+      DNA
+======================= */
+
+#dna{
+
+position:absolute;
+
+right:120px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+width:140px;
+
+height:420px;
+
+pointer-events:none;
+
+}
+
+.dnaDot{
+
+position:absolute;
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:#00e5ff;
+
+box-shadow:
+
+0 0 15px cyan,
+
+0 0 30px cyan;
+
+animation:dnaRotate 4s linear infinite;
+
+}
+
+.dnaLine{
+
+position:absolute;
+
+width:2px;
+
+background:rgba(0,255,255,.35);
+
+transform-origin:top;
+
+}
+
+@keyframes dnaRotate{
+
+0%{
+
+transform:
+translateX(-35px)
+scale(.7);
+
+opacity:.5;
+
+}
+
+50%{
+
+transform:
+translateX(35px)
+scale(1.3);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+translateX(-35px)
+scale(.7);
+
+opacity:.5;
+
+}
+
+}
 </style>
 
 </head>
@@ -510,6 +599,7 @@ box-shadow:0 0 10px rgba(255,255,255,.6);
 
 <div id="bg"></div>
 <div id="solarSystem">
+    <div id="dna"></div>
     <div class="sun"></div>
 </div>
 <div class="scan"></div>
@@ -757,6 +847,47 @@ planets.forEach(p=>{
     solar.appendChild(orbit);
 
 });
+    /* ===================
+DNA
+=================== */
+
+const dna=document.getElementById("dna");
+
+for(let i=0;i<28;i++){
+
+const left=document.createElement("div");
+
+left.className="dnaDot";
+
+left.style.top=i*15+"px";
+
+left.style.animationDelay=(i*.12)+"s";
+
+dna.appendChild(left);
+
+const right=document.createElement("div");
+
+right.className="dnaDot";
+
+right.style.top=i*15+"px";
+
+right.style.animationDelay=(i*.12+.5)+"s";
+
+dna.appendChild(right);
+
+const line=document.createElement("div");
+
+line.className="dnaLine";
+
+line.style.left="69px";
+
+line.style.top=i*15+5+"px";
+
+line.style.height="15px";
+
+line.style.transform="rotate("+(i*15)+"deg)";
+
+dna.appendChild(line);
+
+}
 </script>
-
-

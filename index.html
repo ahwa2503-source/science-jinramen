@@ -1,66 +1,46 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SPACE ODYSSEY</title>
-
+<title>SCIENCE CORE</title>
 
 <style>
-
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
 }
-
 
 body{
 
-height:100vh;
-
 overflow:hidden;
-
-background:#000;
-
+background:#03040b;
 color:white;
-
-font-family:
-'Segoe UI',
-sans-serif;
 
 }
 
+/* 배경 */
 
+#bg{
 
-/* =================
-우주 배경
-================= */
-
-
-.space{
-
-position:absolute;
-
+position:fixed;
 width:100%;
-
 height:100%;
+left:0;
+top:0;
 
 background:
 
-radial-gradient(
-circle at center,
-#162447,
-#000 70%
-);
+radial-gradient(circle at center,#082548 0%,#02040b 70%);
+
+z-index:-20;
 
 }
-
-
 
 /* 별 */
 
@@ -68,973 +48,632 @@ circle at center,
 
 position:absolute;
 
-width:3px;
-
-height:3px;
+width:2px;
+height:2px;
 
 background:white;
 
 border-radius:50%;
 
-animation:blink 3s infinite;
+animation:twinkle 3s infinite;
 
 }
 
+@keyframes twinkle{
 
-@keyframes blink{
+0%{opacity:.2;}
 
+50%{opacity:1;}
 
-50%{
-
-opacity:.2;
-
-}
-
+100%{opacity:.2;}
 
 }
 
+/* 파티클 */
 
+.particle{
 
-/* =================
-마우스 빛
-================= */
+position:absolute;
 
-
-.light{
-
-position:fixed;
-
-width:300px;
-
-height:300px;
-
-pointer-events:none;
+width:4px;
+height:4px;
 
 border-radius:50%;
 
+background:#00d8ff;
+
+box-shadow:
+
+0 0 8px #00d8ff,
+
+0 0 20px #00d8ff;
+
+animation:floatParticle linear infinite;
+
+}
+
+@keyframes floatParticle{
+
+0%{
+
+transform:translateY(100vh);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+80%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120vh);
+
+opacity:0;
+
+}
+
+}
+
+/* 스캔라인 */
+
+.scan{
+
+position:fixed;
+
+top:-200px;
+
+left:0;
+
+width:100%;
+
+height:200px;
 
 background:
 
-radial-gradient(
-circle,
-rgba(0,255,255,.25),
-transparent 70%
-);
+linear-gradient(
 
+transparent,
 
-transform:translate(-50%,-50%);
+rgba(0,255,255,.2),
 
-z-index:5;
+transparent);
 
-}
+animation:scan 6s linear infinite;
 
-
-
-
-
-/* =================
-메인 화면
-================= */
-
-
-.main{
-
-
-position:relative;
-
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:2;
-
+pointer-events:none;
 
 }
 
+@keyframes scan{
 
+0%{
 
+top:-200px;
+
+}
+
+100%{
+
+top:120%;
+
+}
+
+}
 
 /* 제목 */
-
 
 .title{
 
 position:absolute;
 
-top:8%;
+top:15%;
 
-text-align:center;
+left:50%;
 
-}
-
-
-.title h1{
-
+transform:translateX(-50%);
 
 font-size:70px;
 
-letter-spacing:20px;
+font-weight:900;
 
+letter-spacing:10px;
+
+color:#7ee7ff;
 
 text-shadow:
 
+0 0 10px cyan,
+
 0 0 20px cyan,
 
-0 0 50px blue;
+0 0 40px cyan,
 
+0 0 80px cyan;
+
+animation:pulse 2s infinite;
 
 }
 
+@keyframes pulse{
 
+50%{
 
-.title p{
+text-shadow:
+
+0 0 15px cyan,
+
+0 0 30px cyan,
+
+0 0 60px cyan,
+
+0 0 120px cyan;
+
+}
+
+}
+
+/* 부제목 */
+
+.subtitle{
+
+position:absolute;
+
+top:28%;
+
+left:50%;
+
+transform:translateX(-50%);
 
 font-size:20px;
 
-color:#aaa;
+letter-spacing:5px;
 
-letter-spacing:8px;
+color:#98eaff;
+
+opacity:.8;
 
 }
 
+/* 버튼 */
 
-
-
-/* =================
-태양
-================= */
-
-
-.sun{
-
+#start{
 
 position:absolute;
 
+top:55%;
 
-width:120px;
+left:50%;
 
-height:120px;
+transform:translate(-50%,-50%);
 
+width:330px;
 
-border-radius:50%;
+height:90px;
 
+border:2px solid cyan;
 
-background:
+background:rgba(0,255,255,.08);
 
-radial-gradient(
-circle,
-#fff700,
-orange,
-red
-);
+color:white;
 
+font-size:34px;
 
+cursor:pointer;
+
+letter-spacing:5px;
+
+transition:.3s;
 
 box-shadow:
 
-0 0 50px orange,
+0 0 20px cyan;
 
-0 0 120px yellow;
-
+overflow:hidden;
 
 }
 
+#start:hover{
 
+transform:translate(-50%,-50%) scale(1.08);
 
-/* =================
-행성 공통
-================= */
+box-shadow:
 
+0 0 30px cyan,
+
+0 0 70px cyan,
+
+0 0 120px cyan;
+
+background:rgba(0,255,255,.18);
+
+}
+
+#start:before{
+
+content:"";
+
+position:absolute;
+
+left:-100%;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.5),
+
+transparent);
+
+transition:.7s;
+
+}
+
+#start:hover:before{
+
+left:120%;
+
+}
+
+/* 시계 */
+
+.clock{
+
+position:absolute;
+
+bottom:30px;
+
+left:30px;
+
+font-size:20px;
+
+color:#78e7ff;
+
+letter-spacing:3px;
+
+}
+
+/* 시스템 정보 */
+
+.system{
+
+position:absolute;
+
+right:30px;
+
+top:30px;
+
+width:250px;
+
+padding:20px;
+
+border:1px solid rgba(0,255,255,.5);
+
+background:rgba(0,255,255,.05);
+
+backdrop-filter:blur(5px);
+
+line-height:35px;
+
+}
+
+.system h2{
+
+margin-bottom:15px;
+
+color:#6be7ff;
+
+}
+
+/* 공식 */
+
+.formula{
+
+position:absolute;
+
+color:rgba(0,255,255,.35);
+
+font-size:22px;
+
+animation:formulaMove linear infinite;
+
+user-select:none;
+
+}
+
+@keyframes formulaMove{
+
+0%{
+
+transform:translateY(100vh);
+
+}
+
+100%{
+
+transform:translateY(-120vh);
+
+}
+
+}
+/* ========================= */
+/* SOLAR SYSTEM */
+/* ========================= */
+
+#solarSystem{
+position:absolute;
+left:6%;
+top:50%;
+transform:translateY(-50%);
+width:520px;
+height:520px;
+pointer-events:none;
+}
+
+.sun{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:80px;
+height:80px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,#fff59d,#ffc107,#ff9800);
+
+box-shadow:
+0 0 25px #ffd54f,
+0 0 60px orange,
+0 0 120px gold;
+
+}
 
 .orbit{
 
-
 position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+border:1px solid rgba(0,255,255,.08);
 
 border-radius:50%;
 
 animation:rotate linear infinite;
 
-
 }
-
-
-.planet{
-
-
-position:absolute;
-
-
-border-radius:50%;
-
-
-box-shadow:
-
-inset -15px -15px 25px #000,
-
-0 0 20px white;
-
-
-cursor:pointer;
-
-
-}
-
-
 
 @keyframes rotate{
 
-
 from{
 
-transform:rotate(0deg);
+transform:
+translate(-50%,-50%)
+rotate(0deg);
 
 }
-
 
 to{
 
-transform:rotate(360deg);
+transform:
+translate(-50%,-50%)
+rotate(360deg);
 
 }
 
-
 }
 
-
-
-
-/* 시작 버튼 */
-
-
-.start{
-
+.planet{
 
 position:absolute;
 
-bottom:8%;
+top:50%;
 
+border-radius:50%;
 
-padding:
+transform:translateY(-50%);
 
-18px 70px;
-
-
-font-size:30px;
-
-
-border-radius:50px;
-
-
-background:transparent;
-
-
-border:2px solid cyan;
-
-
-color:white;
-
-
-cursor:pointer;
-
-
-box-shadow:
-
-0 0 30px cyan;
-
-
-transition:.5s;
-
+box-shadow:0 0 10px rgba(255,255,255,.6);
 
 }
-
-
-
-.start:hover{
-
-
-background:cyan;
-
-
-color:black;
-
-
-transform:scale(1.15);
-
-
-}
-
-
 </style>
 
 </head>
 
-
 <body>
 
+<div id="bg"></div>
 
-<div class="space"></div>
+<div class="scan"></div>
 
+<h1 class="title">
+SCIENCE CORE
+</h1>
 
-<div class="light"></div>
-
-
-
-<div class="main">
-
-
-<div class="title">
-
-<h1>SPACE</h1>
-
-<p>EXPLORE THE UNIVERSE</p>
-
+<div class="subtitle">
+NEXT GENERATION AI LAB
 </div>
 
+<button id="start">
 
+시작하기
 
-<div class="sun"></div>
-
-
-
-<div id="solar"></div>
-
-
-
-<button class="start">
-START 🚀
 </button>
 
+<div class="clock" id="clock"></div>
+
+<div class="system">
+
+<h2>SYSTEM</h2>
+
+Temperature :
+<span id="temp"></span>
+
+<br>
+
+CPU :
+<span id="cpu"></span>
+
+<br>
+
+Status :
+ONLINE
 
 </div>
-<script>
-
-
-// ======================
-// 별 생성
-// ======================
-
-
-const space=document.querySelector(".space");
-
-
-for(let i=0;i<300;i++){
-
-let star=document.createElement("div");
-
-star.className="star";
-
-
-star.style.left=Math.random()*100+"%";
-
-star.style.top=Math.random()*100+"%";
-
-
-let size=Math.random()*3+1;
-
-star.style.width=size+"px";
-
-star.style.height=size+"px";
-
-
-star.style.animationDelay=
-Math.random()*5+"s";
-
-
-space.appendChild(star);
-
-}
-
-
-
-
-
-// ======================
-// 행성 데이터
-// ======================
-
-
-const planets=[
-
-
-{
-name:"수성",
-size:18,
-distance:100,
-color:"#aaa",
-speed:12
-},
-
-
-{
-name:"금성",
-size:30,
-distance:150,
-color:"#d9a441",
-speed:18
-},
-
-
-{
-name:"지구",
-size:34,
-distance:200,
-color:"#1687ff",
-speed:25
-},
-
-
-{
-name:"화성",
-size:25,
-distance:250,
-color:"#c1440e",
-speed:32
-},
-
-
-{
-name:"목성",
-size:75,
-distance:330,
-color:"#d6a06b",
-speed:45
-},
-
-
-{
-name:"토성",
-size:65,
-distance:420,
-color:"#e6d58a",
-speed:60
-},
-
-
-{
-name:"천왕성",
-size:45,
-distance:500,
-color:"#7de3ff",
-speed:75
-},
-
-
-{
-name:"해왕성",
-size:42,
-distance:570,
-color:"#4169e1",
-speed:90
-}
-
-
-];
-
-
-
-
-
-const solar=document.getElementById("solar");
-
-
-
-
-// ======================
-// 행성 생성
-// ======================
-
-
-planets.forEach((p,index)=>{
-
-
-// 궤도 생성
-
-let orbit=document.createElement("div");
-
-
-orbit.className="orbit";
-
-
-orbit.style.width=
-p.distance*2+"px";
-
-
-orbit.style.height=
-p.distance*2+"px";
-
-
-orbit.style.border=
-"1px solid rgba(255,255,255,.15)";
-
-
-orbit.style.animationDuration=
-p.speed+"s";
-
-
-
-let planet=document.createElement("div");
-
-
-planet.className="planet";
-
-
-planet.style.width=
-p.size+"px";
-
-
-planet.style.height=
-p.size+"px";
-
-
-planet.style.background=
-p.color;
-
-
-
-planet.style.left=
-"calc(50% - "+p.size/2+"px)";
-
-
-planet.style.top=
-"-"+p.size/2+"px";
-
-
-
-orbit.appendChild(planet);
-
-
-solar.appendChild(orbit);
-
-
-
-});
-
-
-
-
-
-// ======================
-// 토성 고리
-// ======================
-
-
-let saturn=
-document.querySelectorAll(".planet")[5];
-
-
-let ring=document.createElement("div");
-
-
-ring.style.position="absolute";
-
-ring.style.width="150%";
-
-ring.style.height="40%";
-
-ring.style.left="-25%";
-
-ring.style.top="30%";
-
-
-ring.style.border=
-"3px solid rgba(255,230,150,.8)";
-
-
-ring.style.borderRadius="50%";
-
-
-ring.style.transform=
-"rotate(-25deg)";
-
-
-saturn.appendChild(ring);
-
-
-
-
-
-// ======================
-// 마우스 빛 이동
-// ======================
-
-
-const light=document.querySelector(".light");
-
-
-document.addEventListener("mousemove",(e)=>{
-
-
-light.style.left=e.clientX+"px";
-
-
-light.style.top=e.clientY+"px";
-
-
-});
-
-
-
-</script>
-<style>
-
-
-/* ======================
-HUD UI
-====================== */
-
-
-.hud{
-
-
-position:absolute;
-
-top:30px;
-
-left:30px;
-
-
-padding:20px;
-
-
-border-left:3px solid cyan;
-
-
-background:
-
-rgba(0,0,0,.4);
-
-
-font-size:14px;
-
-
-letter-spacing:3px;
-
-
-color:#8ff;
-
-
-z-index:10;
-
-
-}
-
-
-
-
-
-/* 행성 정보창 */
-
-
-.info{
-
-
-position:absolute;
-
-
-right:40px;
-
-top:50%;
-
-
-transform:translateY(-50%);
-
-
-width:280px;
-
-
-padding:25px;
-
-
-background:
-
-rgba(0,0,0,.75);
-
-
-border:
-
-1px solid cyan;
-
-
-border-radius:20px;
-
-
-box-shadow:
-
-0 0 40px cyan;
-
-
-display:none;
-
-
-z-index:20;
-
-
-}
-
-
-
-.info h2{
-
-
-color:#00ffff;
-
-
-margin-bottom:15px;
-
-
-font-size:30px;
-
-
-}
-
-
-
-.info p{
-
-
-line-height:1.7;
-
-
-color:#ddd;
-
-
-}
-
-
-
-/* 시작 연출 */
-
-
-.zoom{
-
-
-animation:
-
-zoomSpace 3s forwards;
-
-
-}
-
-
-
-@keyframes zoomSpace{
-
-
-to{
-
-
-transform:scale(5);
-
-
-opacity:0;
-
-
-}
-
-
-}
-
-
-
-/* 클릭 효과 */
-
-
-.planet:active{
-
-
-box-shadow:
-
-0 0 80px cyan;
-
-
-}
-
-
-
-@media(max-width:700px){
-
-
-.title h1{
-
-
-font-size:40px;
-
-letter-spacing:10px;
-
-
-}
-
-
-.start{
-
-
-font-size:20px;
-
-padding:15px 40px;
-
-
-}
-
-
-.info{
-
-
-right:10px;
-
-width:240px;
-
-
-}
-
-
-}
-
-
-</style>
-
-
-
-
-
-<div class="hud">
-
-SYSTEM ONLINE<br>
-GALAXY MAP : ACTIVE<br>
-PLANETS : 8<br>
-MISSION : EXPLORE
-
-</div>
-
-
-
-<div class="info" id="info">
-
-<h2 id="planetName">
-</h2>
-
-<p id="planetDesc">
-</p>
-
-</div>
-
-
-
 
 <script>
 
+// 별
 
-// ======================
-// 행성 설명
-// ======================
+for(let i=0;i<250;i++){
 
+let s=document.createElement("div");
 
-const descriptions=[
+s.className="star";
 
+s.style.left=Math.random()*100+"vw";
 
-"태양과 가장 가까운 작은 암석 행성.",
+s.style.top=Math.random()*100+"vh";
 
-"강력한 온실효과를 가진 뜨거운 행성.",
+s.style.animationDelay=Math.random()*3+"s";
 
-"생명체가 존재하는 푸른 행성.",
+document.body.appendChild(s);
 
-"붉은색 표면을 가진 화성.",
+}
 
-"태양계 최대의 가스 행성.",
+// 파티클
 
-"아름다운 고리를 가진 행성.",
+for(let i=0;i<120;i++){
 
-"옆으로 누워 회전하는 얼음 행성.",
+let p=document.createElement("div");
 
-"태양계 가장 먼 푸른 행성."
+p.className="particle";
+
+p.style.left=Math.random()*100+"vw";
+
+p.style.animationDuration=6+Math.random()*8+"s";
+
+p.style.animationDelay=Math.random()*8+"s";
+
+document.body.appendChild(p);
+
+}
+
+// 공식
+
+let list=[
+
+"E = mc²",
+
+"H₂O",
+
+"DNA",
+
+"NaCl",
+
+"CO₂",
+
+"A=T",
+
+"G≡C",
+
+"F=ma",
+
+"AI"
 
 ];
 
+for(let i=0;i<30;i++){
 
+let f=document.createElement("div");
 
-const allPlanets=
-document.querySelectorAll(".planet");
+f.className="formula";
 
+f.innerHTML=list[Math.floor(Math.random()*list.length)];
 
-const info=
-document.getElementById("info");
+f.style.left=Math.random()*100+"vw";
 
+f.style.animationDuration=15+Math.random()*20+"s";
 
+f.style.fontSize=15+Math.random()*20+"px";
 
-allPlanets.forEach((planet,index)=>{
+document.body.appendChild(f);
 
+}
 
-planet.addEventListener("click",()=>{
+function clock(){
 
+let d=new Date();
 
-document.getElementById("planetName")
-.innerHTML=
-planets[index].name;
+document.getElementById("clock").innerHTML=
 
+d.toLocaleTimeString();
 
+}
 
-document.getElementById("planetDesc")
-.innerHTML=
-descriptions[index];
+setInterval(clock,1000);
 
+clock();
 
+function sys(){
 
-info.style.display="block";
+document.getElementById("temp").innerHTML=
 
+(22+Math.random()*5).toFixed(1)+"°C";
 
+document.getElementById("cpu").innerHTML=
 
-});
+Math.floor(70+Math.random()*30)+"%";
 
+}
 
+setInterval(sys,1000);
 
-});
+sys();
 
+document.getElementById("start").onclick=()=>{
 
+document.body.style.transition="1.5s";
 
+document.body.style.transform="scale(1.4)";
 
-// ======================
-// START 버튼
-// ======================
-
-
-const start=
-document.querySelector(".start");
-
-
-start.onclick=()=>{
-
-
-document.querySelector(".main")
-.classList.add("zoom");
-
-
-start.innerHTML=
-"ENTERING SPACE 🚀";
-
-
+document.body.style.opacity="0";
 
 setTimeout(()=>{
 
+location.href="main.html";
 
-document.querySelector(".main")
-.classList.remove("zoom");
+},1500);
 
-
-start.innerHTML=
-"START 🚀";
-
-
-},3000);
-
-
-
-};
-
-
-
+}
 
 </script>
+
+</body>
+</html>

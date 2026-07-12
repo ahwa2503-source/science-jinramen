@@ -1,195 +1,208 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>SCIENCE CORE</title>
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<title>SCIENCE CORE</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
 
-<link
-rel="stylesheet"
-href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Canvas -->
+<!-- ===============================
+     SPACE BACKGROUND
+================================ -->
+
 <canvas id="space"></canvas>
 
-<!-- 배경 -->
-<div id="overlay"></div>
+<div id="nebula"></div>
 
-<!-- HUD -->
+<div id="grid"></div>
+
+<div id="scanLine"></div>
+
+<!-- ===============================
+     HUD
+================================ -->
+
 <div id="hud"></div>
 
-<!-- 태양계 -->
+<!-- ===============================
+     SOLAR SYSTEM
+================================ -->
+
 <div id="solarSystem"></div>
 
-<!-- DNA -->
+<!-- ===============================
+     DNA
+================================ -->
+
 <div id="dna"></div>
 
-<!-- 커서 -->
-<div id="cursor"></div>
+<!-- ===============================
+     CURSOR
+================================ -->
 
-<!-- 정보 -->
-<div id="planetInfo">
+<div id="cursorGlow"></div>
 
-<h2 id="planetName">
-SCIENCE CORE
-</h2>
-
-<p id="planetText">
-
-NEXT GENERATION AI LAB
-
-</p>
-
-</div>
-
-<!-- 가운데 -->
+<!-- ===============================
+     TITLE
+================================ -->
 
 <div id="center">
 
-<h1>
+    <h1>
 
-SCIENCE
+        SCIENCE
 
-<span>
+        <span>
 
-CORE
+            CORE
 
-</span>
+        </span>
 
-</h1>
+    </h1>
 
-<p>
+    <p>
 
-NEXT GENERATION AI LAB
+        NEXT GENERATION AI LAB
 
-</p>
+    </p>
 
-<button id="start">
+    <button id="startButton">
 
-START
+        START
 
-</button>
+    </button>
 
 </div>
 
-<!-- 왼쪽 시스템 -->
+<!-- ===============================
+     SYSTEM PANEL
+================================ -->
 
 <div id="systemPanel">
 
-<div>
+    <h2>
 
-STATUS
+        SYSTEM
 
-<span id="status">
+    </h2>
 
-ONLINE
+    <div>
 
-</span>
+        STATUS
 
-</div>
+        <span id="status">
 
-<div>
+            ONLINE
 
-CPU
+        </span>
 
-<span id="cpu">
+    </div>
 
-0%
+    <div>
 
-</span>
+        CPU
 
-</div>
+        <span id="cpu">
 
-<div>
+            0%
 
-TEMP
+        </span>
 
-<span id="temp">
+    </div>
 
-0°C
+    <div>
 
-</span>
+        TEMP
 
-</div>
+        <span id="temp">
 
-<div>
+            0°C
 
-TIME
+        </span>
 
-<span id="clock">
+    </div>
 
-00:00:00
+    <div>
 
-</span>
+        TIME
 
-</div>
+        <span id="clock">
 
-</div>
+            00:00:00
 
-<!-- 오른쪽 패널 -->
+        </span>
 
-<div id="rightPanel">
-
-<h3>
-
-SYSTEM
-
-</h3>
-
-<div class="line"></div>
-
-<div class="line"></div>
-
-<div class="line"></div>
-
-<div class="line"></div>
-
-<div class="line"></div>
-
-<div class="line"></div>
+    </div>
 
 </div>
 
-<!-- 부팅 -->
+<!-- ===============================
+     PLANET INFO
+================================ -->
 
-<div id="boot">
+<div id="planetInfo">
 
-<div id="bootText">
+    <h2 id="planetName">
 
-SCIENCE CORE
+        SCIENCE CORE
 
-<br><br>
+    </h2>
 
-Initializing...
+    <p id="planetText">
 
-<br>
+        Move your mouse over a planet.
 
-Loading AI...
-
-<br>
-
-Connecting Satellite...
-
-<br>
-
-Preparing Interface...
+    </p>
 
 </div>
 
+<!-- ===============================
+     BOOT SCREEN
+================================ -->
+
+<div id="bootScreen">
+
+    <div id="bootLogo">
+
+        SCIENCE CORE
+
+    </div>
+
+    <div id="bootText">
+
+        Initializing...
+
+    </div>
+
+    <div id="bootBar">
+
+        <div id="bootProgress"></div>
+
+    </div>
+
 </div>
+
+<!-- ===============================
+     WARP
+================================ -->
+
+<div id="warp"></div>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>

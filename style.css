@@ -1377,3 +1377,17 @@ pointer-events:none;
 
 
 
+
+@keyframes float{
+
+from{
+transform:translateY(0);
+opacity:.2;
+}
+
+to{
+transform:translateY(-40px);
+opacity:1;
+}
+
+}

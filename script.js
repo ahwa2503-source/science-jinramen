@@ -1,55 +1,104 @@
 const planets = document.querySelectorAll(".planet");
 
-const nameBox = document.getElementById("planet-name");
-const infoBox = document.getElementById("planet-info");
+const planetName = document.getElementById("planet-name");
+const planetInfo = document.getElementById("planet-info");
 
 const startBtn = document.getElementById("start");
 
 const solar = document.querySelector(".solar-system");
 
+const universe = document.getElementById("universe");
 
 
 
-// 행성 클릭 시스템
 
-planets.forEach(planet => {
+
+// =================================
+// 별 생성 시스템
+// =================================
+
+
+for(let i = 0; i < 600; i++){
+
+
+    const star = document.createElement("div");
+
+
+    star.className = "star";
+
+
+    star.style.left =
+    Math.random()*100 + "%";
+
+
+    star.style.top =
+    Math.random()*100 + "%";
+
+
+    let size =
+    Math.random()*3+1;
+
+
+    star.style.width =
+    size+"px";
+
+
+    star.style.height =
+    size+"px";
+
+
+
+    star.style.animationDuration =
+    (Math.random()*4+2)+"s";
+
+
+    universe.appendChild(star);
+
+
+}
+
+
+
+
+
+
+
+
+// =================================
+// 행성 클릭
+// =================================
+
+
+planets.forEach(planet=>{
 
 
     planet.addEventListener("click",()=>{
 
 
-        const name =
+        planets.forEach(p=>{
+
+            p.classList.remove("selected");
+
+        });
+
+
+
+        planet.classList.add("selected");
+
+
+
+        planetName.innerHTML =
         planet.dataset.name;
 
 
-        const info =
+
+        planetInfo.innerHTML =
         planet.dataset.info;
 
 
 
-        nameBox.innerHTML =
-        name;
-
-
-        infoBox.innerHTML =
-        info;
-
-
-
-        planet.style.boxShadow =
-        "0 0 50px cyan";
-
-
-
-        setTimeout(()=>{
-
-            planet.style.boxShadow="";
-
-        },1000);
-
-
-
     });
+
 
 
 });
@@ -59,7 +108,11 @@ planets.forEach(planet => {
 
 
 
+
+
+// =================================
 // 시작 버튼
+// =================================
 
 
 startBtn.addEventListener("click",()=>{
@@ -80,46 +133,13 @@ startBtn.addEventListener("click",()=>{
 
     document.querySelector("header p")
     .innerHTML =
-    "NASA STYLE EXPLORATION MODE";
+    "DEEP SPACE EXPLORATION ACTIVE";
 
 
 
-    document.body.style.cursor =
-    "crosshair";
-
-
-
-});
-
-
-
-
-
-
-
-
-// 마우스 움직임으로 우주 움직임
-
-
-document.addEventListener("mousemove",(e)=>{
-
-
-    let x =
-    (window.innerWidth/2 - e.clientX)
-    /80;
-
-
-    let y =
-    (window.innerHeight/2 - e.clientY)
-    /80;
-
-
-
-
-    solar.style.transform =
-
-    `translate(calc(-50% + ${x}px),
-    calc(-50% + ${y}px))`;
+    document.querySelector(".solar-system")
+    .style.animation =
+    "zoom 3s";
 
 
 
@@ -133,41 +153,76 @@ document.addEventListener("mousemove",(e)=>{
 
 
 
-// 랜덤 별 생성
+// =================================
+// 마우스 패럴랙스
+// =================================
 
 
-const space =
-document.getElementById("space");
+document.addEventListener(
+"mousemove",
+(e)=>{
 
 
-
-for(let i=0;i<120;i++){
-
-
-    let star =
-    document.createElement("div");
+let x =
+(e.clientX-window.innerWidth/2)/80;
 
 
-    star.className =
-    "random-star";
-
-
-
-    star.style.left =
-    Math.random()*100+"%";
-
-
-    star.style.top =
-    Math.random()*100+"%";
+let y =
+(e.clientY-window.innerHeight/2)/80;
 
 
 
-    star.style.animationDelay =
-    Math.random()*5+"s";
+solar.style.marginLeft =
+x+"px";
+
+
+solar.style.marginTop =
+y+"px";
 
 
 
-    space.appendChild(star);
+});
 
 
-}
+
+
+
+
+
+
+
+// =================================
+// 랜덤 무중력 움직임
+// =================================
+
+
+const planetsArray =
+Array.from(planets);
+
+
+
+setInterval(()=>{
+
+
+let random =
+planetsArray[
+Math.floor(
+Math.random()*planetsArray.length
+)
+];
+
+
+
+random.style.filter =
+"brightness(2)";
+
+
+setTimeout(()=>{
+
+random.style.filter="";
+
+},500);
+
+
+
+},2000);

@@ -371,3 +371,77 @@ info:"태양계에서 가장 강한 바람"
 }
 
 ];
+/* ==========================================================
+   SCIENCE CORE
+   PLANET ENGINE v0.2
+========================================================== */
+
+document.querySelectorAll(".planet").forEach((planet,index)=>{
+
+    const glow=document.createElement("div");
+
+    glow.className="planetGlow";
+
+    planet.appendChild(glow);
+
+});
+
+/* ---------- SATURN RING ---------- */
+
+const saturn=document.querySelectorAll(".planet")[5];
+
+if(saturn){
+
+const ring=saturn.querySelector(".ring");
+
+let ringAngle=0;
+
+function rotateRing(){
+
+ringAngle+=0.4;
+
+ring.style.transform=
+
+`translate(-50%,-50%) rotate(${25+ringAngle}deg)`;
+
+requestAnimationFrame(rotateRing);
+
+}
+
+rotateRing();
+
+}
+
+/* ---------- SUN LIGHT ---------- */
+
+const sun=document.querySelector(".sun");
+
+let sunScale=1;
+
+let grow=true;
+
+function animateSun(){
+
+if(grow){
+
+sunScale+=0.0015;
+
+}else{
+
+sunScale-=0.0015;
+
+}
+
+if(sunScale>1.08) grow=false;
+
+if(sunScale<0.98) grow=true;
+
+sun.style.transform=
+
+`translate(-50%,-50%) scale(${sunScale})`;
+
+requestAnimationFrame(animateSun);
+
+}
+
+animateSun();

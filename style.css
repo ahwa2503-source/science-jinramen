@@ -938,3 +938,35 @@ top:100%;
 }
 
 }
+
+.random-star{
+
+position:absolute;
+
+width:3px;
+height:3px;
+
+background:white;
+
+border-radius:50%;
+
+animation:
+twinkle 3s infinite;
+
+}
+
+
+
+@keyframes twinkle{
+
+
+50%{
+
+opacity:.2;
+
+transform:scale(2);
+
+}
+
+
+}

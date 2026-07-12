@@ -478,3 +478,23 @@ location.href="main.html";
 },2500);
 
 });
+/* ==========================================================
+        DNA
+========================================================== */
+
+const dna=document.getElementById("dna");
+
+for(let i=0;i<36;i++){
+
+const node=document.createElement("div");
+
+node.className="dnaNode";
+
+node.style.top=i*12+"px";
+
+node.style.left=
+Math.sin(i*.55)*25+35+"px";
+
+dna.appendChild(node);
+
+}

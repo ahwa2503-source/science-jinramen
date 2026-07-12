@@ -2,232 +2,851 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>SCIENCE CORE</title>
 
-    <title>SCIENCE CORE</title>
+<style>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap"
-    rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+body{
+
+    background:#000;
+    color:white;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+
+}
+
+
+/* 우주 */
+
+.space{
+
+    position:absolute;
+    width:100vw;
+    height:100vh;
+
+    background:
+    radial-gradient(circle at 50% 50%,#10152e,#000);
+
+}
+
+
+
+/* 성운 */
+
+.space::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:
+
+    radial-gradient(circle,
+    rgba(0,170,255,.2),
+    transparent 65%);
+
+    filter:blur(60px);
+
+    animation:nebula 8s infinite alternate;
+
+}
+
+
+@keyframes nebula{
+
+    from{
+        scale:1;
+    }
+
+    to{
+        scale:1.4;
+    }
+
+}
+
+
+
+/* 별 */
+
+.star{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation:twinkle 3s infinite;
+
+}
+
+
+@keyframes twinkle{
+
+    50%{
+        opacity:.2;
+    }
+
+}
+
+
+
+
+/* 메인 UI */
+
+.container{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+
+}
+
+
+
+/* 로고 */
+
+
+.logo{
+
+    font-size:70px;
+
+    letter-spacing:15px;
+
+    color:#00eaff;
+
+    text-shadow:
+
+    0 0 10px cyan,
+    0 0 40px cyan;
+
+
+    animation:glow 3s infinite;
+
+}
+
+
+
+@keyframes glow{
+
+    50%{
+
+        text-shadow:
+
+        0 0 30px cyan,
+        0 0 80px cyan;
+
+    }
+
+}
+
+
+
+.subtitle{
+
+    margin-top:20px;
+
+    color:#aaa;
+
+    letter-spacing:5px;
+
+}
+
+
+
+/* 시스템 */
+
+
+.system{
+
+    margin-top:50px;
+
+    width:400px;
+
+    border:1px solid rgba(0,255,255,.4);
+
+    padding:20px;
+
+    background:rgba(0,20,40,.5);
+
+}
+
+
+
+.line{
+
+    margin:10px;
+
+    color:#00ffff;
+
+}
+
+
+
+.loading{
+
+    width:100%;
+    height:4px;
+
+    background:#111;
+
+    margin-top:20px;
+
+}
+
+
+.bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:#00ffff;
+
+    animation:load 5s forwards;
+
+}
+
+
+
+@keyframes load{
+
+    to{
+        width:100%;
+    }
+
+}
+
+
+
+/* 버튼 */
+
+
+button{
+
+
+    margin-top:40px;
+
+    padding:18px 70px;
+
+    background:transparent;
+
+    color:white;
+
+    border:
+
+    2px solid cyan;
+
+    font-size:25px;
+
+    letter-spacing:5px;
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+}
+
+
+
+button:hover{
+
+    background:cyan;
+
+    color:black;
+
+    box-shadow:
+
+    0 0 40px cyan;
+
+}
+
+
+
+
+    /* =====================
+   SOLAR SYSTEM MODE
+===================== */
+
+
+#solar{
+
+display:none;
+
+position:absolute;
+
+width:100vw;
+height:100vh;
+
+background:
+radial-gradient(circle,#071020,#000);
+
+overflow:hidden;
+
+}
+
+
+
+/* HUD */
+
+.hud{
+
+position:absolute;
+
+top:30px;
+left:30px;
+
+border:1px solid cyan;
+
+padding:20px;
+
+background:rgba(0,20,40,.5);
+
+color:#00ffff;
+
+font-size:14px;
+
+}
+
+
+
+/* 태양 */
+
+
+.sun{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:130px;
+height:130px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(circle,
+#fff,
+#ffd000,
+#ff5500);
+
+box-shadow:
+
+0 0 40px orange,
+0 0 100px orange;
+
+}
+
+
+
+/* 궤도 */
+
+
+.orbit{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+border:1px solid rgba(0,255,255,.15);
+
+border-radius:50%;
+
+animation:rotate linear infinite;
+
+}
+
+
+@keyframes rotate{
+
+from{
+
+transform:
+translate(-50%,-50%)
+rotate(0deg);
+
+}
+
+
+to{
+
+transform:
+translate(-50%,-50%)
+rotate(360deg);
+
+}
+
+}
+
+
+
+/* 행성 */
+
+
+.planet{
+
+position:absolute;
+
+top:-10px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+border-radius:50%;
+
+}
+
+
+
+/* 행성별 */
+
+
+.mercury{
+
+width:220px;
+height:220px;
+animation-duration:8s;
+
+}
+
+.mercury .planet{
+
+width:12px;
+height:12px;
+
+background:#aaa;
+
+}
+
+
+
+
+.venus{
+
+width:320px;
+height:320px;
+
+animation-duration:12s;
+
+}
+
+.venus .planet{
+
+width:20px;
+height:20px;
+
+background:#d99b55;
+
+}
+
+
+
+
+.earth{
+
+width:430px;
+height:430px;
+
+animation-duration:18s;
+
+}
+
+
+.earth .planet{
+
+width:25px;
+height:25px;
+
+background:#1687ff;
+
+box-shadow:
+0 0 15px cyan;
+
+}
+
+
+
+.mars{
+
+width:550px;
+height:550px;
+
+animation-duration:25s;
+
+}
+
+
+.mars .planet{
+
+width:18px;
+height:18px;
+
+background:#d14b28;
+
+}
+
+
+
+
+
+.jupiter{
+
+width:700px;
+height:700px;
+
+animation-duration:35s;
+
+}
+
+
+
+.jupiter .planet{
+
+width:65px;
+height:65px;
+
+background:
+
+linear-gradient(
+#d59b63,
+#b87542,
+#e2c18a);
+
+}
+
+
+
+
+.saturn{
+
+width:850px;
+height:850px;
+
+animation-duration:45s;
+
+}
+
+
+
+.saturn .planet{
+
+width:55px;
+height:55px;
+
+background:#ddc27b;
+
+}
+
+
+
+.saturn .planet::after{
+
+content:"";
+
+position:absolute;
+
+width:110px;
+height:25px;
+
+border:3px solid #cdbb88;
+
+border-radius:50%;
+
+left:-28px;
+top:15px;
+
+transform:rotate(-20deg);
+
+}
+
+
+
+
+
+.uranus{
+
+width:1000px;
+height:1000px;
+
+animation-duration:60s;
+
+}
+
+
+
+.uranus .planet{
+
+width:35px;
+height:35px;
+
+background:#7eefff;
+
+}
+
+
+
+
+.neptune{
+
+width:1150px;
+height:1150px;
+
+animation-duration:75s;
+
+}
+
+
+.neptune .planet{
+
+width:35px;
+height:35px;
+
+background:#315bff;
+
+}
+</style>
+
 </head>
+
 
 <body>
 
-<!-- ===============================
-     SPACE BACKGROUND
-================================ -->
 
-<canvas id="space"></canvas>
-<div class="nebula"></div>
+<div class="space" id="space"></div>
 
-<div id="stars"></div>
 
-<div id="meteors"></div>
-<div id="nebula"></div>
 
-<div id="grid"></div>
+<div class="container">
 
-<div id="scanLine"></div>
 
-<!-- ===============================
-     HUD
-================================ -->
-
-<div id="hud"></div>
-<div id="hud">
-
-    <div class="radar">
-        <div class="radar-ring"></div>
-        <div class="radar-ring"></div>
-        <div class="radar-ring"></div>
-        <div class="radar-line"></div>
-    </div>
-
+<div class="logo">
+SCIENCE CORE
 </div>
-<!-- ===============================
-     SOLAR SYSTEM
-================================ -->
 
-<div id="solarSystem"></div>
 
-<!-- ===============================
-     DNA
-================================ -->
+<div class="subtitle">
+UNIVERSE EXPLORATION SYSTEM
+</div>
 
-<div id="dna"></div>
 
-<!-- ===============================
-     CURSOR
-================================ -->
 
-<div id="cursorGlow"></div>
+<div class="system">
 
-<!-- ===============================
-     TITLE
-================================ -->
 
-<div id="center">
+<div class="line">
+✔ Quantum Engine Online
+</div>
 
-    <h1>
 
-        SCIENCE
+<div class="line">
+✔ Solar Database Connected
+</div>
 
-        <span>
 
-            CORE
+<div class="line">
+✔ Space Navigation Ready
+</div>
 
-        </span>
 
-    </h1>
+<div class="loading">
 
-    <p>
-
-        NEXT GENERATION AI LAB
-
-    </p>
-
-    <button id="startButton">
-
-        START
-
-    </button>
+<div class="bar"></div>
 
 </div>
 
-<!-- ===============================
-     SYSTEM PANEL
-================================ -->
-
-    <div>
-
-    FPS
-
-    <span id="fps">
-
-        60
-
-    </span>
-
-</div>
-<div id="systemPanel">
-
-    <h2>
-
-        SYSTEM
-
-    </h2>
-
-    <div>
-
-        STATUS
-
-        <span id="status">
-
-            ONLINE
-
-        </span>
-
-    </div>
-
-    <div>
-
-        CPU
-
-        <span id="cpu">
-
-            0%
-
-        </span>
-
-    </div>
-
-    <div>
-
-        TEMP
-
-        <span id="temp">
-
-            0°C
-
-        </span>
-
-    </div>
-
-    <div>
-
-        TIME
-
-        <span id="clock">
-
-            00:00:00
-
-        </span>
-
-    </div>
 
 </div>
 
-<!-- ===============================
-     PLANET INFO
-================================ -->
 
-<div id="planetInfo">
 
-    <h2 id="planetName">
+<button>
+START
+</button>
+    <div id="solar">
 
-        SCIENCE CORE
 
-    </h2>
+<div class="hud">
 
-    <p id="planetText">
+<h2>
+SCIENCE CORE // SOLAR SYSTEM
+</h2>
 
-        Move your mouse over a planet.
+<p>
+STATUS : ONLINE
+</p>
 
-    </p>
+<p>
+PLANETS : 8
+</p>
 
-</div>
-
-<!-- ===============================
-     BOOT SCREEN
-================================ -->
-
-<div id="bootScreen">
-
-    <div id="bootLogo">
-
-        SCIENCE CORE
-
-    </div>
-
-    <div id="bootText">
-
-        Initializing...
-
-    </div>
-
-    <div id="bootBar">
-
-        <div id="bootProgress"></div>
-
-    </div>
 
 </div>
 
-<!-- ===============================
-     WARP
-================================ -->
 
-<div id="warp"></div>
 
-<script src="script.js"></script>
+<div class="sun"></div>
+
+
+<div class="orbit mercury">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit venus">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit earth">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit mars">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit jupiter">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit saturn">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit uranus">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit neptune">
+<div class="planet"></div>
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<script>
+
+
+// 별 생성
+
+
+const space =
+document.getElementById("space");
+
+
+for(let i=0;i<300;i++){
+
+
+let star =
+document.createElement("div");
+
+
+star.className="star";
+
+
+star.style.left=
+Math.random()*100+"%";
+
+
+star.style.top=
+Math.random()*100+"%";
+
+
+star.style.animationDelay=
+Math.random()*3+"s";
+
+
+space.appendChild(star);
+
+
+}
+
+
+
+    const startButton =
+document.querySelector("button");
+
+
+const solar =
+document.getElementById("solar");
+
+
+const container =
+document.querySelector(".container");
+
+
+
+startButton.onclick=function(){
+
+
+container.style.opacity="0";
+
+
+setTimeout(()=>{
+
+
+container.style.display="none";
+
+
+solar.style.display="block";
+
+
+},1000);
+
+
+
+}
+</script>
+
+
 
 </body>
 </html>

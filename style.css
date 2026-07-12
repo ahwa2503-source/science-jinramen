@@ -365,7 +365,38 @@ left:120%;
 -------------------------- */
 
 .sun{
+.sun::after{
 
+content:"";
+
+position:absolute;
+
+width:180px;
+height:180px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle,
+transparent,
+rgba(255,150,0,.5));
+
+animation:pulse 3s infinite;
+
+}
+
+
+@keyframes pulse{
+
+50%{
+
+transform:scale(1.2);
+
+opacity:.5;
+
+}
+
+}
     position:absolute;
 
     left:50%;
@@ -1116,6 +1147,221 @@ transform:translateX(0);
 
 transform:translateX(20px);
 
+}
+
+}
+.planet{
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:50%;
+    overflow:hidden;
+}
+
+
+/* 지구 */
+
+.earth .planet{
+
+width:30px;
+height:30px;
+
+background:
+linear-gradient(
+120deg,
+#1e90ff 30%,
+#28a745 45%,
+#1e90ff 70%
+);
+
+box-shadow:
+inset -8px -5px 15px black,
+0 0 15px #00ffff;
+
+}
+
+
+
+/* 목성 */
+
+.jupiter .planet{
+
+width:70px;
+height:70px;
+
+background:
+
+repeating-linear-gradient(
+0deg,
+#d9a066 0px,
+#c47d44 10px,
+#f1c27d 20px
+);
+
+box-shadow:
+inset -15px -10px 20px black;
+
+}
+
+
+/* 목성 대적점 */
+
+.jupiter .planet::after{
+
+content:"";
+
+position:absolute;
+
+width:20px;
+height:10px;
+
+border-radius:50%;
+
+background:#b54b35;
+
+right:10px;
+top:35px;
+
+}
+
+
+
+
+/* 토성 */
+
+.saturn .planet{
+
+width:60px;
+height:60px;
+
+background:
+radial-gradient(circle,#ffe8a0,#c9a85c);
+
+box-shadow:
+inset -15px -10px 20px black;
+
+}
+
+
+
+/* 토성 고리 */
+
+.saturn .planet::before{
+
+content:"";
+
+position:absolute;
+
+width:110px;
+height:25px;
+
+border-radius:50%;
+
+border:4px solid rgba(220,200,150,.8);
+
+top:18px;
+left:-25px;
+
+transform:rotate(-20deg);
+
+}
+
+
+
+
+/* 화성 */
+
+.mars .planet{
+
+background:
+
+radial-gradient(circle at 30% 30%,
+#ff8866,
+#8b2500);
+
+box-shadow:
+inset -8px -5px 10px black;
+
+}
+
+
+
+
+/* 금성 */
+
+.venus .planet{
+
+background:
+
+radial-gradient(circle,
+#ffe0a3,
+#b86b25);
+
+}
+
+
+
+
+/* 해왕성 */
+
+.neptune .planet{
+
+background:
+
+radial-gradient(circle,
+#5da9ff,
+#001b70);
+
+box-shadow:
+inset -10px -10px 15px black;
+
+}
+
+
+
+
+/* 천왕성 */
+
+.uranus .planet{
+
+background:
+
+radial-gradient(circle,
+#bfffff,
+#1caaaa);
+
+}
+.earth .planet::after{
+
+content:"";
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:
+
+radial-gradient(
+ellipse,
+rgba(255,255,255,.7),
+transparent 40%
+);
+
+animation:cloud 8s linear infinite;
+
+}
+
+
+@keyframes cloud{
+
+from{
+transform:translateX(-30px);
+}
+
+to{
+transform:translateX(30px);
 }
 
 }

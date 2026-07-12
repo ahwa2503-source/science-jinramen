@@ -1,175 +1,110 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SCIENCE CORE</title>
-
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
-
 
 body{
 
-    overflow:hidden;
-    background:#000;
-    color:white;
-    font-family:
-    "Segoe UI",
-    Arial,
-    sans-serif;
+overflow:hidden;
+background:#000;
+color:white;
+font-family:Arial,sans-serif;
 
 }
 
 
-
-/* ===================
-   SPACE BACKGROUND
-=================== */
-
+/* 우주 */
 
 #space{
 
-    position:fixed;
+position:fixed;
+width:100%;
+height:100%;
 
-    width:100vw;
-    height:100vh;
+background:
 
-    background:
-
-    radial-gradient(
-    circle at center,
-    #14234d 0%,
-    #050816 35%,
-    #000 75%
-    );
+radial-gradient(circle at center,
+#16264d,
+#000 75%);
 
 }
 
 
-
-#space:before{
-
-    content:"";
-
-    position:absolute;
-
-    width:900px;
-    height:900px;
-
-    left:50%;
-    top:50%;
-
-    transform:
-    translate(-50%,-50%);
-
-    background:
-
-    radial-gradient(
-    circle,
-    rgba(0,180,255,.22),
-    transparent 65%
-    );
-
-    filter:blur(70px);
-
-    animation:
-    nebula 8s infinite alternate;
-
-}
-
-
-@keyframes nebula{
-
-    from{
-        transform:
-        translate(-50%,-50%)
-        scale(1);
-    }
-
-    to{
-        transform:
-        translate(-50%,-50%)
-        scale(1.4);
-    }
-
-}
-
-
-
-
-
-/* 별 */
 
 
 .star{
 
-    position:absolute;
+position:absolute;
 
-    width:2px;
-    height:2px;
+width:2px;
+height:2px;
 
-    background:white;
+background:white;
 
-    border-radius:50%;
+border-radius:50%;
 
-    animation:
-    twinkle 3s infinite;
+animation:twinkle 3s infinite;
 
 }
 
 
 @keyframes twinkle{
 
-    50%{
-        opacity:.25;
-    }
+50%{
+
+opacity:.2;
+
+}
 
 }
 
 
 
-/* ===================
- MAIN BOOT
-=================== */
+
+/* 부팅 화면 */
 
 
 #boot{
 
-    position:absolute;
 
-    width:100%;
-    height:100%;
+position:absolute;
 
-    display:flex;
+width:100%;
+height:100%;
 
-    justify-content:center;
 
-    align-items:center;
+display:flex;
 
-    flex-direction:column;
+align-items:center;
+
+justify-content:center;
+
+flex-direction:column;
+
+
+z-index:5;
+
 
 }
 
 
-
-/* 로고 */
 
 
 .logo{
 
 
-font-size:80px;
+font-size:70px;
 
-letter-spacing:20px;
+letter-spacing:15px;
 
 
 color:#00eaff;
@@ -181,78 +116,44 @@ text-shadow:
 0 0 80px cyan;
 
 
-animation:
-
-logoPulse 3s infinite;
-
-
-}
-
-
-
-@keyframes logoPulse{
-
-
-50%{
-
-
-text-shadow:
-
-0 0 60px cyan,
-0 0 140px cyan;
-
-
-}
-
-
 }
 
 
 
 
-.subtitle{
+.sub{
 
-
-margin-top:25px;
-
-letter-spacing:10px;
+margin-top:20px;
 
 color:#aaa;
 
+letter-spacing:5px;
 
 }
 
 
 
-/* 시스템 패널 */
 
 
 .panel{
 
 
-margin-top:50px;
+margin-top:40px;
 
 
-width:500px;
+width:420px;
 
 
-padding:30px;
+padding:25px;
 
 
-background:
-
-rgba(0,20,50,.55);
+border:1px solid cyan;
 
 
-border:
-
-1px solid rgba(0,255,255,.5);
+background:rgba(0,20,50,.6);
 
 
-box-shadow:
-
-0 0 40px rgba(0,255,255,.25);
-
+box-shadow:0 0 30px cyan;
 
 
 }
@@ -261,68 +162,38 @@ box-shadow:
 
 .line{
 
-
-margin:15px 0;
-
+margin:15px;
 
 color:#00ffff;
 
-
-font-size:16px;
-
-
 }
 
-
-
-/* 로딩 */
 
 
 .loading{
 
 
-margin-top:30px;
-
-
 height:5px;
-
 
 background:#111;
 
-
 }
 
 
-
-.loading-bar{
-
+.bar{
 
 height:100%;
 
-
 width:0%;
 
+background:cyan;
 
-background:
-
-linear-gradient(
-90deg,
-cyan,
-white
-);
-
-
-animation:
-
-loading 5s forwards;
-
+animation:load 4s forwards;
 
 }
 
 
-
-@keyframes loading{
-
+@keyframes load{
 
 to{
 
@@ -330,39 +201,28 @@ width:100%;
 
 }
 
-
 }
 
 
 
 
-/* START */
+
+button{
 
 
-#start{
+margin-top:40px;
 
-
-margin-top:50px;
-
-
-padding:
-
-20px 100px;
+padding:18px 80px;
 
 
 font-size:25px;
 
-
-letter-spacing:10px;
-
-
-background:transparent;
+letter-spacing:8px;
 
 
-border:
+background:none;
 
-2px solid cyan;
-
+border:2px solid cyan;
 
 color:white;
 
@@ -370,35 +230,23 @@ color:white;
 cursor:pointer;
 
 
-transition:.4s;
-
-
-
 }
 
 
-#start:hover{
-
+button:hover{
 
 background:cyan;
 
-
 color:black;
 
-
-box-shadow:
-
-0 0 60px cyan;
-
+box-shadow:0 0 50px cyan;
 
 }
 
 
 
-  
-/* =========================
-   SOLAR SYSTEM
-========================= */
+
+/* 태양계 */
 
 
 #solar{
@@ -409,31 +257,18 @@ display:none;
 
 position:absolute;
 
+width:100%;
 
-width:100vw;
-
-
-height:100vh;
-
+height:100%;
 
 
 background:
 
-radial-gradient(
-circle at center,
-#101b38,
-#000 75%
-);
-
-
-overflow:hidden;
+radial-gradient(circle,#101b35,#000);
 
 
 }
 
-
-
-/* 태양 */
 
 
 .sun{
@@ -447,232 +282,65 @@ left:50%;
 top:50%;
 
 
-transform:
-translate(-50%,-50%);
+transform:translate(-50%,-50%);
 
 
-width:180px;
+width:160px;
 
-height:180px;
-
-
-border-radius:50%;
-
-
-
-background:
-
-
-radial-gradient(
-circle,
-#fff7b0,
-#ffd000 35%,
-#ff6a00 70%,
-#ff2200
-);
-
-
-
-box-shadow:
-
-
-0 0 40px #ffcc00,
-
-0 0 120px orange,
-
-0 0 220px rgba(255,100,0,.7);
-
-
-
-animation:
-
-sunGlow 4s infinite alternate;
-
-
-}
-
-
-
-@keyframes sunGlow{
-
-
-from{
-
-scale:1;
-
-}
-
-
-to{
-
-scale:1.12;
-
-}
-
-
-}
-
-
-
-
-
-/* 태양 코로나 */
-
-
-.sun::before{
-
-
-content:"";
-
-
-position:absolute;
-
-
-width:260px;
-
-
-height:260px;
-
-
-left:-40px;
-
-
-top:-40px;
-
+height:160px;
 
 
 border-radius:50%;
 
 
-
 background:
 
-radial-gradient(
-circle,
-rgba(255,180,0,.4),
-transparent 70%
-);
-
-
-
-animation:
-
-corona 5s infinite alternate;
-
-
-}
-
-
-
-@keyframes corona{
-
-
-to{
-
-scale:1.4;
-
-opacity:.5;
-
-}
-
-
-}
-
-
-
-
-
-/* HUD */
-
-
-.hud{
-
-
-position:absolute;
-
-
-top:40px;
-
-
-left:40px;
-
-
-
-padding:25px;
-
-
-width:320px;
-
-
-
-border:
-
-1px solid cyan;
-
-
-
-background:
-
-rgba(0,20,50,.65);
-
+radial-gradient(circle,#fff,#ffd000,#ff5500);
 
 
 box-shadow:
 
-0 0 30px rgba(0,255,255,.5);
+0 0 80px orange;
 
 
-
-color:#00ffff;
-
+animation:pulse 3s infinite;
 
 
 }
 
 
 
-.hud h2{
+@keyframes pulse{
 
-font-size:20px;
+50%{
 
-margin-bottom:20px;
+scale:1.15;
+
+}
 
 }
 
 
-
-
-
-/* 궤도 */
+    /* =====================
+   PLANETS
+===================== */
 
 
 .orbit{
 
-
 position:absolute;
 
-
 left:50%;
-
-
 top:50%;
 
 
-
-border:
-
-1px solid rgba(0,255,255,.18);
-
+border:1px solid rgba(0,255,255,.2);
 
 
 border-radius:50%;
 
 
-
-animation:
-
-rotate linear infinite;
-
+animation:rotate linear infinite;
 
 }
 
@@ -684,33 +352,22 @@ rotate linear infinite;
 from{
 
 transform:
-
 translate(-50%,-50%)
 rotate(0deg);
-
 
 }
 
 
 to{
 
-
 transform:
-
 translate(-50%,-50%)
 rotate(360deg);
 
+}
 
 }
 
-
-}
-
-
-
-
-
-/* 행성 공통 */
 
 
 .planet{
@@ -719,107 +376,66 @@ rotate(360deg);
 position:absolute;
 
 
-
-top:-15px;
-
+top:-12px;
 
 left:50%;
 
 
-
-transform:
-
-translateX(-50%);
-
+transform:translateX(-50%);
 
 
 border-radius:50%;
 
 
-
 box-shadow:
 
-
-inset -15px -15px 20px black,
-
-0 0 20px rgba(255,255,255,.3);
-
+inset -10px -10px 15px black;
 
 }
 
 
-
-
-
-
-/* 수성 */
 
 
 .mercury{
 
-
-width:240px;
-
-height:240px;
+width:230px;
+height:230px;
 
 animation-duration:8s;
 
-
 }
-
 
 
 .mercury .planet{
 
+width:15px;
+height:15px;
 
-width:18px;
-
-height:18px;
-
-
-
-background:
-
-radial-gradient(circle,#aaa,#333);
-
+background:#888;
 
 }
 
 
 
-
-
-
-/* 금성 */
 
 
 .venus{
 
-
-width:340px;
-
-height:340px;
-
+width:330px;
+height:330px;
 
 animation-duration:12s;
 
-
 }
+
 
 
 .venus .planet{
 
+width:25px;
+height:25px;
 
-width:30px;
-
-height:30px;
-
-
-background:
-
-radial-gradient(circle,#ffe0a0,#b45b00);
-
-
+background:#d9a052;
 
 }
 
@@ -827,19 +443,12 @@ radial-gradient(circle,#ffe0a0,#b45b00);
 
 
 
-/* 지구 */
-
-
 .earth{
 
-
 width:450px;
-
 height:450px;
 
-
 animation-duration:18s;
-
 
 }
 
@@ -847,77 +456,47 @@ animation-duration:18s;
 
 .earth .planet{
 
-
-width:42px;
-
-height:42px;
-
+width:35px;
+height:35px;
 
 
 background:
 
-
 linear-gradient(
-
-140deg,
-
-#fff 5%,
-
-#238cff 35%,
-
-#18a85b 60%,
-
-#003b9b
-
+120deg,
+#2b8cff,
+#19a85b,
+#003b88
 );
-
 
 
 box-shadow:
 
-
-inset -15px -15px 20px black,
-
-0 0 30px cyan;
-
+0 0 20px cyan;
 
 }
 
 
 
-
-
-
-/* 화성 */
 
 
 .mars{
 
-
 width:570px;
-
 height:570px;
-
 
 animation-duration:25s;
 
-
 }
+
 
 
 .mars .planet{
 
+width:25px;
+height:25px;
 
-width:28px;
-
-height:28px;
-
-
-
-background:
-
-radial-gradient(circle,#ff8060,#7a1b00);
-
+background:#b84422;
 
 }
 
@@ -925,19 +504,12 @@ radial-gradient(circle,#ff8060,#7a1b00);
 
 
 
-/* 목성 */
-
-
 .jupiter{
 
-
-width:730px;
-
-height:730px;
-
+width:720px;
+height:720px;
 
 animation-duration:35s;
-
 
 }
 
@@ -945,90 +517,43 @@ animation-duration:35s;
 
 .jupiter .planet{
 
-
-width:90px;
-
-height:90px;
-
+width:75px;
+height:75px;
 
 
 background:
 
-
 repeating-linear-gradient(
-
 0deg,
-
-#dba36b,
-
-#c37b45 15px,
-
-#f0d0a0 30px
-
+#d69a60,
+#b87945 12px,
+#f0c999 25px
 );
 
 
-
 }
 
 
-
-.jupiter .planet::after{
-
-
-content:"";
-
-
-position:absolute;
-
-
-right:15px;
-
-bottom:25px;
-
-
-
-width:20px;
-
-height:15px;
-
-
-border-radius:50%;
-
-
-
-background:#b34b32;
-
-
-}
-
-
-
-  
-/* 토성 */
 
 
 .saturn{
 
-width:880px;
-height:880px;
+width:860px;
+height:860px;
 
 animation-duration:45s;
 
 }
 
 
+
 .saturn .planet{
 
-
-width:70px;
-
-height:70px;
+width:60px;
+height:60px;
 
 
-background:
-
-radial-gradient(circle,#ffe7a3,#b88732);
+background:#d9bd72;
 
 
 }
@@ -1044,66 +569,44 @@ content:"";
 position:absolute;
 
 
-width:150px;
+width:130px;
 
-height:40px;
-
-
-left:-40px;
-
-top:15px;
+height:35px;
 
 
-border:
+left:-35px;
 
-5px solid rgba(220,200,140,.8);
+top:12px;
+
+
+border:4px solid #d4c08a;
 
 
 border-radius:50%;
 
 
-transform:
-
-rotate(-20deg);
-
-
 }
 
 
-
-
-
-
-/* 천왕성 */
 
 
 .uranus{
 
-
-width:1030px;
-
-height:1030px;
-
+width:1000px;
+height:1000px;
 
 animation-duration:60s;
 
-
 }
-
 
 
 .uranus .planet{
 
+width:35px;
 
-width:45px;
+height:35px;
 
-height:45px;
-
-
-background:
-
-radial-gradient(circle,#bfffff,#1b8fa5);
-
+background:#75eaff;
 
 }
 
@@ -1111,19 +614,13 @@ radial-gradient(circle,#bfffff,#1b8fa5);
 
 
 
-/* 해왕성 */
-
-
 .neptune{
 
+width:1150px;
 
-width:1180px;
-
-height:1180px;
-
+height:1150px;
 
 animation-duration:75s;
-
 
 }
 
@@ -1131,17 +628,11 @@ animation-duration:75s;
 
 .neptune .planet{
 
+width:35px;
 
-width:42px;
+height:35px;
 
-height:42px;
-
-
-
-background:
-
-radial-gradient(circle,#6da0ff,#001b70);
-
+background:#315cff;
 
 }
 
@@ -1149,39 +640,27 @@ radial-gradient(circle,#6da0ff,#001b70);
 
 
 
-
-/* 워프 효과 */
-
-
-.warp{
+.hud{
 
 
-animation:
-
-warp 1.5s forwards;
+position:absolute;
 
 
-}
+top:30px;
+
+left:30px;
 
 
-
-@keyframes warp{
-
-
-from{
-
-transform:scale(1);
-
-}
+padding:20px;
 
 
-to{
+border:1px solid cyan;
 
-transform:scale(5);
 
-opacity:0;
+background:rgba(0,20,40,.7);
 
-}
+
+color:#00ffff;
 
 
 }
@@ -1189,42 +668,184 @@ opacity:0;
 
 
 </style>
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="space"></div>
+
+
+
+<div id="boot">
+
+
+<div class="logo">
+SCIENCE CORE
+</div>
+
+
+<div class="sub">
+UNIVERSE EXPLORATION SYSTEM
+</div>
+
+
+
+<div class="panel">
+
+
+<div class="line">
+✔ Quantum Engine ONLINE
+</div>
+
+
+<div class="line">
+✔ Solar Database CONNECTED
+</div>
+
+
+<div class="line">
+✔ Navigation READY
+</div>
+
+
+<div class="loading">
+
+<div class="bar"></div>
+
+</div>
+
+
+</div>
+
+
+
+<button id="start">
+START
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div id="solar">
+
+
+<div class="hud">
+
+<h2>
+SCIENCE CORE // SOLAR SYSTEM
+</h2>
+
+<p>
+STATUS : ONLINE
+</p>
+
+<p>
+PLANETS : 8
+</p>
+
+
+</div>
+
+
+
+
+<div class="sun"></div>
+
+
+
+<div class="orbit mercury">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit venus">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit earth">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit mars">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit jupiter">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit saturn">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit uranus">
+<div class="planet"></div>
+</div>
+
+
+<div class="orbit neptune">
+<div class="planet"></div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
 <script>
+
+
+// 별 생성
 
 
 const space =
 document.getElementById("space");
 
 
-
-for(let i=0;i<700;i++){
-
-
-let star =
-document.createElement("div");
+for(let i=0;i<500;i++){
 
 
-star.className="star";
+let s=document.createElement("div");
 
 
-star.style.left =
-Math.random()*100+"%";
+s.className="star";
 
 
-star.style.top =
-Math.random()*100+"%";
+s.style.left=Math.random()*100+"%";
 
 
-star.style.animationDelay =
-Math.random()*5+"s";
+s.style.top=Math.random()*100+"%";
 
 
-space.appendChild(star);
+space.appendChild(s);
 
 
 }
 
 
+
+
+
+// START
 
 
 const start =
@@ -1243,7 +864,11 @@ document.getElementById("solar");
 start.onclick=function(){
 
 
-boot.classList.add("warp");
+boot.style.transition="1s";
+
+
+boot.style.opacity="0";
+
 
 
 setTimeout(()=>{
@@ -1255,12 +880,11 @@ boot.style.display="none";
 solar.style.display="block";
 
 
-},1500);
+},1000);
 
 
 
 }
-
 
 
 

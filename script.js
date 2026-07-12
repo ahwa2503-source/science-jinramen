@@ -445,3 +445,19 @@ requestAnimationFrame(animateSun);
 }
 
 animateSun();
+/* ==========================================================
+        SUN FLARE
+========================================================== */
+
+for(let i=0;i<18;i++){
+
+const flare=document.createElement("div");
+
+flare.className="flare";
+
+flare.style.transform=
+`translate(-50%,-50%) rotate(${i*20}deg)`;
+
+document.querySelector(".sun").appendChild(flare);
+
+}

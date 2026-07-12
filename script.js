@@ -461,3 +461,20 @@ flare.style.transform=
 document.querySelector(".sun").appendChild(flare);
 
 }
+/* ==========================================================
+        START BUTTON
+========================================================== */
+
+const start=document.getElementById("startButton");
+
+start.addEventListener("click",()=>{
+
+document.body.classList.add("warpMode");
+
+setTimeout(()=>{
+
+location.href="main.html";
+
+},2500);
+
+});

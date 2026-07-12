@@ -498,3 +498,12 @@ Math.sin(i*.55)*25+35+"px";
 dna.appendChild(node);
 
 }
+let fps=document.getElementById("fps");
+
+setInterval(()=>{
+
+fps.textContent=
+
+58+Math.floor(Math.random()*3);
+
+},1000);

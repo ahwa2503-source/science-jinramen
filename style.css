@@ -867,3 +867,97 @@ background:white;
 animation:starTwinkle 2s infinite;
 
 }
+/* ===========================================
+        SUN FLARE
+=========================================== */
+
+.flare{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+width:8px;
+height:70px;
+
+background:
+
+linear-gradient(
+
+transparent,
+
+rgba(255,220,100,.95),
+
+transparent);
+
+transform-origin:center bottom;
+
+animation:flareMove 3s ease-in-out infinite;
+
+}
+
+@keyframes flareMove{
+
+0%,100%{
+
+height:70px;
+
+opacity:.5;
+
+}
+
+50%{
+
+height:105px;
+
+opacity:1;
+
+}
+
+}
+/* ===========================================
+      START BUTTON V2
+=========================================== */
+
+#startButton{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+#startButton::after{
+
+content:"";
+
+position:absolute;
+
+left:-100%;
+top:0;
+
+width:100%;
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.8),
+
+transparent);
+
+transition:1s;
+
+}
+
+#startButton:hover::after{
+
+left:120%;
+
+}

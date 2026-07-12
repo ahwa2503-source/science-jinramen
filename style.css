@@ -12,7 +12,11 @@ body{
     overflow:hidden;
 
     background:
-    radial-gradient(circle at center,#15244d,#02040d 70%);
+    radial-gradient(
+        circle at center,
+        #162653,
+        #02030b 70%
+    );
 
     color:white;
 
@@ -24,48 +28,71 @@ body{
 
 
 
+/* =====================
+   우주 배경
+===================== */
 
-/* 별 배경 */
 
-#space{
+#universe{
 
 position:absolute;
 
 width:100%;
 height:100%;
 
+overflow:hidden;
+
+}
+
+
+#universe::before{
+
+content:"";
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+
 background-image:
 
-radial-gradient(#fff 1px,transparent 1px),
-radial-gradient(#9ddcff 1px,transparent 1px);
+radial-gradient(
+white 1px,
+transparent 1px
+),
+
+radial-gradient(
+#7fdcff 1px,
+transparent 1px
+);
+
 
 background-size:
+
 45px 45px,
-80px 80px;
+90px 90px;
 
 
 animation:
-stars 80s linear infinite;
+starsMove 100s linear infinite;
 
-opacity:.7;
 
 }
 
 
 
-@keyframes stars{
+@keyframes starsMove{
 
 from{
 
-transform:
-translateY(0);
+transform:translateY(0);
 
 }
 
 to{
 
-transform:
-translateY(-500px);
+transform:translateY(-800px);
 
 }
 
@@ -74,7 +101,63 @@ translateY(-500px);
 
 
 
-/* 타이틀 */
+
+/* 성운 */
+
+
+.nebula{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(90px);
+
+}
+
+
+
+.nebula1{
+
+width:700px;
+height:700px;
+
+background:
+
+rgba(0,100,255,.25);
+
+top:-200px;
+left:-200px;
+
+
+}
+
+
+.nebula2{
+
+width:600px;
+height:600px;
+
+background:
+
+rgba(180,0,255,.18);
+
+
+right:-150px;
+bottom:-150px;
+
+}
+
+
+
+
+
+
+
+/* =====================
+ HEADER
+===================== */
+
 
 header{
 
@@ -86,7 +169,7 @@ width:100%;
 
 text-align:center;
 
-z-index:10;
+z-index:20;
 
 }
 
@@ -94,16 +177,19 @@ z-index:10;
 
 header h1{
 
+
 font-size:70px;
+
 
 letter-spacing:18px;
 
 
 background:
+
 linear-gradient(
 90deg,
-#00ffff,
-#ffffff,
+cyan,
+white,
 #00aaff
 );
 
@@ -115,7 +201,7 @@ color:transparent;
 
 text-shadow:
 
-0 0 30px #00ffff;
+0 0 40px cyan;
 
 
 }
@@ -124,13 +210,12 @@ text-shadow:
 
 header p{
 
+
 margin-top:15px;
 
-font-size:18px;
+letter-spacing:8px;
 
-letter-spacing:6px;
-
-color:#8eaaff;
+color:#9fbaff;
 
 }
 
@@ -138,11 +223,16 @@ color:#8eaaff;
 
 
 
-/* 태양계 */
+/* =====================
+ 태양계
+===================== */
+
 
 .solar-system{
 
+
 position:absolute;
+
 
 left:50%;
 top:50%;
@@ -152,21 +242,24 @@ transform:
 translate(-50%,-50%);
 
 
-width:900px;
-height:900px;
+width:1000px;
+height:1000px;
 
 
 }
+
 
 
 
 
 /* 태양 */
 
+
 .sun{
 
 
 position:absolute;
+
 
 left:50%;
 top:50%;
@@ -176,47 +269,204 @@ transform:
 translate(-50%,-50%);
 
 
-width:130px;
-height:130px;
+width:150px;
+height:150px;
 
 
 border-radius:50%;
+
 
 
 background:
 
 radial-gradient(
 circle,
-#fff,
+white,
 #ffd000 35%,
-#ff6600 70%
+#ff6600 70%,
+#ff2200
 );
 
 
 
 box-shadow:
 
-0 0 40px #ff9900,
-0 0 100px #ff6600,
-0 0 180px #ff3300;
+0 0 50px #ffb300,
+0 0 120px #ff6600,
+0 0 220px red;
 
 
 animation:
 
-pulse 3s infinite;
+sunPulse 3s infinite;
 
 
 }
 
 
 
-@keyframes pulse{
+@keyframes sunPulse{
+
 
 50%{
 
+scale:1.08;
+
+}
+
+}
+
+
+
+
+
+
+
+/* =====================
+ 궤도
+===================== */
+
+
+.orbit{
+
+
+position:absolute;
+
+
+left:50%;
+top:50%;
+
+
+border:
+
+1px solid rgba(255,255,255,.15);
+
+
+border-radius:50%;
+
+
 transform:
+
+translate(-50%,-50%);
+
+
+animation:
+
+rotate linear infinite;
+
+
+}
+
+
+
+
+.o1{
+
+width:190px;
+height:190px;
+
+animation-duration:8s;
+
+}
+
+
+.o2{
+
+width:280px;
+height:280px;
+
+animation-duration:14s;
+
+}
+
+
+
+.o3{
+
+width:380px;
+height:380px;
+
+animation-duration:20s;
+
+}
+
+
+
+.o4{
+
+width:480px;
+height:480px;
+
+animation-duration:28s;
+
+}
+
+
+
+.o5{
+
+width:620px;
+height:620px;
+
+animation-duration:40s;
+
+}
+
+
+
+.o6{
+
+width:760px;
+height:760px;
+
+animation-duration:55s;
+
+}
+
+
+
+.o7{
+
+width:870px;
+height:870px;
+
+animation-duration:65s;
+
+}
+
+
+
+.o8{
+
+width:980px;
+height:980px;
+
+animation-duration:80s;
+
+}
+
+
+
+
+
+@keyframes rotate{
+
+
+from{
+
+transform:
+
 translate(-50%,-50%)
-scale(1.08);
+rotate(0deg);
+
+}
+
+to{
+
+transform:
+
+translate(-50%,-50%)
+rotate(360deg);
 
 }
 
@@ -226,15 +476,23 @@ scale(1.08);
 
 
 
-/* 행성 공통 */
+/* =====================
+ 행성 공통
+===================== */
 
 
 .planet{
 
 position:absolute;
 
+
 left:50%;
-top:50%;
+
+top:0;
+
+
+transform:
+translateX(-50%);
 
 
 border-radius:50%;
@@ -246,76 +504,55 @@ cursor:pointer;
 transition:.3s;
 
 
+overflow:hidden;
+
+
 }
+
 
 
 
 .planet:hover{
 
+scale:1.25;
+
 filter:
-brightness(1.5);
-
-
-transform:
-scale(1.3);
-
-}
-
-
-
-
-
-/* 궤도 효과 */
-
-
-.planet::before{
-
-
-content:"";
-
-position:absolute;
-
-border:1px solid rgba(255,255,255,.18);
-
-border-radius:50%;
-
-left:50%;
-top:50%;
-
-transform:
-translate(-50%,-50%);
+brightness(1.4);
 
 
 }
+
+
 
 
 
 
 /* 수성 */
 
+
 .mercury{
 
-width:16px;
-height:16px;
+
+width:18px;
+height:18px;
 
 
-background:#aaa;
+background:
+
+radial-gradient(
+circle at 30% 30%,
+#ddd,
+#555
+);
 
 
-animation:
-orbit1 8s linear infinite;
+box-shadow:
+
+inset -5px -5px 10px black;
 
 
 }
 
-
-
-.mercury::before{
-
-width:160px;
-height:160px;
-
-}
 
 
 
@@ -325,23 +562,23 @@ height:160px;
 .venus{
 
 
-width:28px;
-height:28px;
+width:32px;
+height:32px;
 
 
-background:#d89b52;
+background:
+
+linear-gradient(
+45deg,
+#ffd08a,
+#a85b22
+);
 
 
-animation:
-orbit2 15s linear infinite;
+box-shadow:
 
-}
+inset -8px -8px 15px black;
 
-
-.venus::before{
-
-width:240px;
-height:240px;
 
 }
 
@@ -355,38 +592,52 @@ height:240px;
 .earth{
 
 
-width:34px;
-height:34px;
+width:45px;
+height:45px;
 
 
 background:
 
 linear-gradient(
 45deg,
-#008cff,
-#00ff88
+#0066ff,
+#00aa55
 );
 
 
 box-shadow:
-0 0 20px cyan;
 
 
-animation:
-orbit3 22s linear infinite;
+inset -12px -10px 20px black,
+
+0 0 25px #00aaff;
 
 
 }
 
 
 
-.earth::before{
 
-width:330px;
-height:330px;
+.clouds{
+
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+
+background:
+
+radial-gradient(
+white 10%,
+transparent 11%
+);
+
+
+opacity:.5;
 
 }
-
 
 
 
@@ -394,27 +645,25 @@ height:330px;
 
 /* 화성 */
 
+
 .mars{
 
-width:24px;
-height:24px;
 
-background:#b94727;
-
-
-animation:
-orbit4 30s linear infinite;
-
-}
+width:35px;
+height:35px;
 
 
-.mars::before{
+background:
 
-width:420px;
-height:420px;
+radial-gradient(
+circle at 30% 30%,
+#ff8855,
+#7d2200
+);
+
+
 
 }
-
 
 
 
@@ -425,30 +674,55 @@ height:420px;
 
 .jupiter{
 
-width:75px;
-height:75px;
+
+width:100px;
+height:100px;
 
 
 background:
 
-linear-gradient(
-#d7b083,
-#9b6035
+repeating-linear-gradient(
+
+0deg,
+
+#e8c18c 0px,
+
+#9b6842 18px,
+
+#f4d7a5 35px
+
 );
 
 
-animation:
-orbit5 45s linear infinite;
+
+box-shadow:
+
+inset -25px -25px 40px black;
 
 
 }
 
 
 
-.jupiter::before{
 
-width:540px;
-height:540px;
+
+.storm{
+
+position:absolute;
+
+width:25px;
+height:15px;
+
+
+background:#c66b45;
+
+
+border-radius:50%;
+
+
+right:20px;
+bottom:30px;
+
 
 }
 
@@ -462,56 +736,52 @@ height:540px;
 .saturn{
 
 
-width:65px;
-height:65px;
+width:80px;
+height:80px;
 
 
-background:#d8c27a;
+background:
 
-
-animation:
-orbit6 55s linear infinite;
+linear-gradient(
+45deg,
+#ffe49b,
+#9d7845
+);
 
 
 }
 
 
-.saturn-ring{
+
+
+
+.rings{
 
 
 position:absolute;
 
 
-width:120px;
-height:30px;
+width:170px;
+height:45px;
 
 
 border:
 
-3px solid #e8d49a;
+5px solid #ddc487;
 
 
 border-radius:50%;
 
 
-left:-27px;
+left:-45px;
 
 top:18px;
 
 
 transform:
+
 rotate(-20deg);
 
-
-}
-
-
-
-
-.saturn::before{
-
-width:650px;
-height:650px;
 
 }
 
@@ -524,27 +794,23 @@ height:650px;
 
 .uranus{
 
-width:45px;
-height:45px;
+
+width:55px;
+height:55px;
 
 
-background:#65d8ff;
+background:
+
+#72dfff;
 
 
-animation:
-orbit7 65s linear infinite;
+box-shadow:
+
+inset -15px -15px 20px black;
 
 
 }
 
-
-
-.uranus::before{
-
-width:760px;
-height:760px;
-
-}
 
 
 
@@ -555,24 +821,19 @@ height:760px;
 .neptune{
 
 
-width:42px;
-height:42px;
+width:50px;
+height:50px;
 
 
-background:#315cff;
+background:
+
+#315cff;
 
 
-animation:
-orbit8 80s linear infinite;
+box-shadow:
 
+inset -15px -15px 20px black;
 
-}
-
-
-.neptune::before{
-
-width:870px;
-height:870px;
 
 }
 
@@ -581,156 +842,16 @@ height:870px;
 
 
 
-/* 궤도 애니메이션 */
-
-
-@keyframes orbit1{
-
-from{
-transform:
-rotate(0deg)
-translateX(80px);
-}
-
-to{
-transform:
-rotate(360deg)
-translateX(80px);
-}
-
-}
-
-
-@keyframes orbit2{
-
-from{
-transform:
-rotate(0)
-translateX(120px);
-}
-
-to{
-transform:
-rotate(360deg)
-translateX(120px);
-}
-
-}
-
-
-@keyframes orbit3{
-
-from{
-transform:
-rotate(0)
-translateX(165px);
-}
-
-to{
-transform:
-rotate(360deg)
-translateX(165px);
-}
-
-}
-
-
-@keyframes orbit4{
-
-from{
-transform:
-rotate(0)
-translateX(210px);
-}
-
-to{
-transform:
-rotate(360deg)
-translateX(210px);
-}
-
-}
-
-
-@keyframes orbit5{
-
-from{
-transform:
-rotate(0)
-translateX(270px);
-}
-
-to{
-transform:
-rotate(360deg)
-translateX(270px);
-}
-
-}
-
-
-@keyframes orbit6{
-
-from{
-transform:
-rotate(0)
-translateX(330px);
-}
-
-to{
-transform:
-rotate(360deg)
-translateX(330px);
-}
-
-}
-
-
-@keyframes orbit7{
-
-from{
-transform:
-rotate(0)
-translateX(380px);
-}
-
-to{
-transform:
-rotate(360deg)
-translateX(380px);
-}
-
-}
-
-
-@keyframes orbit8{
-
-from{
-transform:
-rotate(0)
-translateX(435px);
-}
-
-to{
-transform:
-rotate(360deg)
-translateX(435px);
-}
-
-}
-
-
-
-
-
-
-/* 중앙 UI */
+/* =====================
+ 중앙 UI
+===================== */
 
 
 .main-ui{
 
 
 position:absolute;
+
 
 left:50%;
 top:50%;
@@ -740,10 +861,10 @@ transform:
 translate(-50%,-50%);
 
 
+z-index:30;
+
+
 text-align:center;
-
-
-z-index:20;
 
 
 }
@@ -753,10 +874,9 @@ z-index:20;
 .main-ui h2{
 
 
-font-size:45px;
+font-size:55px;
 
-
-letter-spacing:8px;
+letter-spacing:10px;
 
 
 text-shadow:
@@ -765,6 +885,7 @@ text-shadow:
 
 
 }
+
 
 
 
@@ -783,7 +904,9 @@ padding:
 border-radius:50px;
 
 
-border:1px solid cyan;
+border:
+
+1px solid cyan;
 
 
 background:
@@ -803,8 +926,7 @@ letter-spacing:5px;
 cursor:pointer;
 
 
-backdrop-filter:
-blur(10px);
+backdrop-filter:blur(15px);
 
 
 transition:.3s;
@@ -814,20 +936,17 @@ transition:.3s;
 
 
 
-
 button:hover{
 
 
-background:
-cyan;
-
+background:cyan;
 
 color:black;
 
 
 box-shadow:
 
-0 0 40px cyan;
+0 0 50px cyan;
 
 
 }
@@ -836,10 +955,12 @@ box-shadow:
 
 
 
-/* 정보창 */
+/* =====================
+ 정보창
+===================== */
 
 
-.info-panel{
+.database{
 
 
 position:absolute;
@@ -850,10 +971,13 @@ right:40px;
 bottom:40px;
 
 
-width:300px;
+width:320px;
 
 
 padding:25px;
+
+
+border-radius:20px;
 
 
 background:
@@ -867,20 +991,20 @@ border:
 
 
 backdrop-filter:
-blur(15px);
+
+blur(20px);
 
 
-border-radius:20px;
+z-index:30;
 
 
 }
 
 
 
-.info-panel h3{
+.database h3{
 
-
-color:#00ffff;
+color:cyan;
 
 margin-bottom:20px;
 
@@ -890,21 +1014,17 @@ margin-bottom:20px;
 
 #planet-name{
 
-font-size:25px;
-
-margin-bottom:10px;
+font-size:28px;
 
 }
 
 
 
 
+/* 스캔 */
 
-/* 스캔라인 */
 
-
-.scan-line{
-
+.scan{
 
 position:absolute;
 
@@ -913,15 +1033,14 @@ width:100%;
 height:2px;
 
 
-background:
-cyan;
+background:cyan;
 
-
-opacity:.4;
+opacity:.5;
 
 
 animation:
-scan 5s linear infinite;
+
+scan 6s linear infinite;
 
 }
 
@@ -929,44 +1048,17 @@ scan 5s linear infinite;
 
 @keyframes scan{
 
+
 from{
+
 top:0;
+
 }
 
 to{
+
 top:100%;
-}
 
 }
-
-.random-star{
-
-position:absolute;
-
-width:3px;
-height:3px;
-
-background:white;
-
-border-radius:50%;
-
-animation:
-twinkle 3s infinite;
-
-}
-
-
-
-@keyframes twinkle{
-
-
-50%{
-
-opacity:.2;
-
-transform:scale(2);
-
-}
-
 
 }

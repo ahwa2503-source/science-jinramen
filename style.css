@@ -961,3 +961,34 @@ transition:1s;
 left:120%;
 
 }
+/* ===========================================
+        WARP
+=========================================== */
+
+.warpMode{
+
+animation:warp 2.5s forwards;
+
+}
+
+@keyframes warp{
+
+0%{
+
+transform:scale(1);
+
+filter:blur(0);
+
+}
+
+100%{
+
+transform:scale(2.8);
+
+filter:blur(25px);
+
+opacity:0;
+
+}
+
+}

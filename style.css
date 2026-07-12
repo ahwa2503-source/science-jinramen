@@ -1,88 +1,91 @@
-/* =====================================
+/* =========================================================
    SCIENCE CORE
-   STYLE PART 1
-===================================== */
+   STYLE.CSS
+   PART 1
+========================================================= */
+
+:root{
+
+    --cyan:#00e5ff;
+    --blue:#008cff;
+    --dark:#020510;
+    --panel:rgba(0,20,40,.55);
+
+}
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
 
-html,body{
-
-width:100%;
-height:100%;
-overflow:hidden;
-
-font-family:
-Segoe UI,
-Arial,
-sans-serif;
-
-background:#020510;
-
-color:white;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 
 }
 
-/* ===========================
-   SPACE
-=========================== */
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#020510;
+
+    font-family:'Orbitron',sans-serif;
+
+    color:white;
+
+}
+
+/* ===========================================
+                CANVAS
+=========================================== */
 
 #space{
 
-position:fixed;
+    position:fixed;
 
-left:0;
-top:0;
+    inset:0;
 
-width:100%;
-height:100%;
+    width:100%;
+    height:100%;
 
-z-index:-30;
+    z-index:-50;
 
 }
 
-/* ===========================
-   NEBULA
-=========================== */
+/* ===========================================
+                NEBULA
+=========================================== */
 
-#overlay{
+#nebula{
 
-position:fixed;
+    position:fixed;
 
-left:0;
-top:0;
+    inset:0;
 
-width:100%;
-height:100%;
+    background:
 
-background:
+    radial-gradient(circle at 15% 20%,
+    rgba(0,255,255,.15),
+    transparent 30%),
 
-radial-gradient(circle at 15% 20%,
-rgba(0,255,255,.12),
-transparent 30%),
+    radial-gradient(circle at 85% 30%,
+    rgba(90,0,255,.15),
+    transparent 35%),
 
-radial-gradient(circle at 80% 30%,
-rgba(0,100,255,.15),
-transparent 35%),
+    radial-gradient(circle at 50% 80%,
+    rgba(0,120,255,.15),
+    transparent 30%),
 
-radial-gradient(circle at 50% 90%,
-rgba(120,0,255,.12),
-transparent 40%),
+    linear-gradient(
+    180deg,
+    rgba(0,0,0,.1),
+    rgba(0,0,0,.75));
 
-linear-gradient(
-180deg,
-rgba(0,0,20,.1),
-rgba(0,0,0,.65)
-);
+    animation:nebulaMove 20s ease-in-out infinite;
 
-animation:
-
-nebulaMove 20s ease-in-out infinite;
-
-z-index:-20;
+    z-index:-40;
 
 }
 
@@ -108,9 +111,94 @@ transform:scale(1);
 
 }
 
-/* ===========================
-   CENTER
-=========================== */
+/* ===========================================
+             GRID
+=========================================== */
+
+#grid{
+
+position:fixed;
+
+inset:0;
+
+background-image:
+
+linear-gradient(
+rgba(255,255,255,.04) 1px,
+transparent 1px),
+
+linear-gradient(
+90deg,
+rgba(255,255,255,.04) 1px,
+transparent 1px);
+
+background-size:80px 80px;
+
+opacity:.18;
+
+mask-image:
+
+linear-gradient(
+transparent,
+white 25%,
+white 75%,
+transparent);
+
+z-index:-35;
+
+}
+
+/* ===========================================
+             SCAN LINE
+=========================================== */
+
+#scanLine{
+
+position:fixed;
+
+left:0;
+top:-120px;
+
+width:100%;
+height:120px;
+
+background:
+
+linear-gradient(
+
+transparent,
+
+rgba(0,255,255,.08),
+
+transparent);
+
+animation:scan 6s linear infinite;
+
+pointer-events:none;
+
+z-index:999;
+
+}
+
+@keyframes scan{
+
+0%{
+
+transform:translateY(-120px);
+
+}
+
+100%{
+
+transform:translateY(120vh);
+
+}
+
+}
+
+/* ===========================================
+              CENTER
+=========================================== */
 
 #center{
 
@@ -120,7 +208,6 @@ left:50%;
 top:50%;
 
 transform:
-
 translate(-50%,-50%);
 
 text-align:center;
@@ -131,61 +218,62 @@ z-index:100;
 
 #center h1{
 
-font-size:90px;
+font-size:95px;
 
-font-weight:900;
+font-weight:800;
 
 letter-spacing:8px;
 
+line-height:1;
+
 text-shadow:
 
-0 0 15px cyan,
+0 0 15px var(--cyan),
 
-0 0 40px cyan,
+0 0 40px var(--cyan),
 
-0 0 90px cyan;
+0 0 100px var(--cyan);
 
 }
 
 #center span{
 
-color:#5fe7ff;
+color:var(--cyan);
 
 }
 
 #center p{
 
-margin-top:18px;
+margin-top:20px;
 
 letter-spacing:5px;
 
 font-size:18px;
 
-color:#9ddfff;
+color:#b7efff;
 
 }
 
-/* ===========================
-   START BUTTON
-=========================== */
+/* ===========================================
+             START BUTTON
+=========================================== */
 
-#start{
+#startButton{
 
-margin-top:55px;
+margin-top:50px;
 
-width:260px;
-
-height:70px;
+width:270px;
+height:72px;
 
 border:none;
 
-border-radius:50px;
-
-font-size:24px;
-
-font-weight:bold;
+border-radius:60px;
 
 cursor:pointer;
+
+font-size:22px;
+
+font-weight:700;
 
 color:white;
 
@@ -194,121 +282,144 @@ background:
 linear-gradient(
 90deg,
 #008cff,
-#00d9ff);
+#00e5ff);
 
 box-shadow:
 
 0 0 20px cyan,
 
-0 0 45px cyan;
+0 0 60px cyan;
 
 transition:.35s;
 
+position:relative;
+
+overflow:hidden;
+
 }
 
-#start:hover{
+#startButton:hover{
 
-transform:scale(1.08);
+transform:scale(1.07);
 
 box-shadow:
 
-0 0 35px cyan,
+0 0 30px cyan,
 
-0 0 80px cyan;
+0 0 90px cyan;
 
 }
 
-/* ===========================
-   BOOT
-=========================== */
+#startButton::before{
 
-#boot{
+content:"";
 
-position:fixed;
+position:absolute;
 
-left:0;
+left:-100%;
+
 top:0;
 
 width:100%;
 height:100%;
 
-background:black;
+background:
 
-display:flex;
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.5),
+transparent);
 
-justify-content:center;
-
-align-items:center;
-
-flex-direction:column;
-
-font-size:34px;
-
-color:#00e5ff;
-
-z-index:999999;
-
-animation:
-
-bootHide 4s forwards;
+transition:.7s;
 
 }
 
-#bootText{
+#startButton:hover::before{
 
-line-height:45px;
-
-text-align:center;
+left:120%;
 
 }
-
-@keyframes bootHide{
-
-0%{
-
-opacity:1;
-
-}
-
-85%{
-
-opacity:1;
-
-}
-
-100%{
-
-opacity:0;
-
-visibility:hidden;
-
-}
-
-}
-/* =====================================
-   SCIENCE CORE
-   STYLE PART 2
-===================================== */
-
-/* ===========================
+/* =========================================================
    SOLAR SYSTEM
-=========================== */
+========================================================= */
 
 #solarSystem{
 
-position:absolute;
+    position:absolute;
 
-left:50%;
-top:50%;
+    left:50%;
+    top:50%;
 
-width:900px;
-height:900px;
+    width:900px;
+    height:900px;
 
-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
 
-pointer-events:none;
+    pointer-events:none;
 
 }
+
+/* -------------------------
+   SUN
+-------------------------- */
+
+.sun{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:90px;
+    height:90px;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    #fff7b0 0%,
+    #ffd84d 30%,
+    #ff9800 70%,
+    #ff5b00 100%);
+
+    box-shadow:
+
+    0 0 30px #ffd54f,
+    0 0 80px orange,
+    0 0 160px gold,
+    0 0 260px rgba(255,170,0,.4);
+
+    animation:
+    sunPulse 4s ease-in-out infinite;
+
+}
+
+@keyframes sunPulse{
+
+0%,100%{
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+}
+
+50%{
+
+transform:
+translate(-50%,-50%)
+scale(1.12);
+
+}
+
+}
+
+/* -------------------------
+   ORBITS
+-------------------------- */
 
 .orbit{
 
@@ -317,58 +428,20 @@ position:absolute;
 left:50%;
 top:50%;
 
-border:1px solid rgba(255,255,255,.08);
+transform:
+translate(-50%,-50%);
 
 border-radius:50%;
 
-transform:translate(-50%,-50%);
+border:
+
+1px solid rgba(255,255,255,.08);
 
 }
 
-.sun{
-
-position:absolute;
-
-left:50%;
-top:50%;
-
-width:90px;
-height:90px;
-
-border-radius:50%;
-
-background:radial-gradient(circle,#fff7a0,#ffd54f,#ff9800);
-
-transform:translate(-50%,-50%);
-
-box-shadow:
-0 0 30px #ffd54f,
-0 0 80px orange,
-0 0 150px gold;
-
-animation:sunPulse 4s ease-in-out infinite;
-
-}
-
-@keyframes sunPulse{
-
-0%,100%{
-
-transform:translate(-50%,-50%) scale(1);
-
-}
-
-50%{
-
-transform:translate(-50%,-50%) scale(1.12);
-
-}
-
-}
-
-/* ===========================
-   PLANET
-=========================== */
+/* -------------------------
+   PLANETS
+-------------------------- */
 
 .planet{
 
@@ -379,245 +452,74 @@ top:0;
 
 border-radius:50%;
 
-box-shadow:0 0 12px rgba(255,255,255,.5);
+box-shadow:
 
-pointer-events:auto;
+0 0 12px rgba(255,255,255,.4);
+
+transition:.35s;
 
 cursor:pointer;
 
-transition:.3s;
+pointer-events:auto;
 
 }
 
 .planet:hover{
 
-transform:scale(1.25);
+transform:scale(1.3);
 
 box-shadow:
 
 0 0 20px white,
 
-0 0 40px cyan;
+0 0 50px cyan;
 
 }
 
-/* ===========================
-   SYSTEM PANEL
-=========================== */
+/* -------------------------
+   SATURN RING
+-------------------------- */
 
-#systemPanel{
+.ring{
 
-position:fixed;
+position:absolute;
 
-left:40px;
-bottom:40px;
-
-width:250px;
-
-padding:20px;
-
-background:rgba(0,20,40,.55);
-
-border:1px solid rgba(0,255,255,.3);
-
-backdrop-filter:blur(10px);
-
-border-radius:12px;
-
-box-shadow:0 0 20px rgba(0,255,255,.2);
-
-}
-
-#systemPanel div{
-
-display:flex;
-
-justify-content:space-between;
-
-margin:14px 0;
-
-font-size:15px;
-
-letter-spacing:2px;
-
-}
-
-#systemPanel span{
-
-color:#00e5ff;
-
-font-weight:bold;
-
-}
-
-/* ===========================
-   RIGHT PANEL
-=========================== */
-
-#rightPanel{
-
-position:fixed;
-
-right:40px;
+left:50%;
 top:50%;
 
-transform:translateY(-50%);
+width:180%;
 
-width:240px;
+height:36%;
 
-padding:25px;
+border:
 
-background:rgba(0,20,40,.5);
-
-border:1px solid rgba(0,255,255,.25);
-
-backdrop-filter:blur(10px);
-
-border-radius:14px;
-
-}
-
-#rightPanel h3{
-
-margin-bottom:20px;
-
-color:#00e5ff;
-
-letter-spacing:4px;
-
-}
-
-.line{
-
-height:8px;
-
-margin:14px 0;
-
-border-radius:50px;
-
-background:
-
-linear-gradient(
-90deg,
-cyan,
-transparent);
-
-animation:lineMove 2s infinite;
-
-}
-
-@keyframes lineMove{
-
-0%{
-
-width:40%;
-
-}
-
-50%{
-
-width:100%;
-
-}
-
-100%{
-
-width:55%;
-
-}
-
-}
-
-/* ===========================
-   PLANET INFO
-=========================== */
-
-#planetInfo{
-
-position:fixed;
-
-right:40px;
-
-bottom:40px;
-
-width:320px;
-
-padding:20px;
-
-background:rgba(0,18,35,.65);
-
-border:1px solid rgba(0,255,255,.25);
-
-backdrop-filter:blur(12px);
-
-border-radius:12px;
-
-box-shadow:0 0 20px rgba(0,255,255,.2);
-
-}
-
-#planetName{
-
-color:#00e5ff;
-
-margin-bottom:10px;
-
-}
-
-#planetText{
-
-color:#cdefff;
-
-line-height:28px;
-
-}
-
-/* ===========================
-   CURSOR
-=========================== */
-
-#cursor{
-
-position:fixed;
-
-width:18px;
-height:18px;
+2px solid rgba(255,255,255,.65);
 
 border-radius:50%;
 
-background:#00e5ff;
+transform:
 
-box-shadow:
+translate(-50%,-50%)
 
-0 0 15px cyan,
-
-0 0 40px cyan,
-
-0 0 80px cyan;
-
-pointer-events:none;
-
-transform:translate(-50%,-50%);
-
-z-index:99999;
+rotate(25deg);
 
 }
 
-/* ===========================
+/* =========================================================
    DNA
-=========================== */
+========================================================= */
 
 #dna{
 
 position:fixed;
 
-right:120px;
+right:90px;
 
 top:120px;
 
-width:80px;
+width:90px;
 
-height:420px;
+height:450px;
 
 pointer-events:none;
 
@@ -635,6 +537,229 @@ border-radius:50%;
 
 background:#00e5ff;
 
-box-shadow:0 0 10px cyan;
+box-shadow:
+
+0 0 8px cyan,
+
+0 0 18px cyan;
+
+}
+
+/* =========================================================
+   SYSTEM PANEL
+========================================================= */
+
+#systemPanel{
+
+position:fixed;
+
+left:35px;
+
+bottom:35px;
+
+width:260px;
+
+padding:20px;
+
+background:rgba(0,20,40,.55);
+
+border:
+
+1px solid rgba(0,255,255,.25);
+
+border-radius:15px;
+
+backdrop-filter:blur(10px);
+
+box-shadow:
+
+0 0 25px rgba(0,255,255,.18);
+
+}
+
+#systemPanel h2{
+
+margin-bottom:18px;
+
+color:#00e5ff;
+
+letter-spacing:4px;
+
+}
+
+#systemPanel div{
+
+display:flex;
+
+justify-content:space-between;
+
+margin:12px 0;
+
+font-size:14px;
+
+}
+
+#systemPanel span{
+
+color:#00e5ff;
+
+}
+
+/* =========================================================
+   PLANET INFO
+========================================================= */
+
+#planetInfo{
+
+position:fixed;
+
+right:35px;
+
+bottom:35px;
+
+width:320px;
+
+padding:20px;
+
+background:rgba(0,18,35,.60);
+
+border:
+
+1px solid rgba(0,255,255,.25);
+
+border-radius:15px;
+
+backdrop-filter:blur(10px);
+
+box-shadow:
+
+0 0 20px rgba(0,255,255,.18);
+
+}
+
+#planetName{
+
+color:#00e5ff;
+
+margin-bottom:12px;
+
+}
+
+#planetText{
+
+line-height:28px;
+
+color:#d7f6ff;
+
+}
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+#cursorGlow{
+
+position:fixed;
+
+width:18px;
+
+height:18px;
+
+border-radius:50%;
+
+background:#00e5ff;
+
+box-shadow:
+
+0 0 15px cyan,
+
+0 0 35px cyan,
+
+0 0 70px cyan;
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+z-index:999999;
+
+}
+
+/* =========================================================
+   BOOT SCREEN
+========================================================= */
+
+#bootScreen{
+
+position:fixed;
+
+inset:0;
+
+background:black;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+z-index:9999999;
+
+}
+
+#bootLogo{
+
+font-size:65px;
+
+font-weight:800;
+
+color:#00e5ff;
+
+text-shadow:
+
+0 0 25px cyan;
+
+}
+
+#bootText{
+
+margin-top:30px;
+
+font-size:22px;
+
+letter-spacing:3px;
+
+}
+
+#bootBar{
+
+margin-top:35px;
+
+width:380px;
+
+height:10px;
+
+border-radius:50px;
+
+background:#111;
+
+overflow:hidden;
+
+}
+
+#bootProgress{
+
+width:0;
+
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+cyan,
+white);
 
 }

@@ -1,77 +1,166 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SCIENCE CORE</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-<div class="stars"></div>
+
+<div id="space"></div>
+
 
 <header>
-    <h1>SCIENCE CORE</h1>
-    <p>Explore The Universe</p>
+
+<h1>
+SCIENCE CORE
+</h1>
+
+<p>
+UNIVERSE EXPLORATION SYSTEM
+</p>
+
 </header>
+
 
 
 <section class="solar-system">
 
-    <div class="sun"></div>
 
-    <div class="orbit mercury">
-        <div class="planet"></div>
-    </div>
+<div class="sun">
 
-    <div class="orbit venus">
-        <div class="planet"></div>
-    </div>
+<div class="sun-glow"></div>
 
-    <div class="orbit earth">
-        <div class="planet">
-            <span>🌎</span>
-        </div>
-    </div>
+</div>
 
-    <div class="orbit mars">
-        <div class="planet"></div>
-    </div>
 
-    <div class="orbit jupiter">
-        <div class="planet"></div>
-    </div>
 
-    <div class="orbit saturn">
-        <div class="planet">
-            <div class="ring"></div>
-        </div>
-    </div>
+<div class="planet mercury"
+data-name="MERCURY"
+data-info="수성 | 태양과 가장 가까운 행성">
+</div>
 
-    <div class="orbit uranus">
-        <div class="planet"></div>
-    </div>
 
-    <div class="orbit neptune">
-        <div class="planet"></div>
-    </div>
+<div class="planet venus"
+data-name="VENUS"
+data-info="금성 | 가장 뜨거운 행성">
+</div>
+
+
+<div class="planet earth"
+data-name="EARTH"
+data-info="지구 | 생명체가 존재하는 행성">
+</div>
+
+
+
+<div class="planet mars"
+data-name="MARS"
+data-info="화성 | 붉은 행성">
+</div>
+
+
+
+<div class="planet jupiter"
+data-name="JUPITER"
+data-info="목성 | 태양계 최대 행성">
+</div>
+
+
+
+<div class="planet saturn"
+data-name="SATURN"
+data-info="토성 | 아름다운 고리를 가진 행성">
+
+<div class="saturn-ring"></div>
+
+</div>
+
+
+
+
+<div class="planet uranus"
+data-name="URANUS"
+data-info="천왕성 | 푸른 얼음 행성">
+
+</div>
+
+
+
+<div class="planet neptune"
+data-name="NEPTUNE"
+data-info="해왕성 | 태양계 최외곽 행성">
+
+</div>
 
 
 </section>
 
 
-<div class="center">
 
-    <h2>우주의 비밀을 탐험하세요</h2>
 
-    <button onclick="start()">
-        시작하기
-    </button>
+
+<div class="main-ui">
+
+
+<h2>
+EXPLORE<br>
+THE UNIVERSE
+</h2>
+
+
+<button id="start">
+
+START EXPLORATION
+
+</button>
+
 
 </div>
 
 
+
+
+
+<div class="info-panel">
+
+<h3>
+PLANET DATABASE
+</h3>
+
+
+<p id="planet-name">
+SYSTEM READY
+</p>
+
+
+<span id="planet-info">
+
+행성을 선택하세요
+
+</span>
+
+
+</div>
+
+
+
+
+<div class="scan-line"></div>
+
+
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>

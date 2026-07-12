@@ -4,995 +4,304 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SCIENCE CORE</title>
 
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-
-body{
-
-overflow:hidden;
-background:#000;
-
-font-family:
-Arial,sans-serif;
-
-color:white;
-
-}
-
-
-/* 우주 */
-
-#space{
-
-position:fixed;
-
-width:100vw;
-
-height:100vh;
-
-
-background:
-
-radial-gradient(
-circle at center,
-#15234a,
-#000 75%
-);
-
-
-}
-
-
-
-/* 성운 */
-
-#space::before{
-
-content:"";
-
-position:absolute;
-
-
-width:900px;
-
-height:900px;
-
-
-left:50%;
-
-top:50%;
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-background:
-
-radial-gradient(
-circle,
-rgba(0,180,255,.25),
-transparent 65%
-);
-
-
-filter:blur(70px);
-
-
-animation:
-
-nebula 8s infinite alternate;
-
-
-}
-
-
-
-@keyframes nebula{
-
-
-from{
-
-scale:1;
-
-}
-
-to{
-
-scale:1.5;
-
-}
-
-
-}
-
-
-
-/* 별 */
-
-
-.star{
-
-
-position:absolute;
-
-
-width:2px;
-
-height:2px;
-
-
-background:white;
-
-
-border-radius:50%;
-
-
-animation:
-
-blink 3s infinite;
-
-
-}
-
-
-@keyframes blink{
-
-
-50%{
-
-opacity:.2;
-
-}
-
-
-}
-
-
-
-
-/* 메인 */
-
-
-#app{
-
-
-position:absolute;
-
-
-width:100vw;
-
-height:100vh;
-
-
-display:flex;
-
-
-justify-content:center;
-
-
-align-items:center;
-
-
-
-}
-
-
-
-
-/* HUD */
-
-
-.hud{
-
-
-position:absolute;
-
-
-top:30px;
-
-left:30px;
-
-
-
-padding:20px;
-
-
-border:
-
-1px solid cyan;
-
-
-
-background:
-
-rgba(0,20,50,.5);
-
-
-
-color:#00ffff;
-
-
-
-box-shadow:
-
-0 0 30px cyan;
-
-
-}
-
-
-
-
-/* 타이틀 */
-
-
-.title{
-
-
-position:absolute;
-
-
-top:40px;
-
-
-
-font-size:50px;
-
-
-
-letter-spacing:15px;
-
-
-color:#00eaff;
-
-
-
-text-shadow:
-
-0 0 20px cyan,
-0 0 70px cyan;
-
-
-}
-
-
-
-
-/* 태양 */
-
-
-.sun{
-
-
-position:absolute;
-
-
-left:50%;
-
-top:50%;
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-width:180px;
-
-height:180px;
-
-
-border-radius:50%;
-
-
-
-background:
-
-
-radial-gradient(
-circle,
-#fff,
-#ffd000 40%,
-#ff5500
-);
-
-
-
-box-shadow:
-
-0 0 60px orange,
-
-0 0 150px orange;
-
-
-animation:
-
-sunPulse 4s infinite alternate;
-
-
-}
-
-
-
-@keyframes sunPulse{
-
-
-to{
-
-scale:1.15;
-
-}
-
-
-}
-
-
-
-
-/* START */
-
-
-.start{
-
-
-position:absolute;
-
-
-bottom:80px;
-
-
-
-padding:
-
-20px 90px;
-
-
-font-size:25px;
-
-
-letter-spacing:8px;
-
-
-background:
-
-rgba(0,20,40,.7);
-
-
-
-border:
-
-2px solid cyan;
-
-
-color:white;
-
-
-cursor:pointer;
-
-
-
-box-shadow:
-
-0 0 20px cyan;
-
-
-
-}
-
-
-
-.start:hover{
-
-
-background:cyan;
-
-color:black;
-
-
-}
-
-    
-/* =====================
-   ORBITS
-===================== */
-
-
-.orbit{
-
-position:absolute;
-
-
-left:50%;
-
-top:50%;
-
-
-border:
-
-1px solid rgba(0,255,255,.18);
-
-
-border-radius:50%;
-
-
-animation:
-
-rotate linear infinite;
-
-
-}
-
-
-
-@keyframes rotate{
-
-
-from{
-
-transform:
-
-translate(-50%,-50%)
-rotate(0deg);
-
-}
-
-
-
-to{
-
-transform:
-
-translate(-50%,-50%)
-rotate(360deg);
-
-}
-
-}
-
-
-
-
-.planet{
-
-
-position:absolute;
-
-
-top:-12px;
-
-
-left:50%;
-
-
-transform:
-
-translateX(-50%);
-
-
-
-border-radius:50%;
-
-
-
-box-shadow:
-
-inset -10px -10px 15px black;
-
-
-}
-
-
-
-/* 수성 */
-
-
-.mercury{
-
-width:230px;
-
-height:230px;
-
-animation-duration:8s;
-
-
-}
-
-
-
-.mercury .planet{
-
-width:15px;
-
-height:15px;
-
-background:#888;
-
-
-}
-
-
-
-
-
-/* 금성 */
-
-
-.venus{
-
-width:330px;
-
-height:330px;
-
-animation-duration:12s;
-
-
-}
-
-
-
-.venus .planet{
-
-width:25px;
-
-height:25px;
-
-background:#d99545;
-
-
-}
-
-
-
-
-
-/* 지구 */
-
-
-.earth{
-
-width:450px;
-
-height:450px;
-
-animation-duration:18s;
-
-
-}
-
-
-
-.earth .planet{
-
-
-width:38px;
-
-height:38px;
-
-
-
-background:
-
-linear-gradient(
-130deg,
-#fff,
-#188cff 35%,
-#19a85b 60%,
-#003477
-);
-
-
-
-box-shadow:
-
-0 0 25px cyan;
-
-
-}
-
-
-
-
-
-/* 화성 */
-
-
-.mars{
-
-width:570px;
-
-height:570px;
-
-animation-duration:25s;
-
-
-}
-
-
-
-.mars .planet{
-
-width:27px;
-
-height:27px;
-
-
-background:#b83b20;
-
-
-}
-
-
-
-
-
-/* 목성 */
-
-
-.jupiter{
-
-width:720px;
-
-height:720px;
-
-animation-duration:35s;
-
-
-}
-
-
-
-.jupiter .planet{
-
-
-width:80px;
-
-height:80px;
-
-
-
-background:
-
-repeating-linear-gradient(
-0deg,
-#dca16b,
-#bd7845 15px,
-#f2d1a0 30px
-);
-
-
-
-}
-
-
-
-
-/* 토성 */
-
-
-.saturn{
-
-width:850px;
-
-height:850px;
-
-animation-duration:45s;
-
-
-}
-
-
-
-.saturn .planet{
-
-width:65px;
-
-height:65px;
-
-
-background:#d6bb76;
-
-
-}
-
-
-
-.saturn .planet::after{
-
-
-content:"";
-
-
-position:absolute;
-
-
-width:140px;
-
-height:35px;
-
-
-left:-38px;
-
-top:15px;
-
-
-
-border:
-
-4px solid #d8c690;
-
-
-border-radius:50%;
-
-
-transform:
-
-rotate(-20deg);
-
-
-}
-
-
-
-
-/* 천왕성 */
-
-
-.uranus{
-
-width:1000px;
-
-height:1000px;
-
-
-animation-duration:60s;
-
-
-}
-
-
-
-.uranus .planet{
-
-width:40px;
-
-height:40px;
-
-
-background:#75eaff;
-
-
-}
-
-
-
-
-
-/* 해왕성 */
-
-
-.neptune{
-
-width:1150px;
-
-height:1150px;
-
-
-animation-duration:75s;
-
-
-}
-
-
-
-.neptune .planet{
-
-width:40px;
-
-height:40px;
-
-
-background:#315bff;
-
-
-}
-
-
-
-</style>
-
+<link rel="stylesheet" href="style.css">
 
 </head>
-
 
 
 <body>
 
 
+<!-- 우주 배경 -->
 
-<div id="space"></div>
+<div id="universe">
 
+    <div id="nebula"></div>
 
+    <div id="stars"></div>
 
-<div id="app">
-
-
-
-<div class="title">
-
-SCIENCE CORE
-
-</div>
-
-
-
-<div class="hud">
-
-<h3>
-SYSTEM STATUS
-</h3>
-
-<br>
-
-<p id="status">
-STANDBY
-</p>
-
-<br>
-
-<p>
-SOLAR SYSTEM : READY
-</p>
-
-<p>
-PLANETS : 8
-</p>
-
+    <div id="particles"></div>
 
 </div>
 
 
 
 
+<!-- 메인 화면 -->
 
-<div class="sun"></div>
+<main class="core">
 
 
+    <!-- 상단 로고 -->
 
-<div class="orbit mercury">
-<div class="planet"></div>
-</div>
+    <header class="header">
 
+        <div class="logo">
+            SCIENCE CORE
+        </div>
 
-<div class="orbit venus">
-<div class="planet"></div>
-</div>
+        <div class="status">
+            SYSTEM ONLINE
+        </div>
 
+    </header>
 
-<div class="orbit earth">
-<div class="planet"></div>
-</div>
 
 
-<div class="orbit mars">
-<div class="planet"></div>
-</div>
 
 
-<div class="orbit jupiter">
-<div class="planet"></div>
-</div>
+    <!-- 왼쪽 HUD -->
 
 
-<div class="orbit saturn">
-<div class="planet"></div>
-</div>
+    <section class="panel left-panel">
 
 
-<div class="orbit uranus">
-<div class="planet"></div>
-</div>
+        <h2>
+            MISSION CONTROL
+        </h2>
 
 
-<div class="orbit neptune">
-<div class="planet"></div>
-</div>
+        <div class="line">
+            QUANTUM ENGINE
+            <span>ONLINE</span>
+        </div>
 
 
+        <div class="line">
+            SOLAR DATABASE
+            <span>CONNECTED</span>
+        </div>
 
 
-<button class="start" onclick="startMission()">
+        <div class="line">
+            NAVIGATION
+            <span>READY</span>
+        </div>
 
-START MISSION
 
-</button>
 
+        <div class="scan">
 
+        </div>
 
-</div>
 
+    </section>
 
 
 
-<script>
 
 
-const space =
-document.getElementById("space");
 
 
+    <!-- 태양계 중앙 -->
 
-for(let i=0;i<600;i++){
 
+    <section class="solar-system">
 
-let star=document.createElement("div");
 
+        <div class="sun">
 
-star.className="star";
+            <div class="corona"></div>
 
+        </div>
 
-star.style.left=
-Math.random()*100+"%";
 
 
-star.style.top=
-Math.random()*100+"%";
 
+        <div class="orbit orbit1">
+            <div class="planet mercury"></div>
+        </div>
 
-star.style.animationDelay=
-Math.random()*3+"s";
 
 
+        <div class="orbit orbit2">
+            <div class="planet venus"></div>
+        </div>
 
-space.appendChild(star);
 
 
-}
+        <div class="orbit orbit3">
 
+            <div class="planet earth">
 
+                <div class="cloud"></div>
 
+            </div>
 
-function startMission(){
+        </div>
 
 
-document.getElementById("status").innerHTML=
 
-"ONLINE // EXPLORATION ACTIVE";
 
+        <div class="orbit orbit4">
 
-document.querySelector(".start").innerHTML=
+            <div class="planet mars"></div>
 
-"MISSION RUNNING";
+        </div>
 
 
 
-document.querySelector(".start").style.background=
 
-"cyan";
 
-document.querySelector(".start").style.color=
+        <div class="orbit orbit5">
 
-"black";
+            <div class="planet jupiter">
 
+                <div class="spot"></div>
 
+            </div>
 
-}
+        </div>
 
 
 
-</script>
 
+
+
+        <div class="orbit orbit6">
+
+            <div class="planet saturn">
+
+                <div class="ring"></div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="orbit orbit7">
+
+            <div class="planet uranus"></div>
+
+        </div>
+
+
+
+
+
+        <div class="orbit orbit8">
+
+            <div class="planet neptune"></div>
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+    <!-- 오른쪽 정보창 -->
+
+
+    <section class="panel right-panel">
+
+
+        <h2>
+            SOLAR DATA
+        </h2>
+
+
+        <div class="data">
+
+            <p>
+            PLANETS : 8
+            </p>
+
+
+            <p>
+            STAR TYPE : G2V
+            </p>
+
+
+            <p>
+            MISSION :
+            EXPLORATION
+            </p>
+
+
+            <p>
+            DISTANCE :
+            149.6M KM
+            </p>
+
+
+        </div>
+
+
+
+        <div class="coordinates">
+
+            X 2847<br>
+            Y 0912<br>
+            Z 4470
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- 하단 시작 버튼 -->
+
+
+    <button id="start">
+
+        START MISSION
+
+    </button>
+
+
+
+
+
+
+
+    <!-- 하단 로그 -->
+
+
+    <footer>
+
+
+        <div>
+        // SCIENCE CORE INITIALIZED
+        </div>
+
+
+        <div>
+        // AWAITING COMMAND
+        </div>
+
+
+    </footer>
+
+
+
+</main>
+
+
+
+
+
+<script src="script.js"></script>
 
 
 </body>

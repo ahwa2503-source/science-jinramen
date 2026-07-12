@@ -1365,3 +1365,158 @@ transform:translateX(30px);
 }
 
 }
+/* 성운 */
+
+.nebula{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:
+
+radial-gradient(
+circle at 20% 30%,
+rgba(120,0,255,.15),
+transparent 40%
+),
+
+radial-gradient(
+circle at 80% 70%,
+rgba(0,200,255,.15),
+transparent 40%
+);
+
+filter:blur(40px);
+
+}
+
+
+
+/* 별 */
+
+.star{
+
+position:absolute;
+
+width:2px;
+height:2px;
+
+background:white;
+
+border-radius:50%;
+
+animation:twinkle 3s infinite;
+
+}
+
+
+
+@keyframes twinkle{
+
+50%{
+
+opacity:.3;
+
+}
+
+}
+
+
+
+/* 유성 */
+
+.meteor{
+
+position:absolute;
+
+width:120px;
+height:2px;
+
+background:
+
+linear-gradient(
+90deg,
+white,
+transparent
+);
+
+
+transform:rotate(-35deg);
+
+animation:shoot 1s linear;
+
+}
+
+
+@keyframes shoot{
+
+
+from{
+
+transform:
+translate(0,0)
+rotate(-35deg);
+
+opacity:1;
+
+}
+
+
+to{
+
+transform:
+translate(-600px,600px)
+rotate(-35deg);
+
+opacity:0;
+
+}
+
+}
+
+
+
+/* 태양 플레어 */
+
+
+.sun::before{
+
+content:"";
+
+position:absolute;
+
+width:260px;
+height:260px;
+
+border-radius:50%;
+
+
+background:
+
+radial-gradient(
+circle,
+rgba(255,200,0,.5),
+transparent 60%
+);
+
+
+animation:flare 4s infinite;
+
+}
+
+
+
+@keyframes flare{
+
+
+50%{
+
+transform:scale(1.3);
+
+opacity:.5;
+
+}
+
+}

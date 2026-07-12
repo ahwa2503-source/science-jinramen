@@ -1,62 +1,195 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <title>태양계</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>SCIENCE CORE</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
 </head>
+
 <body>
 
-<div class="stars"></div>
+<!-- Canvas -->
+<canvas id="space"></canvas>
 
-<h1>🌌 태양계 탐험</h1>
-<p>수성부터 해왕성까지 떠나는 우주 여행</p>
+<!-- 배경 -->
+<div id="overlay"></div>
 
-<a href="#planets" class="start-btn">🚀 시작하기</a>
+<!-- HUD -->
+<div id="hud"></div>
 
-<section id="planets">
+<!-- 태양계 -->
+<div id="solarSystem"></div>
 
-    <div class="planet mercury">
-        <h2>☿ 수성</h2>
-        <p>태양과 가장 가까운 행성</p>
-    </div>
+<!-- DNA -->
+<div id="dna"></div>
 
-    <div class="planet venus">
-        <h2>♀ 금성</h2>
-        <p>가장 뜨거운 행성</p>
-    </div>
+<!-- 커서 -->
+<div id="cursor"></div>
 
-    <div class="planet earth">
-        <h2>🌍 지구</h2>
-        <p>우리가 사는 행성</p>
-    </div>
+<!-- 정보 -->
+<div id="planetInfo">
 
-    <div class="planet mars">
-        <h2>♂ 화성</h2>
-        <p>붉은 행성</p>
-    </div>
+<h2 id="planetName">
+SCIENCE CORE
+</h2>
 
-    <div class="planet jupiter">
-        <h2>♃ 목성</h2>
-        <p>태양계에서 가장 큰 행성</p>
-    </div>
+<p id="planetText">
 
-    <div class="planet saturn">
-        <h2>🪐 토성</h2>
-        <p>아름다운 고리를 가진 행성</p>
-    </div>
+NEXT GENERATION AI LAB
 
-    <div class="planet uranus">
-        <h2>♅ 천왕성</h2>
-        <p>옆으로 누워 자전하는 행성</p>
-    </div>
+</p>
 
-    <div class="planet neptune">
-        <h2>♆ 해왕성</h2>
-        <p>푸른 얼음 행성</p>
-    </div>
+</div>
 
-</section>
+<!-- 가운데 -->
+
+<div id="center">
+
+<h1>
+
+SCIENCE
+
+<span>
+
+CORE
+
+</span>
+
+</h1>
+
+<p>
+
+NEXT GENERATION AI LAB
+
+</p>
+
+<button id="start">
+
+START
+
+</button>
+
+</div>
+
+<!-- 왼쪽 시스템 -->
+
+<div id="systemPanel">
+
+<div>
+
+STATUS
+
+<span id="status">
+
+ONLINE
+
+</span>
+
+</div>
+
+<div>
+
+CPU
+
+<span id="cpu">
+
+0%
+
+</span>
+
+</div>
+
+<div>
+
+TEMP
+
+<span id="temp">
+
+0°C
+
+</span>
+
+</div>
+
+<div>
+
+TIME
+
+<span id="clock">
+
+00:00:00
+
+</span>
+
+</div>
+
+</div>
+
+<!-- 오른쪽 패널 -->
+
+<div id="rightPanel">
+
+<h3>
+
+SYSTEM
+
+</h3>
+
+<div class="line"></div>
+
+<div class="line"></div>
+
+<div class="line"></div>
+
+<div class="line"></div>
+
+<div class="line"></div>
+
+<div class="line"></div>
+
+</div>
+
+<!-- 부팅 -->
+
+<div id="boot">
+
+<div id="bootText">
+
+SCIENCE CORE
+
+<br><br>
+
+Initializing...
+
+<br>
+
+Loading AI...
+
+<br>
+
+Connecting Satellite...
+
+<br>
+
+Preparing Interface...
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
+
 </html>

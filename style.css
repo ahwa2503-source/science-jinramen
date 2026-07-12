@@ -1,93 +1,640 @@
+/* =====================================
+   SCIENCE CORE
+   STYLE PART 1
+===================================== */
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html,body{
+
+width:100%;
+height:100%;
+overflow:hidden;
+
+font-family:
+Segoe UI,
+Arial,
+sans-serif;
+
+background:#020510;
+
+color:white;
+
 }
 
-body{
-    background:linear-gradient(#020111,#000428,#000);
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
+/* ===========================
+   SPACE
+=========================== */
+
+#space{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+z-index:-30;
+
 }
 
-/* 별 */
-.stars{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background-image:
-    radial-gradient(white 1px,transparent 1px),
-    radial-gradient(white 1px,transparent 1px);
-    background-size:70px 70px;
-    opacity:.5;
-    z-index:-1;
+/* ===========================
+   NEBULA
+=========================== */
+
+#overlay{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:
+
+radial-gradient(circle at 15% 20%,
+rgba(0,255,255,.12),
+transparent 30%),
+
+radial-gradient(circle at 80% 30%,
+rgba(0,100,255,.15),
+transparent 35%),
+
+radial-gradient(circle at 50% 90%,
+rgba(120,0,255,.12),
+transparent 40%),
+
+linear-gradient(
+180deg,
+rgba(0,0,20,.1),
+rgba(0,0,0,.65)
+);
+
+animation:
+
+nebulaMove 20s ease-in-out infinite;
+
+z-index:-20;
+
 }
 
-h1{
-    margin-top:120px;
-    font-size:70px;
-    text-shadow:0 0 20px cyan;
+@keyframes nebulaMove{
+
+0%{
+
+transform:scale(1);
+
 }
 
-p{
-    font-size:22px;
-    margin-top:20px;
+50%{
+
+transform:scale(1.08);
+
 }
 
-.start-btn{
-    display:inline-block;
-    margin-top:60px;
-    padding:20px 50px;
-    background:#00e5ff;
-    color:white;
-    text-decoration:none;
-    font-size:28px;
-    border-radius:50px;
-    box-shadow:0 0 30px cyan;
-    transition:.3s;
+100%{
+
+transform:scale(1);
+
 }
 
-.start-btn:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 60px cyan;
 }
 
-#planets{
-    margin-top:200px;
+/* ===========================
+   CENTER
+=========================== */
+
+#center{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:
+
+translate(-50%,-50%);
+
+text-align:center;
+
+z-index:100;
+
 }
+
+#center h1{
+
+font-size:90px;
+
+font-weight:900;
+
+letter-spacing:8px;
+
+text-shadow:
+
+0 0 15px cyan,
+
+0 0 40px cyan,
+
+0 0 90px cyan;
+
+}
+
+#center span{
+
+color:#5fe7ff;
+
+}
+
+#center p{
+
+margin-top:18px;
+
+letter-spacing:5px;
+
+font-size:18px;
+
+color:#9ddfff;
+
+}
+
+/* ===========================
+   START BUTTON
+=========================== */
+
+#start{
+
+margin-top:55px;
+
+width:260px;
+
+height:70px;
+
+border:none;
+
+border-radius:50px;
+
+font-size:24px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+color:white;
+
+background:
+
+linear-gradient(
+90deg,
+#008cff,
+#00d9ff);
+
+box-shadow:
+
+0 0 20px cyan,
+
+0 0 45px cyan;
+
+transition:.35s;
+
+}
+
+#start:hover{
+
+transform:scale(1.08);
+
+box-shadow:
+
+0 0 35px cyan,
+
+0 0 80px cyan;
+
+}
+
+/* ===========================
+   BOOT
+=========================== */
+
+#boot{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:black;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+font-size:34px;
+
+color:#00e5ff;
+
+z-index:999999;
+
+animation:
+
+bootHide 4s forwards;
+
+}
+
+#bootText{
+
+line-height:45px;
+
+text-align:center;
+
+}
+
+@keyframes bootHide{
+
+0%{
+
+opacity:1;
+
+}
+
+85%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+visibility:hidden;
+
+}
+
+}
+/* =====================================
+   SCIENCE CORE
+   STYLE PART 2
+===================================== */
+
+/* ===========================
+   SOLAR SYSTEM
+=========================== */
+
+#solarSystem{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+width:900px;
+height:900px;
+
+transform:translate(-50%,-50%);
+
+pointer-events:none;
+
+}
+
+.orbit{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:50%;
+
+transform:translate(-50%,-50%);
+
+}
+
+.sun{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,#fff7a0,#ffd54f,#ff9800);
+
+transform:translate(-50%,-50%);
+
+box-shadow:
+0 0 30px #ffd54f,
+0 0 80px orange,
+0 0 150px gold;
+
+animation:sunPulse 4s ease-in-out infinite;
+
+}
+
+@keyframes sunPulse{
+
+0%,100%{
+
+transform:translate(-50%,-50%) scale(1);
+
+}
+
+50%{
+
+transform:translate(-50%,-50%) scale(1.12);
+
+}
+
+}
+
+/* ===========================
+   PLANET
+=========================== */
 
 .planet{
-    width:80%;
-    max-width:700px;
-    margin:60px auto;
-    padding:40px;
-    border-radius:20px;
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(8px);
-    transition:.4s;
+
+position:absolute;
+
+left:50%;
+top:0;
+
+border-radius:50%;
+
+box-shadow:0 0 12px rgba(255,255,255,.5);
+
+pointer-events:auto;
+
+cursor:pointer;
+
+transition:.3s;
+
 }
 
 .planet:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 40px cyan;
+
+transform:scale(1.25);
+
+box-shadow:
+
+0 0 20px white,
+
+0 0 40px cyan;
+
 }
 
-.planet h2{
-    font-size:40px;
-    margin-bottom:15px;
+/* ===========================
+   SYSTEM PANEL
+=========================== */
+
+#systemPanel{
+
+position:fixed;
+
+left:40px;
+bottom:40px;
+
+width:250px;
+
+padding:20px;
+
+background:rgba(0,20,40,.55);
+
+border:1px solid rgba(0,255,255,.3);
+
+backdrop-filter:blur(10px);
+
+border-radius:12px;
+
+box-shadow:0 0 20px rgba(0,255,255,.2);
+
 }
 
-.mercury{border-left:8px solid gray;}
-.venus{border-left:8px solid orange;}
-.earth{border-left:8px solid deepskyblue;}
-.mars{border-left:8px solid red;}
-.jupiter{border-left:8px solid peru;}
-.saturn{border-left:8px solid gold;}
-.uranus{border-left:8px solid cyan;}
-.neptune{border-left:8px solid royalblue;}
+#systemPanel div{
+
+display:flex;
+
+justify-content:space-between;
+
+margin:14px 0;
+
+font-size:15px;
+
+letter-spacing:2px;
+
+}
+
+#systemPanel span{
+
+color:#00e5ff;
+
+font-weight:bold;
+
+}
+
+/* ===========================
+   RIGHT PANEL
+=========================== */
+
+#rightPanel{
+
+position:fixed;
+
+right:40px;
+top:50%;
+
+transform:translateY(-50%);
+
+width:240px;
+
+padding:25px;
+
+background:rgba(0,20,40,.5);
+
+border:1px solid rgba(0,255,255,.25);
+
+backdrop-filter:blur(10px);
+
+border-radius:14px;
+
+}
+
+#rightPanel h3{
+
+margin-bottom:20px;
+
+color:#00e5ff;
+
+letter-spacing:4px;
+
+}
+
+.line{
+
+height:8px;
+
+margin:14px 0;
+
+border-radius:50px;
+
+background:
+
+linear-gradient(
+90deg,
+cyan,
+transparent);
+
+animation:lineMove 2s infinite;
+
+}
+
+@keyframes lineMove{
+
+0%{
+
+width:40%;
+
+}
+
+50%{
+
+width:100%;
+
+}
+
+100%{
+
+width:55%;
+
+}
+
+}
+
+/* ===========================
+   PLANET INFO
+=========================== */
+
+#planetInfo{
+
+position:fixed;
+
+right:40px;
+
+bottom:40px;
+
+width:320px;
+
+padding:20px;
+
+background:rgba(0,18,35,.65);
+
+border:1px solid rgba(0,255,255,.25);
+
+backdrop-filter:blur(12px);
+
+border-radius:12px;
+
+box-shadow:0 0 20px rgba(0,255,255,.2);
+
+}
+
+#planetName{
+
+color:#00e5ff;
+
+margin-bottom:10px;
+
+}
+
+#planetText{
+
+color:#cdefff;
+
+line-height:28px;
+
+}
+
+/* ===========================
+   CURSOR
+=========================== */
+
+#cursor{
+
+position:fixed;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:#00e5ff;
+
+box-shadow:
+
+0 0 15px cyan,
+
+0 0 40px cyan,
+
+0 0 80px cyan;
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+z-index:99999;
+
+}
+
+/* ===========================
+   DNA
+=========================== */
+
+#dna{
+
+position:fixed;
+
+right:120px;
+
+top:120px;
+
+width:80px;
+
+height:420px;
+
+pointer-events:none;
+
+}
+
+.dnaNode{
+
+position:absolute;
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:#00e5ff;
+
+box-shadow:0 0 10px cyan;
+
+}

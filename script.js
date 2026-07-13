@@ -1,63 +1,65 @@
-/* ==================================
-   SCIENCE CORE
-   MAIN SYSTEM SCRIPT
-================================== */
+/* ======================================
+   SCIENCE CORE v1.0
+   SYSTEM ENGINE
+====================================== */
 
 
 
-// ===============================
+// =====================================
 // STAR GENERATOR
-// ===============================
+// =====================================
 
 
-const stars = document.getElementById("stars");
-
-
-
-for(let i = 0; i < 800; i++){
-
-
-    const star = document.createElement("div");
-
-
-    star.className = "star";
+const stars =
+document.getElementById("stars");
 
 
 
-    let size =
-    Math.random() * 3 + 1;
+for(let i=0;i<1000;i++){
+
+
+const star =
+document.createElement("div");
+
+
+star.className="star";
 
 
 
-    star.style.width =
-    size + "px";
-
-
-    star.style.height =
-    size + "px";
+let size =
+Math.random()*3+1;
 
 
 
-    star.style.left =
-    Math.random()*100 + "%";
+star.style.width =
+size+"px";
 
 
-    star.style.top =
-    Math.random()*100 + "%";
-
-
-
-    star.style.opacity =
-    Math.random();
+star.style.height =
+size+"px";
 
 
 
-    star.style.animationDelay =
-    Math.random()*5 + "s";
+star.style.left =
+Math.random()*100+"%";
+
+
+star.style.top =
+Math.random()*100+"%";
 
 
 
-    stars.appendChild(star);
+star.style.opacity =
+Math.random();
+
+
+
+star.style.animationDelay =
+Math.random()*5+"s";
+
+
+
+stars.appendChild(star);
 
 
 }
@@ -68,65 +70,177 @@ for(let i = 0; i < 800; i++){
 
 
 
-// ===============================
-// START SYSTEM
-// ===============================
+// =====================================
+// LOADING SYSTEM
+// =====================================
 
 
 
-const start =
-document.getElementById("start");
+const loadingText =
+document.getElementById(
+"loading-text"
+);
 
 
 
-const status =
-document.querySelector(".status");
+const messages=[
+
+"INITIALIZING...",
+"CONNECTING DATABASE...",
+"CHECKING SOLAR SYSTEM...",
+"QUANTUM ENGINE READY",
+"SYSTEM STANDBY"
+
+];
 
 
 
-let activated = false;
+let count=0;
+
+
+
+setInterval(()=>{
+
+
+loadingText.innerHTML =
+messages[count];
+
+
+
+count++;
+
+
+
+if(count>=messages.length){
+
+count=0;
+
+}
+
+
+},1000);
 
 
 
 
-start.addEventListener("click",()=>{
-
-
-    if(activated) return;
-
-
-    activated=true;
 
 
 
-    start.innerHTML =
-    "SYSTEM ONLINE";
+
+// =====================================
+// SCREEN TRANSITION
+// =====================================
 
 
 
-    status.innerHTML =
-    "SCIENCE CORE ACTIVE";
+const enterBtn =
+document.getElementById(
+"enter-btn"
+);
 
 
 
-    start.style.background =
-    "cyan";
-
-
-    start.style.color =
-    "black";
-
-
-
-    document.body.classList.add(
-        "active"
-    );
+const bootScreen =
+document.getElementById(
+"boot-screen"
+);
 
 
 
-    console.log(
-        "SCIENCE CORE INITIALIZED"
-    );
+const spaceScreen =
+document.getElementById(
+"space-screen"
+);
+
+
+
+enterBtn.addEventListener(
+"click",
+()=>{
+
+
+enterBtn.innerHTML=
+"WARPING...";
+
+
+
+document.body.classList.add(
+"warp"
+);
+
+
+
+setTimeout(()=>{
+
+
+bootScreen.style.display="none";
+
+
+spaceScreen.style.display="block";
+
+
+document.body.classList.remove(
+"warp"
+);
+
+
+
+},1500);
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+
+// =====================================
+// EXPLORE BUTTON
+// =====================================
+
+
+
+const exploreBtn =
+document.getElementById(
+"explore-btn"
+);
+
+
+
+const online =
+document.querySelector(
+".online"
+);
+
+
+
+exploreBtn.addEventListener(
+"click",
+()=>{
+
+
+exploreBtn.innerHTML=
+"MISSION ACTIVE";
+
+
+
+online.innerHTML=
+"● EXPLORATION MODE";
+
+
+
+exploreBtn.style.background=
+"cyan";
+
+
+exploreBtn.style.color=
+"black";
 
 
 
@@ -138,64 +252,21 @@ start.addEventListener("click",()=>{
 
 
 
-// ===============================
-// MOUSE PARALLAX
-// ===============================
 
-
-
-const solar =
-document.querySelector(".solar-system");
-
-
-
-document.addEventListener(
-"mousemove",
-(e)=>{
-
-
-let x =
-(e.clientX / window.innerWidth - .5);
-
-
-
-let y =
-(e.clientY / window.innerHeight - .5);
-
-
-
-solar.style.transform =
-
-`
-translate(
-calc(-50% + ${x*25}px),
-calc(-50% + ${y*25}px)
-)
-`;
-
-
-
-});
-
-
-
-
-
-
-
-
-// ===============================
-// RANDOM SPACE PARTICLES
-// ===============================
+// =====================================
+// PARTICLE GENERATOR
+// =====================================
 
 
 
 const particles =
-document.getElementById("particles");
+document.getElementById(
+"particles"
+);
 
 
 
-for(let i=0;i<80;i++){
+for(let i=0;i<150;i++){
 
 
 let p =
@@ -203,17 +274,22 @@ document.createElement("div");
 
 
 
-p.style.position="absolute";
+p.style.position=
+"absolute";
 
 
-p.style.width="2px";
+
+p.style.width=
+"2px";
 
 
-p.style.height="2px";
+p.style.height=
+"2px";
+
 
 
 p.style.background=
-"rgba(0,220,255,.7)";
+"cyan";
 
 
 
@@ -222,18 +298,17 @@ p.style.borderRadius=
 
 
 
-p.style.left =
+p.style.left=
+Math.random()*100+"%";
+
+
+p.style.top=
 Math.random()*100+"%";
 
 
 
-p.style.top =
-Math.random()*100+"%";
-
-
-
-p.style.animation =
-`float ${5+Math.random()*8}s infinite alternate`;
+p.style.opacity=
+Math.random();
 
 
 
@@ -247,45 +322,71 @@ particles.appendChild(p);
 
 
 
-// ===============================
-// LIVE SYSTEM CLOCK EFFECT
-// ===============================
+
+// =====================================
+// MOUSE SPACE EFFECT
+// =====================================
 
 
 
-setInterval(()=>{
-
-
-let now =
-new Date();
-
-
-
-let text =
-document.querySelector(
-".coordinates"
+const solar =
+document.getElementById(
+"solar-system"
 );
 
 
 
-if(text){
+document.addEventListener(
+"mousemove",
+(e)=>{
 
 
-text.innerHTML =
+let x =
+(e.clientX /
+window.innerWidth-.5)
+*20;
+
+
+
+let y =
+(e.clientY /
+window.innerHeight-.5)
+*20;
+
+
+
+solar.style.transform=
 
 `
-X ${Math.floor(Math.random()*9000)}
-<br>
-Y ${Math.floor(Math.random()*9000)}
-<br>
-Z ${Math.floor(Math.random()*9000)}
+translate(
+calc(-50% + ${x}px),
+calc(-50% + ${y}px)
+)
 `;
-
 
 
 }
 
+);
 
 
-},1500);
 
+
+
+
+
+// =====================================
+// SYSTEM BOOT SOUND STYLE EFFECT
+// =====================================
+
+
+
+window.onload=()=>{
+
+
+console.log(
+"SCIENCE CORE ONLINE"
+);
+
+
+};

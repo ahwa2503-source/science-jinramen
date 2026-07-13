@@ -847,3 +847,37 @@ interactiveCards.forEach((card) => {
 ========================================================= */
 
 updatePlanet("earth");
+
+/* =========================================================
+   큰 행성 마우스 3D 회전
+========================================================= */
+
+const planetPreviewArea = document.getElementById("planetPreview");
+
+planetPreviewArea.addEventListener("mousemove", (event) => {
+  if (window.innerWidth <= 900) return;
+
+  const rect = planetPreviewArea.getBoundingClientRect();
+
+  const mouseX =
+    (event.clientX - rect.left) / rect.width - 0.5;
+
+  const mouseY =
+    (event.clientY - rect.top) / rect.height - 0.5;
+
+  previewPlanet.style.animation = "none";
+
+  previewPlanet.style.transform = `
+    perspective(700px)
+    rotateX(${mouseY * -24}deg)
+    rotateY(${mouseX * 32}deg)
+    scale(1.05)
+  `;
+});
+
+planetPreviewArea.addEventListener("mouseleave", () => {
+  previewPlanet.style.transform = "";
+
+  previewPlanet.style.animation =
+    "previewPlanet3D 6s ease-in-out infinite";
+});

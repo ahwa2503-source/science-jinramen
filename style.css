@@ -2830,3 +2830,325 @@ body.loaded .hero__buttons {
       translateY(4px);
   }
 }
+
+/* =========================================================
+   첫 화면 태양계 3D 대형 업그레이드
+========================================================= */
+
+.hero-system {
+  width: min(82vw, 1180px);
+  opacity: 0.95;
+
+  filter:
+    drop-shadow(0 0 18px rgba(43, 166, 255, 0.18))
+    drop-shadow(0 0 55px rgba(77, 74, 255, 0.12));
+
+  transform:
+    translate(-50%, -47%)
+    rotateX(67deg)
+    rotateZ(-3deg);
+}
+
+/* 태양 대형 입체화 */
+.hero-system__sun {
+  width: 105px;
+  height: 105px;
+
+  background:
+    radial-gradient(
+      circle at 31% 27%,
+      #fffde2 0%,
+      #fff28a 9%,
+      #ffc236 27%,
+      #ff7819 55%,
+      #bd2608 82%,
+      #5b0d03 100%
+    );
+
+  box-shadow:
+    inset 15px 10px 20px rgba(255, 255, 255, 0.45),
+    inset -20px -15px 30px rgba(116, 15, 0, 0.6),
+    0 0 25px #ffdc66,
+    0 0 60px #ff8a1d,
+    0 0 130px rgba(255, 79, 15, 0.85),
+    0 0 240px rgba(255, 73, 10, 0.45);
+
+  animation:
+    heroSunPulse 3s ease-in-out infinite,
+    heroSunSurface 14s linear infinite;
+}
+
+/* 태양 표면 무늬 */
+.hero-system__sun::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle at 25% 32%, rgba(255, 255, 255, 0.35) 0 4%, transparent 5%),
+    radial-gradient(circle at 62% 27%, rgba(255, 218, 94, 0.4) 0 7%, transparent 8%),
+    radial-gradient(circle at 48% 68%, rgba(177, 37, 7, 0.45) 0 10%, transparent 11%),
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      transparent 0 8px,
+      rgba(255, 255, 255, 0.07) 9px 11px
+    );
+}
+
+/* 태양 외곽 코로나 */
+.hero-system__sun::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+
+  border: 2px solid rgba(255, 174, 43, 0.23);
+  border-radius: 48% 52% 43% 57%;
+
+  box-shadow:
+    0 0 25px rgba(255, 187, 53, 0.45),
+    inset 0 0 20px rgba(255, 101, 20, 0.3);
+
+  animation: heroCorona 9s linear infinite;
+}
+
+/* 궤도 선 강화 */
+.hero-orbit {
+  border-color: rgba(93, 206, 255, 0.26);
+
+  box-shadow:
+    inset 0 0 12px rgba(65, 184, 255, 0.04),
+    0 0 8px rgba(65, 184, 255, 0.05);
+}
+
+/* 첫 화면 행성 공통 */
+.hero-mini-planet {
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    inset 7px 5px 10px rgba(255, 255, 255, 0.38),
+    inset -11px -8px 16px rgba(0, 0, 0, 0.82),
+    0 7px 15px rgba(0, 0, 0, 0.65),
+    0 0 16px currentColor;
+
+  transform:
+    translateY(-50%)
+    rotateX(-67deg)
+    scaleY(1.45);
+}
+
+/* 행성 반사광 */
+.hero-mini-planet::before {
+  content: "";
+  position: absolute;
+  top: 7%;
+  left: 11%;
+  z-index: 4;
+
+  width: 48%;
+  height: 32%;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.72),
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 74%
+  );
+
+  filter: blur(1px);
+  transform: rotate(-28deg);
+}
+
+/* 행성 그림자 */
+.hero-mini-planet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 28% 25%,
+    transparent 0 28%,
+    rgba(0, 0, 0, 0.08) 46%,
+    rgba(0, 0, 0, 0.78) 100%
+  );
+}
+
+/* 수성 */
+.hero-mini-planet--mercury {
+  width: 27px;
+  height: 27px;
+  right: -14px;
+
+  color: #c2b7ad;
+
+  background:
+    radial-gradient(circle at 30% 32%, #5f5751 0 8%, transparent 9%),
+    radial-gradient(circle at 65% 60%, #766c64 0 12%, transparent 13%),
+    radial-gradient(circle at 30% 25%, #d9d0c8, #7b716a 55%, #37312e);
+}
+
+/* 금성 */
+.hero-mini-planet--venus {
+  width: 40px;
+  height: 40px;
+  right: -20px;
+
+  color: #f4b95c;
+
+  background:
+    repeating-linear-gradient(
+      -14deg,
+      rgba(255, 247, 211, 0.26) 0 3px,
+      transparent 4px 8px
+    ),
+    radial-gradient(circle at 30% 25%, #ffe5a0, #d68b37 53%, #713411);
+}
+
+/* 지구 */
+.hero-mini-planet--earth {
+  width: 45px;
+  height: 45px;
+  right: -22px;
+
+  color: #37aaff;
+
+  background:
+    radial-gradient(ellipse at 28% 30%, #71d47d 0 11%, transparent 12%),
+    radial-gradient(ellipse at 58% 43%, #4f9e59 0 14%, transparent 15%),
+    radial-gradient(ellipse at 42% 72%, #6abd70 0 11%, transparent 12%),
+    repeating-linear-gradient(
+      5deg,
+      transparent 0 5px,
+      rgba(255, 255, 255, 0.16) 6px 7px,
+      transparent 8px 13px
+    ),
+    radial-gradient(circle at 30% 25%, #70d0ff, #1477cf 50%, #061c57);
+
+  box-shadow:
+    inset 8px 5px 11px rgba(255, 255, 255, 0.45),
+    inset -13px -9px 18px rgba(0, 0, 0, 0.78),
+    0 0 20px rgba(50, 177, 255, 0.95),
+    0 0 45px rgba(40, 120, 255, 0.38);
+}
+
+/* 화성 */
+.hero-mini-planet--mars {
+  width: 35px;
+  height: 35px;
+  right: -18px;
+
+  color: #e55d32;
+
+  background:
+    radial-gradient(circle at 64% 35%, #74261a 0 9%, transparent 10%),
+    radial-gradient(circle at 35% 67%, #9d3722 0 12%, transparent 13%),
+    radial-gradient(circle at 30% 25%, #ffad78, #c74d2b 50%, #54150d);
+}
+
+/* 첫 화면 궤도 위치 확대 */
+.hero-orbit--one {
+  width: 260px;
+  height: 260px;
+}
+
+.hero-orbit--two {
+  width: 450px;
+  height: 450px;
+}
+
+.hero-orbit--three {
+  width: 650px;
+  height: 650px;
+}
+
+.hero-orbit--four {
+  width: 900px;
+  height: 900px;
+}
+
+/* 행성에 마우스 올리면 확대 */
+.hero-mini-planet {
+  transition:
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hero-mini-planet:hover {
+  filter: brightness(1.4);
+}
+
+/* =========================================================
+   첫 화면 글자가 안 보일 때 강제 복구
+========================================================= */
+
+.hero__content {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+  z-index: 30;
+}
+
+body.loaded .hero__content {
+  opacity: 1;
+}
+
+body.loaded .hero__content .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 혹시 자바스크립트 로딩 오류가 나도 표시 */
+body:not(.loaded) .hero__content .reveal {
+  animation: forceHeroVisible 0.8s ease 2.5s forwards;
+}
+
+/* =========================================================
+   첫 화면 3D 애니메이션
+========================================================= */
+
+@keyframes heroSunPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.96);
+    filter: brightness(0.95);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    filter: brightness(1.18);
+  }
+}
+
+@keyframes heroSunSurface {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 100px 50px;
+  }
+}
+
+@keyframes heroCorona {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes forceHeroVisible {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

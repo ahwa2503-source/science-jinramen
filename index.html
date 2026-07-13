@@ -157,25 +157,93 @@
       </div>
 
       <!-- 중앙 태양계 장식 -->
-      <div class="hero-system" aria-hidden="true">
-        <div class="hero-system__sun"></div>
+      <!-- 메인 화면 뒤쪽 3D 태양계 -->
+<div class="hero-system" aria-hidden="true">
+  <div class="hero-system__glow"></div>
 
-        <div class="hero-orbit hero-orbit--one">
-          <span class="hero-mini-planet hero-mini-planet--mercury"></span>
-        </div>
+  <div class="hero-system__sun">
+    <span class="hero-system__sun-surface"></span>
+  </div>
 
-        <div class="hero-orbit hero-orbit--two">
-          <span class="hero-mini-planet hero-mini-planet--venus"></span>
-        </div>
+  <!-- 수성 -->
+  <div class="hero-orbit hero-orbit--mercury">
+    <div class="hero-planet hero-planet--mercury">
+      <span class="hero-planet__surface"></span>
+      <span class="hero-planet__light"></span>
+      <span class="hero-planet__shadow"></span>
+    </div>
+  </div>
 
-        <div class="hero-orbit hero-orbit--three">
-          <span class="hero-mini-planet hero-mini-planet--earth"></span>
-        </div>
+  <!-- 금성 -->
+  <div class="hero-orbit hero-orbit--venus">
+    <div class="hero-planet hero-planet--venus">
+      <span class="hero-planet__surface"></span>
+      <span class="hero-planet__light"></span>
+      <span class="hero-planet__shadow"></span>
+    </div>
+  </div>
 
-        <div class="hero-orbit hero-orbit--four">
-          <span class="hero-mini-planet hero-mini-planet--mars"></span>
-        </div>
-      </div>
+  <!-- 지구 -->
+  <div class="hero-orbit hero-orbit--earth">
+    <div class="hero-planet hero-planet--earth">
+      <span class="hero-planet__surface"></span>
+      <span class="hero-planet__clouds"></span>
+      <span class="hero-planet__light"></span>
+      <span class="hero-planet__shadow"></span>
+
+      <span class="hero-moon"></span>
+    </div>
+  </div>
+
+  <!-- 화성 -->
+  <div class="hero-orbit hero-orbit--mars">
+    <div class="hero-planet hero-planet--mars">
+      <span class="hero-planet__surface"></span>
+      <span class="hero-planet__light"></span>
+      <span class="hero-planet__shadow"></span>
+    </div>
+  </div>
+
+  <!-- 목성 -->
+  <div class="hero-orbit hero-orbit--jupiter">
+    <div class="hero-planet hero-planet--jupiter">
+      <span class="hero-planet__surface"></span>
+      <span class="hero-planet__light"></span>
+      <span class="hero-planet__shadow"></span>
+    </div>
+  </div>
+
+  <!-- 토성 -->
+  <div class="hero-orbit hero-orbit--saturn">
+    <div class="hero-planet hero-planet--saturn">
+      <span class="hero-saturn-ring hero-saturn-ring--back"></span>
+
+      <span class="hero-planet__surface"></span>
+      <span class="hero-planet__light"></span>
+      <span class="hero-planet__shadow"></span>
+
+      <span class="hero-saturn-ring hero-saturn-ring--front"></span>
+    </div>
+  </div>
+
+  <!-- 천왕성 -->
+  <div class="hero-orbit hero-orbit--uranus">
+    <div class="hero-planet hero-planet--uranus">
+      <span class="hero-planet__surface"></span>
+      <span class="hero-planet__light"></span>
+      <span class="hero-planet__shadow"></span>
+    </div>
+  </div>
+
+  <!-- 해왕성 -->
+  <div class="hero-orbit hero-orbit--neptune">
+    <div class="hero-planet hero-planet--neptune">
+      <span class="hero-planet__surface"></span>
+      <span class="hero-planet__light"></span>
+      <span class="hero-planet__shadow"></span>
+    </div>
+  </div>
+</div>
 
       <div class="hero__data-panel glass-panel">
         <div class="data-panel__header">

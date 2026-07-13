@@ -881,3 +881,15 @@ planetPreviewArea.addEventListener("mouseleave", () => {
   previewPlanet.style.animation =
     "previewPlanet3D 6s ease-in-out infinite";
 });
+
+/* 첫 화면 콘텐츠 강제 표시 복구 */
+window.addEventListener("load", () => {
+  document.body.classList.add("loaded");
+
+  document
+    .querySelectorAll(".hero__content .reveal")
+    .forEach((element) => {
+      element.style.opacity = "1";
+      element.style.transform = "translateY(0)";
+    });
+});

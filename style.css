@@ -3999,3 +3999,89 @@ body:not(.loaded) .hero__content .reveal {
     height: 58px;
   }
 }
+
+/* 첫 화면 행성 다시 표시 + 입체화 */
+
+.hero-system {
+  opacity: 0.95 !important;
+  z-index: 3;
+}
+
+.hero-mini-planet {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  border-radius: 50%;
+
+  box-shadow:
+    inset 5px 4px 8px rgba(255, 255, 255, 0.35),
+    inset -8px -6px 12px rgba(0, 0, 0, 0.75),
+    0 0 12px currentColor;
+}
+
+.hero-mini-planet::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 12%;
+
+  width: 45%;
+  height: 30%;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.7),
+    transparent 70%
+  );
+}
+
+.hero-mini-planet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 28% 25%,
+    transparent 0 30%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+}
+
+.hero-mini-planet--mercury {
+  width: 22px !important;
+  height: 22px !important;
+  background: radial-gradient(circle at 30% 25%, #ddd, #777 58%, #222);
+}
+
+.hero-mini-planet--venus {
+  width: 32px !important;
+  height: 32px !important;
+  background:
+    repeating-linear-gradient(
+      -15deg,
+      rgba(255, 255, 255, 0.18) 0 3px,
+      transparent 4px 8px
+    ),
+    radial-gradient(circle at 30% 25%, #ffe3a0, #c9782f 55%, #5e2c0f);
+}
+
+.hero-mini-planet--earth {
+  width: 36px !important;
+  height: 36px !important;
+  background:
+    radial-gradient(ellipse at 30% 30%, #65c875 0 12%, transparent 13%),
+    radial-gradient(ellipse at 60% 55%, #4d9d59 0 14%, transparent 15%),
+    radial-gradient(circle at 30% 25%, #72d1ff, #177dcf 52%, #061d59);
+}
+
+.hero-mini-planet--mars {
+  width: 28px !important;
+  height: 28px !important;
+  background:
+    radial-gradient(circle at 65% 35%, #6f2418 0 9%, transparent 10%),
+    radial-gradient(circle at 30% 25%, #f7a06a, #bd4427 55%, #4d120c);
+}

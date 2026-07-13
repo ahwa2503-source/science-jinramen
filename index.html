@@ -16,13 +16,15 @@
 <body>
 
 
-<!-- 우주 배경 -->
+<!-- =========================
+     GLOBAL SPACE BACKGROUND
+========================= -->
 
-<div id="universe">
-
-    <div id="nebula"></div>
+<div id="space-bg">
 
     <div id="stars"></div>
+
+    <div id="nebula"></div>
 
     <div id="particles"></div>
 
@@ -31,271 +33,417 @@
 
 
 
-<!-- 메인 화면 -->
 
-<main class="core">
+<!-- =========================
+     BOOT SCREEN
+========================= -->
 
 
-    <!-- 상단 로고 -->
+<section id="boot-screen">
 
-    <header class="header">
 
-        <div class="logo">
+    <div class="boot-header">
+
+        <div class="main-logo">
             SCIENCE CORE
         </div>
 
-        <div class="status">
-            SYSTEM ONLINE
+
+        <div class="sub-logo">
+            UNIVERSAL EXPLORATION SYSTEM
         </div>
 
-    </header>
+
+    </div>
 
 
 
 
 
-    <!-- 왼쪽 HUD -->
+    <div class="boot-panel">
 
 
-    <section class="panel left-panel">
+        <div class="panel-title">
+            SYSTEM INITIALIZATION
+        </div>
 
 
-        <h2>
-            MISSION CONTROL
-        </h2>
 
-
-        <div class="line">
+        <div class="system-line">
             QUANTUM ENGINE
-            <span>ONLINE</span>
+            <span>
+                ONLINE
+            </span>
         </div>
 
 
-        <div class="line">
+        <div class="system-line">
             SOLAR DATABASE
-            <span>CONNECTED</span>
-        </div>
-
-
-        <div class="line">
-            NAVIGATION
-            <span>READY</span>
+            <span>
+                CONNECTED
+            </span>
         </div>
 
 
 
-        <div class="scan">
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-
-
-    <!-- 태양계 중앙 -->
-
-
-    <section class="solar-system">
-
-
-        <div class="sun">
-
-            <div class="corona"></div>
-
+        <div class="system-line">
+            NAVIGATION CORE
+            <span>
+                READY
+            </span>
         </div>
 
 
 
 
-        <div class="orbit orbit1">
-            <div class="planet mercury"></div>
-        </div>
+        <div class="loading-box">
 
-
-
-        <div class="orbit orbit2">
-            <div class="planet venus"></div>
-        </div>
-
-
-
-        <div class="orbit orbit3">
-
-            <div class="planet earth">
-
-                <div class="cloud"></div>
-
-            </div>
+            <div id="loading-bar"></div>
 
         </div>
 
 
 
-
-        <div class="orbit orbit4">
-
-            <div class="planet mars"></div>
-
+        <div id="loading-text">
+            INITIALIZING...
         </div>
 
 
 
+    </div>
 
 
-        <div class="orbit orbit5">
 
-            <div class="planet jupiter">
 
-                <div class="spot"></div>
 
-            </div>
 
-        </div>
+    <button id="enter-btn">
 
-
-
-
-
-
-        <div class="orbit orbit6">
-
-            <div class="planet saturn">
-
-                <div class="ring"></div>
-
-            </div>
-
-        </div>
-
-
-
-
-
-        <div class="orbit orbit7">
-
-            <div class="planet uranus"></div>
-
-        </div>
-
-
-
-
-
-        <div class="orbit orbit8">
-
-            <div class="planet neptune"></div>
-
-        </div>
-
-
-
-    </section>
-
-
-
-
-
-
-
-
-    <!-- 오른쪽 정보창 -->
-
-
-    <section class="panel right-panel">
-
-
-        <h2>
-            SOLAR DATA
-        </h2>
-
-
-        <div class="data">
-
-            <p>
-            PLANETS : 8
-            </p>
-
-
-            <p>
-            STAR TYPE : G2V
-            </p>
-
-
-            <p>
-            MISSION :
-            EXPLORATION
-            </p>
-
-
-            <p>
-            DISTANCE :
-            149.6M KM
-            </p>
-
-
-        </div>
-
-
-
-        <div class="coordinates">
-
-            X 2847<br>
-            Y 0912<br>
-            Z 4470
-
-        </div>
-
-
-
-    </section>
-
-
-
-
-
-
-
-    <!-- 하단 시작 버튼 -->
-
-
-    <button id="start">
-
-        START MISSION
+        START SYSTEM
 
     </button>
 
 
 
+</section>
 
 
 
 
-    <!-- 하단 로그 -->
-
-
-    <footer>
-
-
-        <div>
-        // SCIENCE CORE INITIALIZED
-        </div>
-
-
-        <div>
-        // AWAITING COMMAND
-        </div>
-
-
-    </footer>
 
 
 
-</main>
+
+
+<!-- =========================
+     MAIN SPACE SCREEN
+========================= -->
+
+
+<section id="space-screen">
+
+
+
+
+
+<header class="top-ui">
+
+
+    <div class="logo-small">
+        SCIENCE CORE
+    </div>
+
+
+    <div class="online">
+
+        ● SYSTEM ONLINE
+
+    </div>
+
+
+
+</header>
+
+
+
+
+
+
+
+
+<!-- LEFT HUD -->
+
+
+<div class="hud left">
+
+
+<h2>
+MISSION CONTROL
+</h2>
+
+
+<div>
+ENGINE :
+<span>
+ACTIVE
+</span>
+</div>
+
+
+<div>
+MISSION :
+<span>
+EXPLORATION
+</span>
+</div>
+
+
+<div>
+PLANETS :
+<span>
+8
+</span>
+</div>
+
+
+<div>
+DISTANCE :
+<span>
+149.6M KM
+</span>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- SOLAR SYSTEM -->
+
+
+
+<div id="solar-system">
+
+
+
+<div id="sun">
+
+    <div class="sun-flare"></div>
+
+</div>
+
+
+
+
+
+<div class="orbit mercury">
+
+    <div class="planet mercury-body"></div>
+
+</div>
+
+
+
+
+<div class="orbit venus">
+
+    <div class="planet venus-body"></div>
+
+</div>
+
+
+
+
+
+<div class="orbit earth">
+
+
+    <div class="planet earth-body">
+
+        <div class="earth-cloud"></div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<div class="orbit mars">
+
+    <div class="planet mars-body"></div>
+
+</div>
+
+
+
+
+
+
+<div class="orbit jupiter">
+
+
+    <div class="planet jupiter-body">
+
+        <div class="jupiter-spot"></div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="orbit saturn">
+
+
+    <div class="planet saturn-body">
+
+        <div class="saturn-ring"></div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="orbit uranus">
+
+    <div class="planet uranus-body"></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="orbit neptune">
+
+    <div class="planet neptune-body"></div>
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- RIGHT HUD -->
+
+
+<div class="hud right">
+
+
+<h2>
+SOLAR DATA
+</h2>
+
+
+<p>
+STAR TYPE : G2V
+</p>
+
+
+<p>
+SYSTEM :
+SOLAR
+</p>
+
+
+<p>
+STATUS :
+STABLE
+</p>
+
+
+<p>
+SCANNING...
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- CENTER BUTTON -->
+
+
+<button id="explore-btn">
+
+    START EXPLORATION
+
+</button>
+
+
+
+
+
+
+
+
+<footer>
+
+
+<div>
+SCIENCE CORE v1.0
+</div>
+
+
+<div>
+DEEP SPACE RESEARCH DIVISION
+</div>
+
+
+</footer>
+
+
+
+
+
+
+
+</section>
+
+
+
 
 
 

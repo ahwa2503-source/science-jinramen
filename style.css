@@ -2329,3 +2329,504 @@ body.loaded .hero__buttons {
     font-size: 36px;
   }
 }
+
+/* =========================================================
+   행성 3D 입체 업그레이드
+========================================================= */
+
+/* 모든 행성에 공통 입체 효과 */
+.map-planet,
+.planet-card__image,
+.preview-planet {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* 태양계 지도 행성 */
+.map-planet > span:first-child,
+.saturn-body {
+  position: relative;
+  overflow: hidden;
+
+  box-shadow:
+    inset 7px 5px 10px rgba(255, 255, 255, 0.3),
+    inset -10px -7px 15px rgba(0, 0, 0, 0.75),
+    0 5px 12px rgba(0, 0, 0, 0.55);
+}
+
+/* 행성 왼쪽 위 반사광 */
+.map-planet > span:first-child::before,
+.saturn-body::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 12%;
+  z-index: 4;
+
+  width: 48%;
+  height: 34%;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.12) 45%,
+    transparent 75%
+  );
+
+  filter: blur(1px);
+  transform: rotate(-32deg);
+}
+
+/* 행성 오른쪽 아래 그림자 */
+.map-planet > span:first-child::after,
+.saturn-body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 30% 25%,
+    transparent 0 30%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+}
+
+/* 행성 전체 천천히 자전 */
+.map-planet > span:first-child {
+  animation: mapPlanetRotation 12s linear infinite;
+}
+
+.map-planet--mercury > span:first-child {
+  animation-duration: 18s;
+}
+
+.map-planet--venus > span:first-child {
+  animation-duration: 22s;
+  animation-direction: reverse;
+}
+
+.map-planet--earth > span:first-child {
+  animation-duration: 10s;
+}
+
+.map-planet--mars > span:first-child {
+  animation-duration: 13s;
+}
+
+.map-planet--jupiter > span:first-child {
+  animation-duration: 8s;
+}
+
+.map-planet--uranus > span:first-child {
+  animation-duration: 14s;
+}
+
+.map-planet--neptune > span:first-child {
+  animation-duration: 11s;
+}
+
+/* 수성 표면 */
+.map-planet--mercury span {
+  background:
+    radial-gradient(circle at 28% 24%, #514b47 0 7%, transparent 8%),
+    radial-gradient(circle at 64% 38%, #776d66 0 10%, transparent 11%),
+    radial-gradient(circle at 46% 73%, #4b4541 0 8%, transparent 9%),
+    radial-gradient(circle at 75% 77%, #aea39a 0 6%, transparent 7%),
+    radial-gradient(circle at 32% 30%, #ddd4cc, #8a8078 47%, #403b38 100%);
+}
+
+/* 금성 구름층 */
+.map-planet--venus span {
+  background:
+    repeating-linear-gradient(
+      -16deg,
+      transparent 0 3px,
+      rgba(255, 245, 205, 0.25) 4px 6px,
+      transparent 7px 11px
+    ),
+    radial-gradient(circle at 30% 25%, #ffe8ad, #df963f 50%, #804015 100%);
+}
+
+/* 지구 입체 표면 */
+.map-planet--earth span {
+  background:
+    radial-gradient(ellipse at 28% 30%, #74d27e 0 10%, transparent 11%),
+    radial-gradient(ellipse at 56% 43%, #4b9d55 0 13%, transparent 14%),
+    radial-gradient(ellipse at 38% 70%, #72b968 0 11%, transparent 12%),
+    radial-gradient(ellipse at 75% 68%, #489553 0 9%, transparent 10%),
+    repeating-linear-gradient(
+      8deg,
+      transparent 0 5px,
+      rgba(255, 255, 255, 0.2) 6px 7px,
+      transparent 8px 13px
+    ),
+    radial-gradient(circle at 30% 25%, #65c9ff, #1473c9 50%, #061d58 100%);
+
+  box-shadow:
+    inset 6px 4px 8px rgba(255, 255, 255, 0.45),
+    inset -10px -7px 15px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(43, 168, 255, 0.9),
+    0 0 25px rgba(43, 168, 255, 0.3);
+}
+
+/* 화성 표면 */
+.map-planet--mars span {
+  background:
+    radial-gradient(circle at 60% 33%, #742419 0 8%, transparent 9%),
+    radial-gradient(circle at 32% 67%, #a23e25 0 11%, transparent 12%),
+    radial-gradient(circle at 25% 20%, #ffb07b, #c9502c 48%, #59180f 100%);
+}
+
+/* 목성 줄무늬와 대적점 */
+.map-planet--jupiter span {
+  background:
+    radial-gradient(
+      ellipse at 68% 66%,
+      #8e261d 0 7%,
+      #c4573d 8% 12%,
+      transparent 13%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      #6e3e2c 0 3px,
+      #d9a56f 4px 7px,
+      #f1d0a1 8px 11px,
+      #9d5d3c 12px 15px
+    );
+
+  box-shadow:
+    inset 8px 5px 12px rgba(255, 255, 255, 0.28),
+    inset -13px -8px 17px rgba(0, 0, 0, 0.72),
+    0 7px 18px rgba(0, 0, 0, 0.6);
+}
+
+/* 토성 몸체 */
+.saturn-body {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #94703e 0 3px,
+      #e5c37a 4px 7px,
+      #f5dda2 8px 10px,
+      #ae8145 11px 14px
+    );
+
+  animation: mapPlanetRotation 12s linear infinite;
+}
+
+/* 토성 고리 입체화 */
+.saturn-ring {
+  border-width: 5px;
+  border-color:
+    rgba(245, 224, 174, 0.85)
+    rgba(128, 100, 57, 0.35)
+    rgba(99, 75, 42, 0.65)
+    rgba(238, 211, 153, 0.85);
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.55),
+    inset 0 0 3px rgba(255, 255, 255, 0.55);
+
+  transform: rotateX(68deg) rotateZ(-12deg);
+}
+
+/* 천왕성 */
+.map-planet--uranus span {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 4px,
+      rgba(255, 255, 255, 0.1) 5px 6px,
+      transparent 7px 12px
+    ),
+    radial-gradient(circle at 30% 25%, #dcffff, #79d5dc 48%, #276879 100%);
+
+  box-shadow:
+    inset 7px 4px 10px rgba(255, 255, 255, 0.45),
+    inset -10px -7px 15px rgba(0, 0, 0, 0.63),
+    0 0 15px rgba(111, 233, 242, 0.55);
+}
+
+/* 해왕성 */
+.map-planet--neptune span {
+  background:
+    radial-gradient(ellipse at 67% 58%, #142578 0 10%, transparent 11%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 4px,
+      rgba(255, 255, 255, 0.13) 5px 7px,
+      transparent 8px 13px
+    ),
+    radial-gradient(circle at 30% 25%, #779dff, #3156db 48%, #101b76 100%);
+
+  box-shadow:
+    inset 7px 4px 10px rgba(255, 255, 255, 0.4),
+    inset -11px -7px 16px rgba(0, 0, 0, 0.72),
+    0 0 17px rgba(63, 98, 255, 0.62);
+}
+
+/* =========================================================
+   오른쪽 큰 행성 미리보기 3D 강화
+========================================================= */
+
+.preview-planet {
+  isolation: isolate;
+
+  box-shadow:
+    inset 14px 10px 18px rgba(255, 255, 255, 0.18),
+    inset -35px -18px 46px rgba(0, 0, 0, 0.82),
+    0 18px 35px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(62, 169, 255, 0.26);
+
+  transform:
+    perspective(700px)
+    rotateX(-7deg)
+    rotateY(-12deg);
+
+  animation: previewPlanet3D 6s ease-in-out infinite;
+}
+
+/* 행성 가장자리 대기층 */
+.preview-planet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  border-radius: 50%;
+
+  box-shadow:
+    inset 4px 3px 7px rgba(255, 255, 255, 0.28),
+    inset -8px -5px 14px rgba(0, 0, 0, 0.5);
+
+  pointer-events: none;
+}
+
+/* 기존 빛 강화 */
+.preview-planet__light {
+  top: 8%;
+  left: 12%;
+
+  width: 55%;
+  height: 35%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.52),
+    rgba(255, 255, 255, 0.1) 52%,
+    transparent 76%
+  );
+
+  filter: blur(5px);
+}
+
+/* 행성 밤 부분 */
+.preview-planet__shadow {
+  background: radial-gradient(
+    circle at 28% 24%,
+    transparent 0 30%,
+    rgba(0, 0, 0, 0.1) 46%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+
+  box-shadow: none;
+}
+
+/* 지구 대기 빛 */
+.preview-planet--earth {
+  box-shadow:
+    inset 14px 10px 18px rgba(255, 255, 255, 0.17),
+    inset -35px -18px 46px rgba(0, 0, 0, 0.8),
+    0 18px 35px rgba(0, 0, 0, 0.55),
+    0 0 22px rgba(70, 190, 255, 0.75),
+    0 0 60px rgba(31, 118, 255, 0.35);
+}
+
+/* 태양은 강한 빛 */
+.preview-planet--sun {
+  box-shadow:
+    inset 12px 8px 18px rgba(255, 255, 255, 0.35),
+    inset -24px -12px 34px rgba(155, 35, 0, 0.5),
+    0 0 35px rgba(255, 193, 57, 0.95),
+    0 0 100px rgba(255, 77, 14, 0.62);
+}
+
+/* 토성 고리가 행성 앞뒤로 보이게 */
+.preview-planet--saturn {
+  overflow: visible;
+}
+
+.preview-planet--saturn::after {
+  width: 195px;
+  height: 58px;
+  top: 50%;
+  left: 50%;
+  inset: auto;
+
+  border:
+    10px double rgba(229, 204, 147, 0.82);
+  border-radius: 50%;
+
+  box-shadow:
+    0 7px 9px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.42);
+
+  transform:
+    translate(-50%, -50%)
+    rotateX(70deg)
+    rotateZ(-13deg);
+}
+
+/* =========================================================
+   아래 행성 카드 3D
+========================================================= */
+
+.planet-card {
+  perspective: 600px;
+}
+
+.planet-card__image {
+  position: relative;
+  overflow: visible;
+
+  box-shadow:
+    inset 7px 5px 10px rgba(255, 255, 255, 0.3),
+    inset -11px -7px 16px rgba(0, 0, 0, 0.78),
+    0 10px 17px rgba(0, 0, 0, 0.55);
+
+  transform:
+    rotateX(-8deg)
+    rotateY(-12deg);
+
+  animation: cardPlanetFloat 4s ease-in-out infinite;
+}
+
+.planet-card__image::before {
+  content: "";
+  position: absolute;
+  top: 7%;
+  left: 10%;
+  z-index: 5;
+
+  width: 48%;
+  height: 33%;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.55),
+    transparent 72%
+  );
+
+  filter: blur(1px);
+  transform: rotate(-30deg);
+}
+
+.planet-card__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 28% 24%,
+    transparent 0 30%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.67) 100%
+  );
+}
+
+.planet-card:hover .planet-card__image {
+  animation-play-state: paused;
+
+  transform:
+    rotateX(-4deg)
+    rotateY(18deg)
+    scale(1.15);
+}
+
+/* 토성 카드 고리는 별도 처리 */
+.planet-card__image--saturn {
+  overflow: visible;
+}
+
+.planet-card__image--saturn::after {
+  width: 68px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  inset: auto;
+
+  border:
+    5px double rgba(230, 209, 157, 0.78);
+  border-radius: 50%;
+
+  background: transparent;
+
+  transform:
+    translate(-50%, -50%)
+    rotateX(67deg)
+    rotateZ(-14deg);
+
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================================
+   3D 애니메이션
+========================================================= */
+
+@keyframes mapPlanetRotation {
+  0% {
+    background-position: 0 0;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    background-position: 100px 0;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes previewPlanet3D {
+  0%,
+  100% {
+    transform:
+      perspective(700px)
+      rotateX(-7deg)
+      rotateY(-13deg)
+      translateY(-5px);
+  }
+
+  50% {
+    transform:
+      perspective(700px)
+      rotateX(4deg)
+      rotateY(13deg)
+      translateY(7px);
+  }
+}
+
+@keyframes cardPlanetFloat {
+  0%,
+  100% {
+    transform:
+      rotateX(-8deg)
+      rotateY(-12deg)
+      translateY(-2px);
+  }
+
+  50% {
+    transform:
+      rotateX(-3deg)
+      rotateY(8deg)
+      translateY(4px);
+  }
+}

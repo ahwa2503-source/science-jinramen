@@ -4085,3 +4085,257 @@ body:not(.loaded) .hero__content .reveal {
     radial-gradient(circle at 65% 35%, #6f2418 0 9%, transparent 10%),
     radial-gradient(circle at 30% 25%, #f7a06a, #bd4427 55%, #4d120c);
 }
+
+/* =========================================================
+   첫 화면 행성 구체감 강제 적용
+   반드시 style.css의 가장 마지막에 추가
+========================================================= */
+
+/* 태양계 전체를 절대 눕히지 않음 */
+.hero-system {
+  opacity: 1 !important;
+
+  transform:
+    translate(-50%, -50%)
+    rotateX(0deg)
+    rotateY(0deg)
+    rotateZ(0deg) !important;
+
+  filter: none !important;
+  overflow: visible !important;
+}
+
+/* 궤도만 타원 모양 */
+.hero-orbit {
+  transform-style: preserve-3d !important;
+  overflow: visible !important;
+}
+
+/* 모든 행성을 완전히 둥근 구체로 강제 */
+.hero-planet {
+  position: absolute !important;
+  top: 50% !important;
+  right: 0 !important;
+
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  width: var(--planet-size) !important;
+  height: var(--planet-size) !important;
+
+  overflow: visible !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 50% !important;
+
+  transform:
+    translate(50%, -50%)
+    rotateX(0deg)
+    rotateY(0deg)
+    scaleX(1)
+    scaleY(1) !important;
+
+  box-shadow:
+    inset 12px 9px 17px rgba(255, 255, 255, 0.42),
+    inset -18px -13px 25px rgba(0, 0, 0, 0.92),
+    0 10px 22px rgba(0, 0, 0, 0.75),
+    0 0 18px var(--planet-glow),
+    0 0 38px var(--planet-glow) !important;
+}
+
+/* 실제 행성 표면 */
+.hero-planet__surface {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+
+  display: block !important;
+  overflow: hidden !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  border-radius: 50% !important;
+  background: var(--planet-background) !important;
+
+  box-shadow:
+    inset 6px 5px 9px rgba(255, 255, 255, 0.19),
+    inset -13px -9px 19px rgba(0, 0, 0, 0.68) !important;
+}
+
+/* 강한 왼쪽 위 반사광 */
+.hero-planet__light {
+  position: absolute !important;
+  top: 7% !important;
+  left: 9% !important;
+  z-index: 10 !important;
+
+  display: block !important;
+
+  width: 53% !important;
+  height: 38% !important;
+
+  border-radius: 50% !important;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.35) 30%,
+    rgba(255, 255, 255, 0.08) 58%,
+    transparent 76%
+  ) !important;
+
+  filter: blur(2px) !important;
+  transform: rotate(-32deg) !important;
+}
+
+/* 오른쪽 아래 구체 그림자 */
+.hero-planet__shadow {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 11 !important;
+
+  display: block !important;
+
+  border-radius: 50% !important;
+
+  background: radial-gradient(
+    circle at 27% 23%,
+    transparent 0%,
+    transparent 25%,
+    rgba(0, 0, 0, 0.05) 42%,
+    rgba(0, 0, 0, 0.32) 64%,
+    rgba(0, 0, 0, 0.78) 84%,
+    rgba(0, 0, 0, 0.96) 100%
+  ) !important;
+}
+
+/* 행성 테두리와 대기층 */
+.hero-planet::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -2px !important;
+  z-index: 12 !important;
+
+  display: block !important;
+
+  border: 2px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 50% !important;
+
+  box-shadow:
+    inset 4px 3px 6px rgba(255, 255, 255, 0.2),
+    0 0 11px var(--planet-glow) !important;
+}
+
+/* 행성 크기를 키워야 3D가 보임 */
+
+.hero-planet--mercury {
+  --planet-size: 27px !important;
+}
+
+.hero-planet--venus {
+  --planet-size: 43px !important;
+}
+
+.hero-planet--earth {
+  --planet-size: 48px !important;
+}
+
+.hero-planet--mars {
+  --planet-size: 36px !important;
+}
+
+.hero-planet--jupiter {
+  --planet-size: 82px !important;
+}
+
+.hero-planet--saturn {
+  --planet-size: 68px !important;
+}
+
+.hero-planet--uranus {
+  --planet-size: 54px !important;
+}
+
+.hero-planet--neptune {
+  --planet-size: 57px !important;
+}
+
+/* 지구 대기권 강화 */
+.hero-planet--earth {
+  box-shadow:
+    inset 12px 9px 17px rgba(255, 255, 255, 0.42),
+    inset -18px -13px 25px rgba(0, 0, 0, 0.92),
+    0 10px 22px rgba(0, 0, 0, 0.75),
+    0 0 14px rgba(68, 196, 255, 1),
+    0 0 35px rgba(32, 112, 255, 0.7),
+    0 0 60px rgba(32, 112, 255, 0.28) !important;
+}
+
+/* 지구 구름 */
+.hero-planet__clouds {
+  z-index: 5 !important;
+  opacity: 0.72 !important;
+}
+
+/* 토성 고리 확대 */
+.hero-saturn-ring {
+  width: 125px !important;
+  height: 38px !important;
+}
+
+.hero-saturn-ring--back {
+  border-width: 7px !important;
+}
+
+.hero-saturn-ring--front {
+  border-bottom-width: 7px !important;
+}
+
+/* 태양도 구체처럼 강화 */
+.hero-system__sun {
+  width: 100px !important;
+  height: 100px !important;
+
+  background: radial-gradient(
+    circle at 28% 24%,
+    #ffffff 0%,
+    #fff8bc 8%,
+    #ffd84c 22%,
+    #ff9a22 43%,
+    #ff5213 68%,
+    #981b07 100%
+  ) !important;
+
+  box-shadow:
+    inset 14px 11px 20px rgba(255, 255, 255, 0.55),
+    inset -20px -15px 29px rgba(120, 15, 0, 0.72),
+    0 0 25px rgba(255, 242, 163, 1),
+    0 0 65px rgba(255, 155, 35, 1),
+    0 0 130px rgba(255, 74, 15, 0.72) !important;
+}
+
+/* 제목 뒤에서도 행성이 어느 정도 보이도록 */
+.hero__content {
+  z-index: 10 !important;
+}
+
+.hero-system {
+  z-index: 4 !important;
+}
+
+/* 공전 중에도 행성 자체는 찌그러지지 않음 */
+@keyframes heroOrbitMovement {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+}

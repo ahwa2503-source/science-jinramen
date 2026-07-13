@@ -1,392 +1,782 @@
-/* ======================================
-   SCIENCE CORE v1.0
-   SYSTEM ENGINE
-====================================== */
+/* =======================================================
+   COSMOS : Solar System Explorer
+   Version 1.0
+======================================================= */
 
 
 
-// =====================================
-// STAR GENERATOR
-// =====================================
+/* ===========================
+   ELEMENT
+=========================== */
 
+const introScreen = document.getElementById("introScreen");
 
-const stars =
-document.getElementById("stars");
+const startButton = document.getElementById("startButton");
 
+const countdownScreen = document.getElementById("countdownScreen");
 
+const countText = document.getElementById("countText");
 
-for(let i=0;i<1000;i++){
+const mainScene = document.getElementById("mainScene");
 
+const bgm = document.getElementById("bgm");
 
-const star =
-document.createElement("div");
+const musicButton = document.getElementById("musicButton");
 
+const panel = document.getElementById("planetPanel");
 
-star.className="star";
+const closePanel = document.getElementById("closePanel");
 
+const meteorField = document.getElementById("meteor-field");
 
+const loadingOverlay = document.getElementById("loadingOverlay");
 
-let size =
-Math.random()*3+1;
 
 
+const planetName = document.getElementById("planetName");
 
-star.style.width =
-size+"px";
+const planetDistance = document.getElementById("planetDistance");
 
+const planetSize = document.getElementById("planetSize");
 
-star.style.height =
-size+"px";
+const planetTemperature = document.getElementById("planetTemperature");
 
+const planetDay = document.getElementById("planetDay");
 
+const planetYear = document.getElementById("planetYear");
 
-star.style.left =
-Math.random()*100+"%";
+const planetDescription = document.getElementById("planetDescription");
 
 
-star.style.top =
-Math.random()*100+"%";
 
+const planets = document.querySelectorAll(".planet");
 
 
-star.style.opacity =
-Math.random();
 
+/* ===========================
+   MUSIC
+=========================== */
 
+let musicOn = false;
 
-star.style.animationDelay =
-Math.random()*5+"s";
 
 
+/* ===========================
+   LOADING
+=========================== */
 
-stars.appendChild(star);
+window.addEventListener("load", () => {
 
+    setTimeout(() => {
 
-}
+        loadingOverlay.style.opacity = "0";
 
+        loadingOverlay.style.transition = ".8s";
 
+        setTimeout(() => {
 
+            loadingOverlay.style.display = "none";
 
+        }, 800);
 
-
-
-// =====================================
-// LOADING SYSTEM
-// =====================================
-
-
-
-const loadingText =
-document.getElementById(
-"loading-text"
-);
-
-
-
-const messages=[
-
-"INITIALIZING...",
-"CONNECTING DATABASE...",
-"CHECKING SOLAR SYSTEM...",
-"QUANTUM ENGINE READY",
-"SYSTEM STANDBY"
-
-];
-
-
-
-let count=0;
-
-
-
-setInterval(()=>{
-
-
-loadingText.innerHTML =
-messages[count];
-
-
-
-count++;
-
-
-
-if(count>=messages.length){
-
-count=0;
-
-}
-
-
-},1000);
-
-
-
-
-
-
-
-
-// =====================================
-// SCREEN TRANSITION
-// =====================================
-
-
-
-const enterBtn =
-document.getElementById(
-"enter-btn"
-);
-
-
-
-const bootScreen =
-document.getElementById(
-"boot-screen"
-);
-
-
-
-const spaceScreen =
-document.getElementById(
-"space-screen"
-);
-
-
-
-enterBtn.addEventListener(
-"click",
-()=>{
-
-
-enterBtn.innerHTML=
-"WARPING...";
-
-
-
-document.body.classList.add(
-"warp"
-);
-
-
-
-setTimeout(()=>{
-
-
-bootScreen.style.display="none";
-
-
-spaceScreen.style.display="block";
-
-
-document.body.classList.remove(
-"warp"
-);
-
-
-
-},1500);
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-
-// =====================================
-// EXPLORE BUTTON
-// =====================================
-
-
-
-const exploreBtn =
-document.getElementById(
-"explore-btn"
-);
-
-
-
-const online =
-document.querySelector(
-".online"
-);
-
-
-
-exploreBtn.addEventListener(
-"click",
-()=>{
-
-
-exploreBtn.innerHTML=
-"MISSION ACTIVE";
-
-
-
-online.innerHTML=
-"● EXPLORATION MODE";
-
-
-
-exploreBtn.style.background=
-"cyan";
-
-
-exploreBtn.style.color=
-"black";
-
-
+    }, 1200);
 
 });
 
 
 
+/* ===========================
+   START BUTTON
+=========================== */
+
+startButton.addEventListener("click", () => {
+
+    introScreen.style.opacity = "0";
+
+    introScreen.style.pointerEvents = "none";
+
+    countdownScreen.style.visibility = "visible";
+
+    countdownScreen.style.opacity = "1";
+
+    startCount();
+
+});
 
 
 
+/* ===========================
+   COUNTDOWN
+=========================== */
 
+function startCount(){
 
-// =====================================
-// PARTICLE GENERATOR
-// =====================================
+    let number = 3;
 
+    countText.innerHTML = number;
 
+    const timer = setInterval(() => {
 
-const particles =
-document.getElementById(
-"particles"
-);
+        number--;
 
+        if(number > 0){
 
+            countText.innerHTML = number;
 
-for(let i=0;i<150;i++){
+        }
 
+        else if(number === 0){
 
-let p =
-document.createElement("div");
+            countText.innerHTML = "Launch";
 
+        }
 
+        else{
 
-p.style.position=
-"absolute";
+            clearInterval(timer);
 
+            countdownScreen.style.opacity = "0";
 
+            setTimeout(() => {
 
-p.style.width=
-"2px";
+                countdownScreen.style.display = "none";
 
+                mainScene.style.display = "block";
 
-p.style.height=
-"2px";
+            },600);
 
+        }
 
-
-p.style.background=
-"cyan";
-
-
-
-p.style.borderRadius=
-"50%";
-
-
-
-p.style.left=
-Math.random()*100+"%";
-
-
-p.style.top=
-Math.random()*100+"%";
-
-
-
-p.style.opacity=
-Math.random();
-
-
-
-particles.appendChild(p);
-
+    },1000);
 
 }
 
 
 
+/* ===========================
+   PLANET PANEL
+=========================== */
+
+planets.forEach((planet)=>{
+
+    planet.addEventListener("click",()=>{
+
+        panel.classList.add("active");
+
+        planetName.textContent =
+
+        planet.dataset.name;
+
+        planetDistance.textContent =
+
+        planet.dataset.distance;
+
+        planetSize.textContent =
+
+        planet.dataset.size;
+
+        planetTemperature.textContent =
+
+        planet.dataset.temperature;
+
+        planetDay.textContent =
+
+        planet.dataset.day;
+
+        planetYear.textContent =
+
+        planet.dataset.year;
+
+        planetDescription.textContent =
+
+        planet.dataset.description;
+
+    });
+
+});
 
 
 
+closePanel.addEventListener("click",()=>{
 
-// =====================================
-// MOUSE SPACE EFFECT
-// =====================================
+    panel.classList.remove("active");
+
+});
+/* ===========================
+   MUSIC
+=========================== */
+
+musicButton.addEventListener("click",()=>{
+
+    if(!bgm) return;
+
+    if(musicOn){
+
+        bgm.pause();
+
+        musicOn=false;
+
+        musicButton.innerHTML="🔇";
+
+    }
+
+    else{
+
+        bgm.volume=.35;
+
+        bgm.play().catch(()=>{});
+
+        musicOn=true;
+
+        musicButton.innerHTML="🔊";
+
+    }
+
+});
 
 
 
-const solar =
-document.getElementById(
-"solar-system"
-);
+/* ===========================
+   METEOR
+=========================== */
 
+function createMeteor(){
 
+    if(!meteorField) return;
 
-document.addEventListener(
-"mousemove",
-(e)=>{
+    const meteor=document.createElement("div");
 
+    meteor.className="meteor";
 
-let x =
-(e.clientX /
-window.innerWidth-.5)
-*20;
+    meteor.style.top=Math.random()*35+"%";
 
+    meteor.style.left=(70+Math.random()*30)+"%";
 
+    meteor.style.animation=
 
-let y =
-(e.clientY /
-window.innerHeight-.5)
-*20;
+        "meteorFly "+(2+Math.random()*2)+"s linear forwards";
 
+    meteorField.appendChild(meteor);
 
+    setTimeout(()=>{
 
-solar.style.transform=
+        meteor.remove();
 
-`
-translate(
-calc(-50% + ${x}px),
-calc(-50% + ${y}px)
-)
-`;
-
+    },4000);
 
 }
 
-);
+
+
+setInterval(createMeteor,1800);
 
 
 
+/* ===========================
+   PARALLAX
+=========================== */
+
+document.addEventListener("mousemove",(e)=>{
+
+    const x=(e.clientX/window.innerWidth-.5)*18;
+
+    const y=(e.clientY/window.innerHeight-.5)*18;
+
+    const bg=document.getElementById("background");
+
+    if(bg){
+
+        bg.style.transform=
+
+            `translate(${x}px,${y}px)`;
+
+    }
+
+});
 
 
 
+/* ===========================
+   EASTER EGG
+=========================== */
 
-// =====================================
-// SYSTEM BOOT SOUND STYLE EFFECT
-// =====================================
+let secret=[];
+
+const answer=[
+
+"c",
+
+"o",
+
+"s",
+
+"m",
+
+"o",
+
+"s"
+
+];
 
 
 
-window.onload=()=>{
+document.addEventListener("keydown",(e)=>{
 
+    secret.push(e.key.toLowerCase());
+
+    if(secret.length>answer.length){
+
+        secret.shift();
+
+    }
+
+    if(secret.join("")===answer.join("")){
+
+        const egg=document.getElementById("easterEgg");
+
+        if(egg){
+
+            egg.classList.add("show");
+
+            setTimeout(()=>{
+
+                egg.classList.remove("show");
+
+            },3500);
+
+        }
+
+    }
+
+});
+
+
+
+/* ===========================
+   ESC
+=========================== */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+
+        panel.classList.remove("active");
+
+    }
+
+});
+
+
+
+/* ===========================
+   DOUBLE CLICK SUN
+=========================== */
+
+const sun=document.getElementById("sun");
+
+
+
+if(sun){
+
+    sun.addEventListener("dblclick",()=>{
+
+        sun.animate(
+
+        [
+
+            {
+
+                transform:"scale(1)"
+
+            },
+
+            {
+
+                transform:"scale(1.2)"
+
+            },
+
+            {
+
+                transform:"scale(1)"
+
+            }
+
+        ],
+
+        {
+
+            duration:900
+
+        });
+
+    });
+
+}
+
+
+
+/* ===========================
+   RANDOM STAR FLASH
+=========================== */
+
+setInterval(()=>{
+
+    const stars=[
+
+        "stars-layer-1",
+
+        "stars-layer-2",
+
+        "stars-layer-3"
+
+    ];
+
+
+
+    const target=document.getElementById(
+
+        stars[Math.floor(Math.random()*stars.length)]
+
+    );
+
+
+
+    if(target){
+
+        target.animate(
+
+        [
+
+            {
+
+                opacity:.3
+
+            },
+
+            {
+
+                opacity:1
+
+            },
+
+            {
+
+                opacity:.3
+
+            }
+
+        ],
+
+        {
+
+            duration:900
+
+        });
+
+    }
+
+},2200);
+
+
+
+/* ===========================
+   WINDOW RESIZE
+=========================== */
+
+window.addEventListener("resize",()=>{
+
+    panel.classList.remove("active");
+
+});
+
+
+
+/* ===========================
+   START COMPLETE
+=========================== */
 
 console.log(
-"SCIENCE CORE ONLINE"
+
+"%cCOSMOS : Solar System Explorer",
+
+"color:#53d6ff;font-size:20px;font-weight:bold;"
+
 );
 
+console.log(
 
-};
+"%cProject Loaded Successfully",
+
+"color:#ffffff;font-size:14px;"
+
+);
+/* ===========================
+   PLANET HOVER EFFECT
+=========================== */
+
+planets.forEach((planet)=>{
+
+    planet.addEventListener("mouseenter",()=>{
+
+        planet.animate(
+
+            [
+
+                {
+
+                    transform:"translateY(-50%) scale(1)"
+
+                },
+
+                {
+
+                    transform:"translateY(-50%) scale(1.18)"
+
+                }
+
+            ],
+
+            {
+
+                duration:250,
+
+                fill:"forwards"
+
+            }
+
+        );
+
+    });
+
+
+
+    planet.addEventListener("mouseleave",()=>{
+
+        planet.animate(
+
+            [
+
+                {
+
+                    transform:"translateY(-50%) scale(1.18)"
+
+                },
+
+                {
+
+                    transform:"translateY(-50%) scale(1)"
+
+                }
+
+            ],
+
+            {
+
+                duration:250,
+
+                fill:"forwards"
+
+            }
+
+        );
+
+    });
+
+});
+
+
+
+/* ===========================
+   PANEL ANIMATION
+=========================== */
+
+function openPlanetPanel(){
+
+    panel.classList.add("active");
+
+
+
+    panel.animate(
+
+        [
+
+            {
+
+                opacity:0,
+
+                transform:"translateY(-50%) translateX(100px)"
+
+            },
+
+            {
+
+                opacity:1,
+
+                transform:"translateY(-50%) translateX(0)"
+
+            }
+
+        ],
+
+        {
+
+            duration:350,
+
+            easing:"ease-out"
+
+        }
+
+    );
+
+}
+
+
+
+/* ===========================
+   INTRO FADE
+=========================== */
+
+if(introScreen){
+
+    introScreen.animate(
+
+        [
+
+            {
+
+                opacity:0
+
+            },
+
+            {
+
+                opacity:1
+
+            }
+
+        ],
+
+        {
+
+            duration:1200,
+
+            fill:"forwards"
+
+        }
+
+    );
+
+}
+
+
+
+/* ===========================
+   SUN GLOW
+=========================== */
+
+setInterval(()=>{
+
+    if(!sun) return;
+
+
+
+    sun.animate(
+
+        [
+
+            {
+
+                filter:"brightness(1)"
+
+            },
+
+            {
+
+                filter:"brightness(1.35)"
+
+            },
+
+            {
+
+                filter:"brightness(1)"
+
+            }
+
+        ],
+
+        {
+
+            duration:1800
+
+        }
+
+    );
+
+},5000);
+
+
+
+/* ===========================
+   AUTO PANEL CLOSE
+=========================== */
+
+let panelTimer;
+
+planets.forEach((planet)=>{
+
+    planet.addEventListener("click",()=>{
+
+        clearTimeout(panelTimer);
+
+        panelTimer=setTimeout(()=>{
+
+            panel.classList.remove("active");
+
+        },12000);
+
+    });
+
+});
+
+
+
+/* ===========================
+   PERFORMANCE
+=========================== */
+
+document.addEventListener("visibilitychange",()=>{
+
+    if(document.hidden){
+
+        if(bgm){
+
+            bgm.pause();
+
+        }
+
+    }
+
+    else{
+
+        if(musicOn && bgm){
+
+            bgm.play().catch(()=>{});
+
+        }
+
+    }
+
+});
+
+
+
+/* ===========================
+   VERSION
+=========================== */
+
+console.log("COSMOS v1.0");
+
+console.log("Developed with HTML + CSS + JavaScript");
+
+console.log("Solar System Explorer Ready.");

@@ -1,381 +1,832 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-    <meta charset="UTF-8">
+  <meta
+    name="description"
+    content="태양계와 과학의 세계를 탐험하는 인터랙티브 우주 홈페이지"
+  />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCIENCE CORE | 태양계 탐험</title>
 
-    <title>COSMOS | Solar System Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-    <!-- ===========================
-         BACKGROUND
-    ============================ -->
-
-    <div id="background">
-
-        <div id="gradient"></div>
-
-        <div id="nebula-left"></div>
-
-        <div id="nebula-right"></div>
-
-        <div id="stars-layer-1"></div>
-
-        <div id="stars-layer-2"></div>
-
-        <div id="stars-layer-3"></div>
-
-        <div id="space-dust"></div>
-
-        <div id="meteor-field"></div>
-
+  <!-- 로딩 화면 -->
+  <div class="loader" id="loader">
+    <div class="loader__core">
+      <div class="loader__orbit loader__orbit--one"></div>
+      <div class="loader__orbit loader__orbit--two"></div>
+      <div class="loader__orbit loader__orbit--three"></div>
+      <div class="loader__dot"></div>
     </div>
 
-    <!-- ===========================
-         LOADING
-    ============================ -->
+    <p class="loader__text">INITIALIZING SCIENCE CORE</p>
 
-    <div id="loadingOverlay">
-
-        <div class="loader">
-
-            <div class="loader-ring"></div>
-
-            <div class="loader-core"></div>
-
-        </div>
-
-        <p>Initializing Space Environment...</p>
-
+    <div class="loader__bar">
+      <span id="loaderProgress"></span>
     </div>
 
-    <!-- ===========================
-         INTRO
-    ============================ -->
+    <p class="loader__percent" id="loaderPercent">0%</p>
+  </div>
 
-    <section id="introScreen">
+  <!-- 마우스 커서 -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
 
-        <div id="introContent">
+  <!-- 전체 배경 -->
+  <div class="universe-background">
+    <canvas id="starCanvas"></canvas>
 
-            <span class="projectTag">
+    <div class="nebula nebula--one"></div>
+    <div class="nebula nebula--two"></div>
+    <div class="nebula nebula--three"></div>
 
-                NASA STYLE INTERFACE
+    <div class="noise"></div>
+    <div class="grid-overlay"></div>
+    <div class="vignette"></div>
+  </div>
 
-            </span>
+  <!-- 상단 메뉴 -->
+  <header class="header" id="header">
+    <a href="#home" class="logo">
+      <div class="logo__symbol">
+        <span class="logo__planet"></span>
+        <span class="logo__orbit"></span>
+      </div>
 
-            <h1>COSMOS</h1>
+      <div class="logo__text">
+        <strong>SCIENCE</strong>
+        <span>CORE SYSTEM</span>
+      </div>
+    </a>
 
-            <h2>Solar System Explorer</h2>
+    <nav class="navigation" id="navigation">
+      <a href="#home" class="navigation__link active">HOME</a>
+      <a href="#solar-system" class="navigation__link">SOLAR</a>
+      <a href="#mission" class="navigation__link">MISSION</a>
+      <a href="#data" class="navigation__link">DATA</a>
+    </nav>
 
-            <p>
+    <div class="header__status">
+      <span class="status-dot"></span>
+      <span>SYSTEM ONLINE</span>
+    </div>
 
-                태양계를 탐험하며 행성의 정보를 확인해보세요.<br>
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="메뉴 열기"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </header>
 
-                모든 행성은 클릭하여 자세한 정보를 볼 수 있습니다.
+  <main>
+    <!-- 메인 화면 -->
+    <section class="hero section" id="home">
+      <div class="hero__side hero__side--left">
+        <span>LAT 00.000</span>
+        <span>LNG 00.000</span>
+        <span>SECTOR 07-A</span>
+      </div>
 
-            </p>
-
-            <button id="startButton">
-
-                시작하기
-
-            </button>
-
+      <div class="hero__content">
+        <div class="hero__eyebrow reveal">
+          <span class="hero__eyebrow-line"></span>
+          <span>INTERSTELLAR SCIENCE PLATFORM</span>
+          <span class="hero__eyebrow-line"></span>
         </div>
 
-    </section>
+        <p class="hero__number reveal">PROJECT 01 / SOLAR EXPLORATION</p>
 
-    <!-- ===========================
-         COUNTDOWN
-    ============================ -->
+        <h1 class="hero__title reveal">
+          <span class="hero__title-small">EXPLORE THE</span>
 
-    <section id="countdownScreen">
+          <span class="hero__title-main">
+            <span class="glitch" data-text="UNIVERSE">UNIVERSE</span>
+          </span>
 
-        <h1 id="countText">
-
-            3
-
+          <span class="hero__title-outline">BEYOND LIMITS</span>
         </h1>
 
+        <p class="hero__description reveal">
+          태양에서 시작해 해왕성 너머까지.<br />
+          우리가 살고 있는 거대한 우주의 구조를 탐험해 보세요.
+        </p>
+
+        <div class="hero__buttons reveal">
+          <a href="#solar-system" class="primary-button magnetic">
+            <span class="primary-button__glow"></span>
+            <span class="primary-button__text">시작하기</span>
+
+            <span class="primary-button__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </span>
+          </a>
+
+          <button class="sound-button magnetic" id="soundButton" type="button">
+            <span class="sound-bars">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+
+            <span id="soundText">SOUND OFF</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 중앙 태양계 장식 -->
+      <div class="hero-system" aria-hidden="true">
+        <div class="hero-system__sun"></div>
+
+        <div class="hero-orbit hero-orbit--one">
+          <span class="hero-mini-planet hero-mini-planet--mercury"></span>
+        </div>
+
+        <div class="hero-orbit hero-orbit--two">
+          <span class="hero-mini-planet hero-mini-planet--venus"></span>
+        </div>
+
+        <div class="hero-orbit hero-orbit--three">
+          <span class="hero-mini-planet hero-mini-planet--earth"></span>
+        </div>
+
+        <div class="hero-orbit hero-orbit--four">
+          <span class="hero-mini-planet hero-mini-planet--mars"></span>
+        </div>
+      </div>
+
+      <div class="hero__data-panel glass-panel">
+        <div class="data-panel__header">
+          <span>LIVE UNIVERSE DATA</span>
+          <span class="data-panel__pulse"></span>
+        </div>
+
+        <div class="data-panel__row">
+          <span>EARTH DISTANCE</span>
+          <strong>149.6M KM</strong>
+        </div>
+
+        <div class="data-panel__row">
+          <span>SOLAR AGE</span>
+          <strong>4.603B YR</strong>
+        </div>
+
+        <div class="data-panel__row">
+          <span>PLANETS FOUND</span>
+          <strong>08</strong>
+        </div>
+
+        <div class="data-panel__graph">
+          <span style="--height: 35%"></span>
+          <span style="--height: 70%"></span>
+          <span style="--height: 48%"></span>
+          <span style="--height: 90%"></span>
+          <span style="--height: 60%"></span>
+          <span style="--height: 82%"></span>
+          <span style="--height: 45%"></span>
+          <span style="--height: 72%"></span>
+          <span style="--height: 55%"></span>
+          <span style="--height: 95%"></span>
+        </div>
+      </div>
+
+      <div class="hero__scroll">
+        <span>SCROLL TO EXPLORE</span>
+
+        <div class="hero__scroll-line">
+          <i></i>
+        </div>
+      </div>
+
+      <div class="hero__side hero__side--right">
+        <span>CORE STABLE</span>
+        <span>OXYGEN 99.8%</span>
+        <span>SIGNAL STRONG</span>
+      </div>
     </section>
 
-    <!-- ===========================
-         MAIN
-    ============================ -->
+    <!-- 태양계 화면 -->
+    <section class="solar-section section" id="solar-system">
+      <div class="section-heading">
+        <div class="section-heading__number">02</div>
 
-    <main id="mainScene">
+        <div>
+          <span class="section-heading__label">CELESTIAL DATABASE</span>
+          <h2>태양계 행성 탐험</h2>
+          <p>
+            행성을 선택하면 각 천체의 주요 정보와 특징을 확인할 수 있습니다.
+          </p>
+        </div>
+      </div>
 
-        <header id="hud">
+      <div class="solar-interface">
+        <div class="solar-stage glass-panel">
+          <div class="solar-stage__top">
+            <span>SOLAR SYSTEM MAP</span>
+            <span>REAL-TIME SIMULATION</span>
+          </div>
 
-            <div class="hud-left">
+          <div class="solar-map" id="solarMap">
+            <div class="solar-map__center-lines"></div>
 
-                <h1>COSMOS</h1>
-
-                <span>
-
-                    SOLAR SYSTEM EXPLORER
-
-                </span>
-
-            </div>
-
-            <button id="musicButton">
-
-                🔊
-
+            <button
+              class="sun-object planet-selector"
+              type="button"
+              data-planet="sun"
+              aria-label="태양 정보 보기"
+            >
+              <span class="sun-object__core"></span>
+              <span class="sun-object__flare sun-object__flare--one"></span>
+              <span class="sun-object__flare sun-object__flare--two"></span>
+              <span class="sun-object__flare sun-object__flare--three"></span>
+              <span class="object-label">SUN</span>
             </button>
 
-        </header>
-
-        <section id="solarSystem">
-
-            <div id="sun">
-
-                <div class="sun-core"></div>
-
-                <div class="sun-light"></div>
-
-                <div class="sun-corona"></div>
-
-            </div>
-                        <!-- Mercury -->
-            <div class="orbit orbit-mercury">
-                <div class="planet mercury"
-                    data-name="수성"
-                    data-distance="57,900,000 km"
-                    data-size="4,879 km"
-                    data-temperature="167°C"
-                    data-day="58.6일"
-                    data-year="88일"
-                    data-description="태양과 가장 가까운 행성입니다.">
-                    <div class="planetGlow"></div>
-                </div>
+            <div class="orbit orbit--mercury">
+              <button
+                class="map-planet map-planet--mercury planet-selector"
+                type="button"
+                data-planet="mercury"
+                aria-label="수성 정보 보기"
+              >
+                <span></span>
+              </button>
             </div>
 
-            <!-- Venus -->
-            <div class="orbit orbit-venus">
-                <div class="planet venus"
-                    data-name="금성"
-                    data-distance="108,200,000 km"
-                    data-size="12,104 km"
-                    data-temperature="464°C"
-                    data-day="243일"
-                    data-year="225일"
-                    data-description="두꺼운 이산화탄소 대기로 인해 가장 뜨거운 행성입니다.">
-                    <div class="planetGlow"></div>
-                </div>
+            <div class="orbit orbit--venus">
+              <button
+                class="map-planet map-planet--venus planet-selector"
+                type="button"
+                data-planet="venus"
+                aria-label="금성 정보 보기"
+              >
+                <span></span>
+              </button>
             </div>
 
-            <!-- Earth -->
-            <div class="orbit orbit-earth">
-                <div class="planet earth"
-                    data-name="지구"
-                    data-distance="149,600,000 km"
-                    data-size="12,742 km"
-                    data-temperature="15°C"
-                    data-day="24시간"
-                    data-year="365일"
-                    data-description="생명체가 존재하는 현재까지 유일하게 알려진 행성입니다.">
-                    <div class="earthCloud"></div>
-                    <div class="planetGlow"></div>
-                </div>
+            <div class="orbit orbit--earth">
+              <button
+                class="map-planet map-planet--earth planet-selector"
+                type="button"
+                data-planet="earth"
+                aria-label="지구 정보 보기"
+              >
+                <span></span>
+                <i class="earth-moon"></i>
+              </button>
             </div>
 
-            <!-- Mars -->
-            <div class="orbit orbit-mars">
-                <div class="planet mars"
-                    data-name="화성"
-                    data-distance="227,900,000 km"
-                    data-size="6,779 km"
-                    data-temperature="-65°C"
-                    data-day="24.6시간"
-                    data-year="687일"
-                    data-description="붉은 행성이라 불리며 미래 화성 탐사의 중심입니다.">
-                    <div class="planetGlow"></div>
-                </div>
+            <div class="orbit orbit--mars">
+              <button
+                class="map-planet map-planet--mars planet-selector"
+                type="button"
+                data-planet="mars"
+                aria-label="화성 정보 보기"
+              >
+                <span></span>
+              </button>
             </div>
 
-            <!-- Jupiter -->
-            <div class="orbit orbit-jupiter">
-                <div class="planet jupiter"
-                    data-name="목성"
-                    data-distance="778,500,000 km"
-                    data-size="139,820 km"
-                    data-temperature="-110°C"
-                    data-day="9.9시간"
-                    data-year="11.86년"
-                    data-description="태양계에서 가장 큰 행성입니다.">
-                    <div class="planetGlow"></div>
-                </div>
+            <div class="orbit orbit--jupiter">
+              <button
+                class="map-planet map-planet--jupiter planet-selector"
+                type="button"
+                data-planet="jupiter"
+                aria-label="목성 정보 보기"
+              >
+                <span></span>
+              </button>
             </div>
 
-            <!-- Saturn -->
-            <div class="orbit orbit-saturn">
-                <div class="planet saturn"
-                    data-name="토성"
-                    data-distance="1,434,000,000 km"
-                    data-size="116,460 km"
-                    data-temperature="-140°C"
-                    data-day="10.7시간"
-                    data-year="29.4년"
-                    data-description="아름다운 고리를 가진 거대 가스 행성입니다.">
-                    <div class="saturnRing"></div>
-                    <div class="planetGlow"></div>
-                </div>
+            <div class="orbit orbit--saturn">
+              <button
+                class="map-planet map-planet--saturn planet-selector"
+                type="button"
+                data-planet="saturn"
+                aria-label="토성 정보 보기"
+              >
+                <span class="saturn-body"></span>
+                <span class="saturn-ring"></span>
+              </button>
             </div>
 
-            <!-- Uranus -->
-            <div class="orbit orbit-uranus">
-                <div class="planet uranus"
-                    data-name="천왕성"
-                    data-distance="2,871,000,000 km"
-                    data-size="50,724 km"
-                    data-temperature="-195°C"
-                    data-day="17시간"
-                    data-year="84년"
-                    data-description="옆으로 누워 자전하는 독특한 얼음 행성입니다.">
-                    <div class="planetGlow"></div>
-                </div>
+            <div class="orbit orbit--uranus">
+              <button
+                class="map-planet map-planet--uranus planet-selector"
+                type="button"
+                data-planet="uranus"
+                aria-label="천왕성 정보 보기"
+              >
+                <span></span>
+              </button>
             </div>
 
-            <!-- Neptune -->
-            <div class="orbit orbit-neptune">
-                <div class="planet neptune"
-                    data-name="해왕성"
-                    data-distance="4,495,000,000 km"
-                    data-size="49,244 km"
-                    data-temperature="-200°C"
-                    data-day="16시간"
-                    data-year="165년"
-                    data-description="태양계에서 가장 강한 바람이 부는 푸른 행성입니다.">
-                    <div class="planetGlow"></div>
-                </div>
+            <div class="orbit orbit--neptune">
+              <button
+                class="map-planet map-planet--neptune planet-selector"
+                type="button"
+                data-planet="neptune"
+                aria-label="해왕성 정보 보기"
+              >
+                <span></span>
+              </button>
             </div>
 
-        </section>
-
-        <!-- Planet Panel -->
-        <aside id="planetPanel">
-
-            <div class="panelHeader">
-
-                <h2 id="planetName">Planet</h2>
-
-                <button id="closePanel">✕</button>
-
+            <div class="solar-map__coordinates solar-map__coordinates--one">
+              X: 582.119<br />
+              Y: 028.530
             </div>
 
-            <div class="panelBody">
+            <div class="solar-map__coordinates solar-map__coordinates--two">
+              ORBITAL MAP<br />
+              SCALE 1:500
+            </div>
+          </div>
 
-                <div class="infoItem">
-
-                    <span>평균 거리</span>
-
-                    <strong id="planetDistance"></strong>
-
-                </div>
-
-                <div class="infoItem">
-
-                    <span>지름</span>
-
-                    <strong id="planetSize"></strong>
-
-                </div>
-
-                <div class="infoItem">
-
-                    <span>평균 온도</span>
-
-                    <strong id="planetTemperature"></strong>
-
-                </div>
-
-                <div class="infoItem">
-
-                    <span>자전 주기</span>
-
-                    <strong id="planetDay"></strong>
-
-                </div>
-
-                <div class="infoItem">
-
-                    <span>공전 주기</span>
-
-                    <strong id="planetYear"></strong>
-
-                </div>
-
+          <div class="solar-stage__bottom">
+            <div>
+              <span class="status-dot"></span>
+              <span>SIMULATION ACTIVE</span>
             </div>
 
-            <div id="planetDescription"></div>
+            <div>
+              <span>OBJECTS</span>
+              <strong>09</strong>
+            </div>
+          </div>
+        </div>
 
+        <!-- 행성 상세 정보 -->
+        <aside class="planet-information glass-panel">
+          <div class="planet-information__top">
+            <div>
+              <span>SELECTED OBJECT</span>
+              <strong id="planetCode">SOL-03</strong>
+            </div>
+
+            <span class="planet-information__signal"></span>
+          </div>
+
+          <div class="planet-preview" id="planetPreview">
+            <div class="preview-radar"></div>
+            <div class="preview-orbit preview-orbit--one"></div>
+            <div class="preview-orbit preview-orbit--two"></div>
+
+            <div
+              class="preview-planet preview-planet--earth"
+              id="previewPlanet"
+            >
+              <span class="preview-planet__light"></span>
+              <span class="preview-planet__shadow"></span>
+            </div>
+          </div>
+
+          <div class="planet-title">
+            <span id="planetEnglish">EARTH</span>
+            <h3 id="planetKorean">지구</h3>
+            <p id="planetType">TERRESTRIAL PLANET</p>
+          </div>
+
+          <p class="planet-description" id="planetDescription">
+            태양계에서 생명체가 존재하는 것으로 알려진 유일한 행성입니다.
+            풍부한 액체 상태의 물과 산소를 포함한 대기를 가지고 있습니다.
+          </p>
+
+          <div class="planet-stats">
+            <div class="planet-stat">
+              <span>태양과의 거리</span>
+              <strong id="planetDistance">149.6M KM</strong>
+            </div>
+
+            <div class="planet-stat">
+              <span>공전 주기</span>
+              <strong id="planetOrbit">365.25 DAYS</strong>
+            </div>
+
+            <div class="planet-stat">
+              <span>평균 온도</span>
+              <strong id="planetTemperature">15°C</strong>
+            </div>
+
+            <div class="planet-stat">
+              <span>위성</span>
+              <strong id="planetMoons">01</strong>
+            </div>
+          </div>
+
+          <div class="planet-navigation">
+            <button id="previousPlanet" type="button">
+              <svg viewBox="0 0 24 24">
+                <path d="M19 12H5M11 18l-6-6 6-6"></path>
+              </svg>
+            </button>
+
+            <div class="planet-navigation__progress">
+              <span id="planetIndex">03</span>
+              <div>
+                <i id="planetProgress"></i>
+              </div>
+              <span>09</span>
+            </div>
+
+            <button id="nextPlanet" type="button">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </button>
+          </div>
         </aside>
+      </div>
 
-        <footer id="statusBar">
+      <!-- 행성 카드 -->
+      <div class="planet-list">
+        <button class="planet-card planet-selector" data-planet="mercury">
+          <span class="planet-card__number">01</span>
+          <div class="planet-card__image planet-card__image--mercury"></div>
+          <div>
+            <strong>MERCURY</strong>
+            <span>수성</span>
+          </div>
+        </button>
 
-            <div class="statusBox">
+        <button class="planet-card planet-selector" data-planet="venus">
+          <span class="planet-card__number">02</span>
+          <div class="planet-card__image planet-card__image--venus"></div>
+          <div>
+            <strong>VENUS</strong>
+            <span>금성</span>
+          </div>
+        </button>
 
-                STATUS
+        <button
+          class="planet-card planet-card--active planet-selector"
+          data-planet="earth"
+        >
+          <span class="planet-card__number">03</span>
+          <div class="planet-card__image planet-card__image--earth"></div>
+          <div>
+            <strong>EARTH</strong>
+            <span>지구</span>
+          </div>
+        </button>
 
-                <span>ONLINE</span>
+        <button class="planet-card planet-selector" data-planet="mars">
+          <span class="planet-card__number">04</span>
+          <div class="planet-card__image planet-card__image--mars"></div>
+          <div>
+            <strong>MARS</strong>
+            <span>화성</span>
+          </div>
+        </button>
 
+        <button class="planet-card planet-selector" data-planet="jupiter">
+          <span class="planet-card__number">05</span>
+          <div class="planet-card__image planet-card__image--jupiter"></div>
+          <div>
+            <strong>JUPITER</strong>
+            <span>목성</span>
+          </div>
+        </button>
+
+        <button class="planet-card planet-selector" data-planet="saturn">
+          <span class="planet-card__number">06</span>
+          <div class="planet-card__image planet-card__image--saturn"></div>
+          <div>
+            <strong>SATURN</strong>
+            <span>토성</span>
+          </div>
+        </button>
+
+        <button class="planet-card planet-selector" data-planet="uranus">
+          <span class="planet-card__number">07</span>
+          <div class="planet-card__image planet-card__image--uranus"></div>
+          <div>
+            <strong>URANUS</strong>
+            <span>천왕성</span>
+          </div>
+        </button>
+
+        <button class="planet-card planet-selector" data-planet="neptune">
+          <span class="planet-card__number">08</span>
+          <div class="planet-card__image planet-card__image--neptune"></div>
+          <div>
+            <strong>NEPTUNE</strong>
+            <span>해왕성</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- 미션 화면 -->
+    <section class="mission-section section" id="mission">
+      <div class="mission-section__background">
+        <div class="mission-planet"></div>
+      </div>
+
+      <div class="section-heading">
+        <div class="section-heading__number">03</div>
+
+        <div>
+          <span class="section-heading__label">DEEP SPACE MISSION</span>
+          <h2>우주 탐사 임무</h2>
+          <p>
+            인류는 끊임없이 미지의 세계를 향해 탐사 범위를 넓히고 있습니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="mission-grid">
+        <article class="mission-card glass-panel">
+          <div class="mission-card__number">01</div>
+
+          <div class="mission-card__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l4 7-4 13-4-13 4-7z"></path>
+              <path d="M8 9l-4 5 5-1"></path>
+              <path d="M16 9l4 5-5-1"></path>
+            </svg>
+          </div>
+
+          <span class="mission-card__status">ACTIVE</span>
+          <h3>ORBITAL RESEARCH</h3>
+          <p>
+            행성들의 궤도와 움직임을 분석해 태양계의 구조를 연구합니다.
+          </p>
+
+          <div class="mission-card__progress">
+            <div>
+              <span>진행률</span>
+              <strong>84%</strong>
             </div>
 
-            <div class="statusBox">
+            <div class="progress-bar">
+              <i style="--progress: 84%"></i>
+            </div>
+          </div>
+        </article>
 
-                OBJECTS
+        <article class="mission-card glass-panel">
+          <div class="mission-card__number">02</div>
 
-                <span>8 PLANETS</span>
+          <div class="mission-card__icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M2 12h6M16 12h6M12 2v6M12 16v6"></path>
+            </svg>
+          </div>
 
+          <span class="mission-card__status">ANALYZING</span>
+          <h3>EXOPLANET SEARCH</h3>
+          <p>
+            태양계 바깥에서 생명체가 존재할 가능성이 있는 행성을 찾습니다.
+          </p>
+
+          <div class="mission-card__progress">
+            <div>
+              <span>진행률</span>
+              <strong>67%</strong>
             </div>
 
-            <div class="statusBox">
+            <div class="progress-bar">
+              <i style="--progress: 67%"></i>
+            </div>
+          </div>
+        </article>
 
-                STAR
+        <article class="mission-card glass-panel">
+          <div class="mission-card__number">03</div>
 
-                <span>SUN</span>
+          <div class="mission-card__icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="8"></circle>
+              <path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"></path>
+            </svg>
+          </div>
 
+          <span class="mission-card__status">RECEIVING</span>
+          <h3>DEEP SPACE SIGNAL</h3>
+          <p>
+            심우주에서 전송되는 신호와 데이터를 수신하고 분석합니다.
+          </p>
+
+          <div class="mission-card__progress">
+            <div>
+              <span>진행률</span>
+              <strong>92%</strong>
             </div>
 
-            <div class="statusBox">
+            <div class="progress-bar">
+              <i style="--progress: 92%"></i>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-                MODE
+    <!-- 데이터 화면 -->
+    <section class="data-section section" id="data">
+      <div class="section-heading">
+        <div class="section-heading__number">04</div>
 
-                <span>EXPLORATION</span>
+        <div>
+          <span class="section-heading__label">UNIVERSE ANALYTICS</span>
+          <h2>실시간 관측 데이터</h2>
+          <p>수집된 우주 데이터를 시각화하여 보여줍니다.</p>
+        </div>
+      </div>
 
+      <div class="analytics-grid">
+        <div class="analytics-card analytics-card--large glass-panel">
+          <div class="analytics-card__header">
+            <div>
+              <span>SIGNAL FREQUENCY</span>
+              <strong>DEEP SPACE NETWORK</strong>
             </div>
 
-        </footer>
+            <div class="analytics-card__live">
+              <i></i>
+              LIVE
+            </div>
+          </div>
 
-    </main>
-        <!-- Easter Egg -->
+          <div class="wave-chart">
+            <svg
+              viewBox="0 0 1000 320"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="waveGradient" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#26d9ff" />
+                  <stop offset="50%" stop-color="#8c6cff" />
+                  <stop offset="100%" stop-color="#26d9ff" />
+                </linearGradient>
 
-    <div id="easterEgg">
+                <linearGradient id="waveArea" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="0%"
+                    stop-color="#3fdfff"
+                    stop-opacity=".32"
+                  />
+                  <stop
+                    offset="100%"
+                    stop-color="#3fdfff"
+                    stop-opacity="0"
+                  />
+                </linearGradient>
+              </defs>
 
-        🚀 Hidden Space Mode Activated
+              <path
+                class="wave-area"
+                d="M0,230 C40,205 70,250 110,210 C150,170 170,230 220,195 C270,160 300,105 350,155 C400,205 420,85 470,125 C520,165 540,245 590,200 C640,155 660,55 715,105 C770,155 790,225 840,180 C890,135 920,85 1000,125 L1000,320 L0,320 Z"
+              ></path>
 
+              <path
+                class="wave-line"
+                d="M0,230 C40,205 70,250 110,210 C150,170 170,230 220,195 C270,160 300,105 350,155 C400,205 420,85 470,125 C520,165 540,245 590,200 C640,155 660,55 715,105 C770,155 790,225 840,180 C890,135 920,85 1000,125"
+              ></path>
+            </svg>
+
+            <div class="wave-chart__grid"></div>
+
+            <div class="wave-chart__labels">
+              <span>00:00</span>
+              <span>04:00</span>
+              <span>08:00</span>
+              <span>12:00</span>
+              <span>16:00</span>
+              <span>20:00</span>
+              <span>24:00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="analytics-card glass-panel">
+          <div class="analytics-card__header">
+            <div>
+              <span>SOLAR ENERGY</span>
+              <strong>OUTPUT LEVEL</strong>
+            </div>
+          </div>
+
+          <div class="energy-circle">
+            <svg viewBox="0 0 180 180">
+              <circle class="energy-circle__background" cx="90" cy="90" r="72"></circle>
+              <circle class="energy-circle__value" cx="90" cy="90" r="72"></circle>
+            </svg>
+
+            <div>
+              <strong data-counter="92">0</strong>
+              <span>%</span>
+            </div>
+          </div>
+
+          <div class="analytics-mini-data">
+            <div>
+              <span>CORE TEMP</span>
+              <strong>15.7M°C</strong>
+            </div>
+
+            <div>
+              <span>STATUS</span>
+              <strong>STABLE</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="analytics-card glass-panel">
+          <div class="analytics-card__header">
+            <div>
+              <span>DISCOVERED</span>
+              <strong>SPACE OBJECTS</strong>
+            </div>
+          </div>
+
+          <div class="object-counter">
+            <strong data-counter="5842">0</strong>
+            <span>CATALOGUED OBJECTS</span>
+          </div>
+
+          <div class="object-bars">
+            <div>
+              <span>PLANETS</span>
+              <i style="--value: 78%"></i>
+            </div>
+
+            <div>
+              <span>STARS</span>
+              <i style="--value: 94%"></i>
+            </div>
+
+            <div>
+              <span>GALAXIES</span>
+              <i style="--value: 62%"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="final-cta glass-panel">
+        <div class="final-cta__rings">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
+        <span class="final-cta__label">THE NEXT DISCOVERY BEGINS HERE</span>
+
+        <h2>
+          우주의 비밀을 향한<br />
+          탐험을 시작하세요.
+        </h2>
+
+        <a href="#solar-system" class="primary-button magnetic">
+          <span class="primary-button__glow"></span>
+          <span class="primary-button__text">지금 시작하기</span>
+
+          <span class="primary-button__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__logo">
+      <strong>SCIENCE CORE</strong>
+      <span>INTERSTELLAR RESEARCH SYSTEM</span>
     </div>
 
-    <!-- Script -->
+    <p>© 2026 SCIENCE CORE. UNIVERSE EXPLORATION PROJECT.</p>
 
-    <script src="script.js"></script>
+    <a href="#home">BACK TO TOP ↑</a>
+  </footer>
 
+  <script src="script.js"></script>
 </body>
-
 </html>

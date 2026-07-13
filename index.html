@@ -5,22 +5,15 @@
 
     <meta charset="UTF-8">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>COSMOS | Solar System Explorer</title>
-
-    <!-- Font -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;500;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 
@@ -28,13 +21,17 @@
 
 <body>
 
-    <!-- ===================================== -->
-    <!-- Background -->
-    <!-- ===================================== -->
+    <!-- ===========================
+         BACKGROUND
+    ============================ -->
 
     <div id="background">
 
         <div id="gradient"></div>
+
+        <div id="nebula-left"></div>
+
+        <div id="nebula-right"></div>
 
         <div id="stars-layer-1"></div>
 
@@ -42,21 +39,33 @@
 
         <div id="stars-layer-3"></div>
 
-        <div id="nebula-left"></div>
-
-        <div id="nebula-right"></div>
-
         <div id="space-dust"></div>
 
         <div id="meteor-field"></div>
 
     </div>
 
+    <!-- ===========================
+         LOADING
+    ============================ -->
 
+    <div id="loadingOverlay">
 
-    <!-- ===================================== -->
-    <!-- Intro Screen -->
-    <!-- ===================================== -->
+        <div class="loader">
+
+            <div class="loader-ring"></div>
+
+            <div class="loader-core"></div>
+
+        </div>
+
+        <p>Initializing Space Environment...</p>
+
+    </div>
+
+    <!-- ===========================
+         INTRO
+    ============================ -->
 
     <section id="introScreen">
 
@@ -64,31 +73,25 @@
 
             <span class="projectTag">
 
-                FUTURE SPACE PROJECT
+                NASA STYLE INTERFACE
 
             </span>
 
-            <h1>
+            <h1>COSMOS</h1>
 
-                COSMOS
-
-            </h1>
-
-            <h2>
-
-                Solar System Explorer
-
-            </h2>
+            <h2>Solar System Explorer</h2>
 
             <p>
 
-                Explore the beauty of our Solar System.
+                태양계를 탐험하며 행성의 정보를 확인해보세요.<br>
+
+                모든 행성은 클릭하여 자세한 정보를 볼 수 있습니다.
 
             </p>
 
             <button id="startButton">
 
-                START
+                시작하기
 
             </button>
 
@@ -96,69 +99,49 @@
 
     </section>
 
-
-
-    <!-- ===================================== -->
-    <!-- Countdown -->
-    <!-- ===================================== -->
+    <!-- ===========================
+         COUNTDOWN
+    ============================ -->
 
     <section id="countdownScreen">
 
-        <div id="countText">
+        <h1 id="countText">
 
             3
 
-        </div>
+        </h1>
 
     </section>
 
-
-
-    <!-- ===================================== -->
-    <!-- Main Scene -->
-    <!-- ===================================== -->
+    <!-- ===========================
+         MAIN
+    ============================ -->
 
     <main id="mainScene">
-
-        <!-- HUD -->
 
         <header id="hud">
 
             <div class="hud-left">
 
-                <h1>
-
-                    COSMOS
-
-                </h1>
+                <h1>COSMOS</h1>
 
                 <span>
 
-                    Solar System Explorer
+                    SOLAR SYSTEM EXPLORER
 
                 </span>
 
             </div>
 
-            <div class="hud-right">
+            <button id="musicButton">
 
-                <button id="musicButton">
+                🔊
 
-                    🔊
-
-                </button>
-
-            </div>
+            </button>
 
         </header>
 
-
-
-        <!-- Solar System -->
-
         <section id="solarSystem">
-
-            <!-- Sun -->
 
             <div id="sun">
 
@@ -169,211 +152,132 @@
                 <div class="sun-corona"></div>
 
             </div>
-
-
-
-            <!-- Mercury -->
-
+                        <!-- Mercury -->
             <div class="orbit orbit-mercury">
-
-                <div
-                    class="planet mercury"
+                <div class="planet mercury"
                     data-name="수성"
                     data-distance="57,900,000 km"
                     data-size="4,879 km"
                     data-temperature="167°C"
                     data-day="58.6일"
                     data-year="88일"
-                    data-description="태양에 가장 가까운 행성으로 낮과 밤의 온도 차가 매우 큽니다.">
-
+                    data-description="태양과 가장 가까운 행성입니다.">
                     <div class="planetGlow"></div>
-
                 </div>
-
             </div>
 
-
-
             <!-- Venus -->
-
             <div class="orbit orbit-venus">
-
-                <div
-                    class="planet venus"
+                <div class="planet venus"
                     data-name="금성"
                     data-distance="108,200,000 km"
                     data-size="12,104 km"
                     data-temperature="464°C"
                     data-day="243일"
                     data-year="225일"
-                    data-description="짙은 이산화탄소 대기로 인해 태양계에서 가장 뜨거운 행성입니다.">
-
+                    data-description="두꺼운 이산화탄소 대기로 인해 가장 뜨거운 행성입니다.">
                     <div class="planetGlow"></div>
-
                 </div>
-
             </div>
 
-
-
             <!-- Earth -->
-
             <div class="orbit orbit-earth">
-
-                <div
-                    class="planet earth"
+                <div class="planet earth"
                     data-name="지구"
                     data-distance="149,600,000 km"
                     data-size="12,742 km"
                     data-temperature="15°C"
                     data-day="24시간"
                     data-year="365일"
-                    data-description="현재까지 생명체가 존재하는 것으로 확인된 유일한 행성입니다.">
-
+                    data-description="생명체가 존재하는 현재까지 유일하게 알려진 행성입니다.">
                     <div class="earthCloud"></div>
-
                     <div class="planetGlow"></div>
-
                 </div>
-
             </div>
 
-
-
             <!-- Mars -->
-
             <div class="orbit orbit-mars">
-
-                <div
-                    class="planet mars"
+                <div class="planet mars"
                     data-name="화성"
                     data-distance="227,900,000 km"
                     data-size="6,779 km"
-                    data-temperature="-63°C"
+                    data-temperature="-65°C"
                     data-day="24.6시간"
                     data-year="687일"
-                    data-description="붉은 표면 때문에 '붉은 행성'이라고 불립니다.">
-
+                    data-description="붉은 행성이라 불리며 미래 화성 탐사의 중심입니다.">
                     <div class="planetGlow"></div>
-
                 </div>
-
             </div>
-                        <!-- Jupiter -->
 
+            <!-- Jupiter -->
             <div class="orbit orbit-jupiter">
-
-                <div
-                    class="planet jupiter"
+                <div class="planet jupiter"
                     data-name="목성"
                     data-distance="778,500,000 km"
                     data-size="139,820 km"
                     data-temperature="-110°C"
                     data-day="9.9시간"
                     data-year="11.86년"
-                    data-description="태양계에서 가장 큰 행성이며 거대한 대적점 폭풍으로 유명합니다.">
-
+                    data-description="태양계에서 가장 큰 행성입니다.">
                     <div class="planetGlow"></div>
-
                 </div>
-
             </div>
 
-
-
             <!-- Saturn -->
-
             <div class="orbit orbit-saturn">
-
-                <div
-                    class="planet saturn"
+                <div class="planet saturn"
                     data-name="토성"
                     data-distance="1,434,000,000 km"
                     data-size="116,460 km"
                     data-temperature="-140°C"
                     data-day="10.7시간"
                     data-year="29.4년"
-                    data-description="얼음과 암석으로 이루어진 아름다운 고리를 가진 거대 가스 행성입니다.">
-
+                    data-description="아름다운 고리를 가진 거대 가스 행성입니다.">
                     <div class="saturnRing"></div>
-
                     <div class="planetGlow"></div>
-
                 </div>
-
             </div>
 
-
-
             <!-- Uranus -->
-
             <div class="orbit orbit-uranus">
-
-                <div
-                    class="planet uranus"
+                <div class="planet uranus"
                     data-name="천왕성"
                     data-distance="2,871,000,000 km"
                     data-size="50,724 km"
                     data-temperature="-195°C"
                     data-day="17시간"
                     data-year="84년"
-                    data-description="자전축이 약 98도 기울어져 옆으로 누워 자전하는 독특한 행성입니다.">
-
+                    data-description="옆으로 누워 자전하는 독특한 얼음 행성입니다.">
                     <div class="planetGlow"></div>
-
                 </div>
-
             </div>
 
-
-
             <!-- Neptune -->
-
             <div class="orbit orbit-neptune">
-
-                <div
-                    class="planet neptune"
+                <div class="planet neptune"
                     data-name="해왕성"
                     data-distance="4,495,000,000 km"
                     data-size="49,244 km"
                     data-temperature="-200°C"
                     data-day="16시간"
                     data-year="165년"
-                    data-description="태양계에서 가장 강력한 바람이 부는 푸른 얼음 행성입니다.">
-
+                    data-description="태양계에서 가장 강한 바람이 부는 푸른 행성입니다.">
                     <div class="planetGlow"></div>
-
                 </div>
-
             </div>
 
         </section>
 
-
-
-        <!-- ============================= -->
-        <!-- Planet Information Panel -->
-        <!-- ============================= -->
-
+        <!-- Planet Panel -->
         <aside id="planetPanel">
 
             <div class="panelHeader">
 
-                <h2 id="planetName">
+                <h2 id="planetName">Planet</h2>
 
-                    Planet
-
-                </h2>
-
-                <button id="closePanel">
-
-                    ✕
-
-                </button>
+                <button id="closePanel">✕</button>
 
             </div>
-
-
 
             <div class="panelBody">
 
@@ -419,19 +323,9 @@
 
             </div>
 
-
-
-            <div id="planetDescription">
-
-            </div>
+            <div id="planetDescription"></div>
 
         </aside>
-
-
-
-        <!-- ============================= -->
-        <!-- Bottom Status -->
-        <!-- ============================= -->
 
         <footer id="statusBar">
 
@@ -439,11 +333,7 @@
 
                 STATUS
 
-                <span>
-
-                    ONLINE
-
-                </span>
+                <span>ONLINE</span>
 
             </div>
 
@@ -451,11 +341,7 @@
 
                 OBJECTS
 
-                <span>
-
-                    8 PLANETS
-
-                </span>
+                <span>8 PLANETS</span>
 
             </div>
 
@@ -463,11 +349,7 @@
 
                 STAR
 
-                <span>
-
-                    SUN
-
-                </span>
+                <span>SUN</span>
 
             </div>
 
@@ -475,59 +357,18 @@
 
                 MODE
 
-                <span>
-
-                    EXPLORATION
-
-                </span>
+                <span>EXPLORATION</span>
 
             </div>
 
         </footer>
 
     </main>
-        <!-- ===================================== -->
-    <!-- Audio -->
-    <!-- ===================================== -->
-
-    <audio id="bgm" loop preload="auto">
-        <source src="space.mp3" type="audio/mpeg">
-    </audio>
-
-    <audio id="clickSound" preload="auto">
-        <source src="click.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- ===================================== -->
-    <!-- Loading Overlay -->
-    <!-- ===================================== -->
-
-    <div id="loadingOverlay">
-
-        <div class="loader">
-
-            <div class="loader-ring"></div>
-
-            <div class="loader-core"></div>
-
-        </div>
-
-        <p>
-
-            Initializing Space Environment...
-
-        </p>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- Easter Egg -->
-    <!-- ===================================== -->
+        <!-- Easter Egg -->
 
     <div id="easterEgg">
 
-        🚀
-        <span>Hidden Space Mode Activated</span>
+        🚀 Hidden Space Mode Activated
 
     </div>
 

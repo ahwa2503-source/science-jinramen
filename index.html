@@ -2,455 +2,474 @@
 <html lang="ko">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Explorer</title>
 
-<title>SCIENCE CORE</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+    <!-- ========================= -->
+    <!-- Loading Screen -->
+    <!-- ========================= -->
 
-<!-- =========================
-     GLOBAL SPACE BACKGROUND
-========================= -->
+    <div id="loadingScreen">
 
-<div id="space-bg">
-
-    <div id="stars"></div>
-
-    <div id="nebula"></div>
-
-    <div id="particles"></div>
-
-</div>
-
-
-
-
-
-<!-- =========================
-     BOOT SCREEN
-========================= -->
-
-
-<section id="boot-screen">
-
-
-    <div class="boot-header">
-
-        <div class="main-logo">
-            SCIENCE CORE
+        <div class="loadingTitle">
+            SOLAR SYSTEM
         </div>
 
-
-        <div class="sub-logo">
-            UNIVERSAL EXPLORATION SYSTEM
+        <div class="loadingSub">
+            Future Space Exploration Project
         </div>
 
+        <div class="loadingBar">
+            <div class="loadingProgress"></div>
+        </div>
 
     </div>
 
 
+    <!-- ========================= -->
+    <!-- Intro -->
+    <!-- ========================= -->
 
+    <section id="intro">
 
+        <!-- Space Background -->
 
-    <div class="boot-panel">
+        <div id="space">
 
+            <div id="stars"></div>
 
-        <div class="panel-title">
-            SYSTEM INITIALIZATION
-        </div>
+            <div id="stars2"></div>
 
+            <div id="stars3"></div>
 
+            <div id="nebula"></div>
 
-        <div class="system-line">
-            QUANTUM ENGINE
-            <span>
-                ONLINE
-            </span>
-        </div>
+            <div id="particles"></div>
 
-
-        <div class="system-line">
-            SOLAR DATABASE
-            <span>
-                CONNECTED
-            </span>
-        </div>
-
-
-
-        <div class="system-line">
-            NAVIGATION CORE
-            <span>
-                READY
-            </span>
-        </div>
-
-
-
-
-        <div class="loading-box">
-
-            <div id="loading-bar"></div>
+            <div id="meteorContainer"></div>
 
         </div>
 
 
+        <!-- Sun Glow -->
 
-        <div id="loading-text">
-            INITIALIZING...
+        <div id="sunGlow"></div>
+
+        <div id="sunAura"></div>
+
+
+        <!-- Solar System -->
+
+        <div id="solarSystem">
+
+            <!-- Orbit 1 -->
+
+            <div class="orbit mercuryOrbit">
+
+                <div class="planet mercury"
+                    data-name="수성"
+                    data-distance="5,790만 km"
+                    data-size="4,879 km"
+                    data-day="58.6일"
+                    data-year="88일"
+                    data-info="태양과 가장 가까운 행성">
+                </div>
+
+            </div>
+
+
+            <!-- Orbit 2 -->
+
+            <div class="orbit venusOrbit">
+
+                <div class="planet venus"
+                    data-name="금성"
+                    data-distance="1억 820만 km"
+                    data-size="12,104 km"
+                    data-day="243일"
+                    data-year="225일"
+                    data-info="지구와 가장 비슷한 크기의 행성">
+                </div>
+
+            </div>
+
+
+            <!-- Orbit 3 -->
+
+            <div class="orbit earthOrbit">
+
+                <div class="planet earth"
+                    data-name="지구"
+                    data-distance="1억 4,960만 km"
+                    data-size="12,742 km"
+                    data-day="24시간"
+                    data-year="365일"
+                    data-info="생명체가 존재하는 유일한 행성">
+
+                    <div class="cloudLayer"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Orbit 4 -->
+
+            <div class="orbit marsOrbit">
+
+                <div class="planet mars"
+                    data-name="화성"
+                    data-distance="2억 2,790만 km"
+                    data-size="6,779 km"
+                    data-day="24.6시간"
+                    data-year="687일"
+                    data-info="붉은 행성으로 유명">
+                </div>
+
+            </div>
+
+
+            <!-- Orbit 5 -->
+
+            <div class="orbit jupiterOrbit">
+
+                <div class="planet jupiter"
+                    data-name="목성"
+                    data-distance="7억 7,850만 km"
+                    data-size="139,820 km"
+                    data-day="10시간"
+                    data-year="11.86년"
+                    data-info="태양계에서 가장 큰 행성">
+                </div>
+
+            </div>
+
+
+            <!-- Orbit 6 -->
+
+            <div class="orbit saturnOrbit">
+
+                <div class="planet saturn"
+                    data-name="토성"
+                    data-distance="14억 km"
+                    data-size="116,460 km"
+                    data-day="10.7시간"
+                    data-year="29.4년"
+                    data-info="거대한 고리를 가진 아름다운 행성">
+
+                    <div class="ring"></div>
+
+                </div>
+
+            </div>
+                        <!-- Orbit 7 -->
+
+            <div class="orbit uranusOrbit">
+
+                <div class="planet uranus"
+                    data-name="천왕성"
+                    data-distance="28억 7,000만 km"
+                    data-size="50,724 km"
+                    data-day="17시간"
+                    data-year="84년"
+                    data-info="옆으로 누워 자전하는 독특한 행성">
+                </div>
+
+            </div>
+
+
+            <!-- Orbit 8 -->
+
+            <div class="orbit neptuneOrbit">
+
+                <div class="planet neptune"
+                    data-name="해왕성"
+                    data-distance="45억 km"
+                    data-size="49,244 km"
+                    data-day="16시간"
+                    data-year="165년"
+                    data-info="태양계에서 가장 강한 바람이 부는 행성">
+                </div>
+
+            </div>
+
+
+            <!-- Sun -->
+
+            <div id="sun">
+
+                <div class="sunCore"></div>
+
+                <div class="sunCorona"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Center UI -->
+
+        <div id="centerUI">
+
+            <div class="logoSmall">
+                PROJECT
+            </div>
+
+            <h1>
+                SOLAR SYSTEM
+            </h1>
+
+            <p>
+                Future Space Exploration Project
+            </p>
+
+            <button id="startButton">
+
+                <span>시작하기</span>
+
+            </button>
+
+        </div>
+
+
+        <!-- Sound -->
+
+        <button id="soundButton">
+
+            🔊
+
+        </button>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- Countdown -->
+    <!-- ========================= -->
+
+    <section id="countdownScreen">
+
+        <div id="countNumber">
+            3
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- Main -->
+    <!-- ========================= -->
+
+    <main id="mainScene">
+
+        <header id="topBar">
+
+            <div class="title">
+
+                SOLAR SYSTEM EXPLORER
+
+            </div>
+
+            <div class="subtitle">
+
+                Explore Every Planet
+
+            </div>
+
+        </header>
+
+
+
+        <div id="sceneBackground">
+
+            <div id="deepStars"></div>
+
+            <div id="spaceDust"></div>
+
         </div>
 
 
 
-    </div>
+        <div id="solarContainer">
 
+            <div id="mainSun">
 
+                <div class="mainSunGlow"></div>
 
+            </div>
 
 
 
-    <button id="enter-btn">
+            <div class="mainOrbit mercuryMain">
 
-        START SYSTEM
+                <div class="planet mercury"></div>
 
-    </button>
+            </div>
 
 
 
-</section>
+            <div class="mainOrbit venusMain">
 
+                <div class="planet venus"></div>
 
+            </div>
 
 
 
+            <div class="mainOrbit earthMain">
 
+                <div class="planet earth">
 
+                    <div class="cloudLayer"></div>
 
+                </div>
 
-<!-- =========================
-     MAIN SPACE SCREEN
-========================= -->
+            </div>
 
 
-<section id="space-screen">
 
+            <div class="mainOrbit marsMain">
 
+                <div class="planet mars"></div>
 
+            </div>
 
 
-<header class="top-ui">
 
+            <div class="mainOrbit jupiterMain">
 
-    <div class="logo-small">
-        SCIENCE CORE
-    </div>
+                <div class="planet jupiter"></div>
 
+            </div>
 
-    <div class="online">
 
-        ● SYSTEM ONLINE
 
-    </div>
+            <div class="mainOrbit saturnMain">
 
+                <div class="planet saturn">
 
+                    <div class="ring"></div>
 
-</header>
+                </div>
 
+            </div>
+                        <div class="mainOrbit uranusMain">
 
+                <div class="planet uranus"></div>
 
+            </div>
 
 
 
+            <div class="mainOrbit neptuneMain">
 
+                <div class="planet neptune"></div>
 
-<!-- LEFT HUD -->
+            </div>
 
+        </div>
 
-<div class="hud left">
 
 
-<h2>
-MISSION CONTROL
-</h2>
+        <!-- Planet Information -->
 
+        <aside id="infoPanel">
 
-<div>
-ENGINE :
-<span>
-ACTIVE
-</span>
-</div>
+            <button id="closeInfo">
+                ✕
+            </button>
 
+            <h2 id="planetName">
+                Planet
+            </h2>
 
-<div>
-MISSION :
-<span>
-EXPLORATION
-</span>
-</div>
+            <div class="infoGrid">
 
+                <div class="infoCard">
 
-<div>
-PLANETS :
-<span>
-8
-</span>
-</div>
+                    <span class="label">
+                        평균 거리
+                    </span>
 
+                    <span id="planetDistance"></span>
 
-<div>
-DISTANCE :
-<span>
-149.6M KM
-</span>
-</div>
+                </div>
 
+                <div class="infoCard">
 
+                    <span class="label">
+                        지름
+                    </span>
 
-</div>
+                    <span id="planetSize"></span>
 
+                </div>
 
+                <div class="infoCard">
 
+                    <span class="label">
+                        자전주기
+                    </span>
 
+                    <span id="planetDay"></span>
 
+                </div>
 
+                <div class="infoCard">
 
+                    <span class="label">
+                        공전주기
+                    </span>
 
+                    <span id="planetYear"></span>
 
-<!-- SOLAR SYSTEM -->
+                </div>
 
+            </div>
 
+            <p id="planetDescription">
 
-<div id="solar-system">
+            </p>
 
+        </aside>
 
 
-<div id="sun">
 
-    <div class="sun-flare"></div>
+    </main>
 
-</div>
 
 
+    <!-- Background Music -->
 
+    <audio id="spaceMusic" loop>
 
+        <source src="space.mp3" type="audio/mpeg">
 
-<div class="orbit mercury">
+    </audio>
 
-    <div class="planet mercury-body"></div>
 
-</div>
 
+    <!-- Script -->
 
-
-
-<div class="orbit venus">
-
-    <div class="planet venus-body"></div>
-
-</div>
-
-
-
-
-
-<div class="orbit earth">
-
-
-    <div class="planet earth-body">
-
-        <div class="earth-cloud"></div>
-
-    </div>
-
-
-</div>
-
-
-
-
-
-
-<div class="orbit mars">
-
-    <div class="planet mars-body"></div>
-
-</div>
-
-
-
-
-
-
-<div class="orbit jupiter">
-
-
-    <div class="planet jupiter-body">
-
-        <div class="jupiter-spot"></div>
-
-    </div>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="orbit saturn">
-
-
-    <div class="planet saturn-body">
-
-        <div class="saturn-ring"></div>
-
-    </div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="orbit uranus">
-
-    <div class="planet uranus-body"></div>
-
-</div>
-
-
-
-
-
-
-
-
-<div class="orbit neptune">
-
-    <div class="planet neptune-body"></div>
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- RIGHT HUD -->
-
-
-<div class="hud right">
-
-
-<h2>
-SOLAR DATA
-</h2>
-
-
-<p>
-STAR TYPE : G2V
-</p>
-
-
-<p>
-SYSTEM :
-SOLAR
-</p>
-
-
-<p>
-STATUS :
-STABLE
-</p>
-
-
-<p>
-SCANNING...
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- CENTER BUTTON -->
-
-
-<button id="explore-btn">
-
-    START EXPLORATION
-
-</button>
-
-
-
-
-
-
-
-
-<footer>
-
-
-<div>
-SCIENCE CORE v1.0
-</div>
-
-
-<div>
-DEEP SPACE RESEARCH DIVISION
-</div>
-
-
-</footer>
-
-
-
-
-
-
-
-</section>
-
-
-
-
-
-
-
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 
 </body>
 

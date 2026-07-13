@@ -1,63 +1,36 @@
 /* =======================================================
    COSMOS : Solar System Explorer
-   Version 1.0
+   Version 2.0
 ======================================================= */
-
-
 
 /* ===========================
    ELEMENT
 =========================== */
 
 const introScreen = document.getElementById("introScreen");
-
 const startButton = document.getElementById("startButton");
-
 const countdownScreen = document.getElementById("countdownScreen");
-
 const countText = document.getElementById("countText");
-
 const mainScene = document.getElementById("mainScene");
-
-const bgm = document.getElementById("bgm");
-
-const musicButton = document.getElementById("musicButton");
-
-const panel = document.getElementById("planetPanel");
-
-const closePanel = document.getElementById("closePanel");
-
-const meteorField = document.getElementById("meteor-field");
 
 const loadingOverlay = document.getElementById("loadingOverlay");
 
+const musicButton = document.getElementById("musicButton");
 
+const meteorField = document.getElementById("meteor-field");
+
+const panel = document.getElementById("planetPanel");
+const closePanel = document.getElementById("closePanel");
 
 const planetName = document.getElementById("planetName");
-
 const planetDistance = document.getElementById("planetDistance");
-
 const planetSize = document.getElementById("planetSize");
-
 const planetTemperature = document.getElementById("planetTemperature");
-
 const planetDay = document.getElementById("planetDay");
-
 const planetYear = document.getElementById("planetYear");
-
 const planetDescription = document.getElementById("planetDescription");
 
-
-
 const planets = document.querySelectorAll(".planet");
-
-
-
-/* ===========================
-   MUSIC
-=========================== */
-
-let musicOn = false;
 
 
 
@@ -65,41 +38,41 @@ let musicOn = false;
    LOADING
 =========================== */
 
-window.addEventListener("load", () => {
+window.addEventListener("load",()=>{
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
-        loadingOverlay.style.opacity = "0";
+        loadingOverlay.style.opacity="0";
 
-        loadingOverlay.style.transition = ".8s";
+        loadingOverlay.style.pointerEvents="none";
 
-        setTimeout(() => {
+        setTimeout(()=>{
 
-            loadingOverlay.style.display = "none";
+            loadingOverlay.style.display="none";
 
-        }, 800);
+        },800);
 
-    }, 1200);
+    },1200);
 
 });
 
 
 
 /* ===========================
-   START BUTTON
+   START
 =========================== */
 
-startButton.addEventListener("click", () => {
+startButton.addEventListener("click",()=>{
 
-    introScreen.style.opacity = "0";
+    introScreen.style.opacity="0";
 
-    introScreen.style.pointerEvents = "none";
+    introScreen.style.pointerEvents="none";
 
-    countdownScreen.style.visibility = "visible";
+    countdownScreen.style.visibility="visible";
 
-    countdownScreen.style.opacity = "1";
+    countdownScreen.style.opacity="1";
 
-    startCount();
+    startCountdown();
 
 });
 
@@ -109,25 +82,25 @@ startButton.addEventListener("click", () => {
    COUNTDOWN
 =========================== */
 
-function startCount(){
+function startCountdown(){
 
-    let number = 3;
+    let number=3;
 
-    countText.innerHTML = number;
+    countText.innerHTML=number;
 
-    const timer = setInterval(() => {
+    const timer=setInterval(()=>{
 
         number--;
 
-        if(number > 0){
+        if(number>0){
 
-            countText.innerHTML = number;
+            countText.innerHTML=number;
 
         }
 
-        else if(number === 0){
+        else if(number===0){
 
-            countText.innerHTML = "Launch";
+            countText.innerHTML="GO";
 
         }
 
@@ -135,13 +108,13 @@ function startCount(){
 
             clearInterval(timer);
 
-            countdownScreen.style.opacity = "0";
+            countdownScreen.style.opacity="0";
 
-            setTimeout(() => {
+            setTimeout(()=>{
 
-                countdownScreen.style.display = "none";
+                countdownScreen.style.display="none";
 
-                mainScene.style.display = "block";
+                mainScene.style.display="block";
 
             },600);
 
@@ -163,33 +136,19 @@ planets.forEach((planet)=>{
 
         panel.classList.add("active");
 
-        planetName.textContent =
+        planetName.textContent=planet.dataset.name;
 
-        planet.dataset.name;
+        planetDistance.textContent=planet.dataset.distance;
 
-        planetDistance.textContent =
+        planetSize.textContent=planet.dataset.size;
 
-        planet.dataset.distance;
+        planetTemperature.textContent=planet.dataset.temperature;
 
-        planetSize.textContent =
+        planetDay.textContent=planet.dataset.day;
 
-        planet.dataset.size;
+        planetYear.textContent=planet.dataset.year;
 
-        planetTemperature.textContent =
-
-        planet.dataset.temperature;
-
-        planetDay.textContent =
-
-        planet.dataset.day;
-
-        planetYear.textContent =
-
-        planet.dataset.year;
-
-        planetDescription.textContent =
-
-        planet.dataset.description;
+        planetDescription.textContent=planet.dataset.description;
 
     });
 
@@ -202,35 +161,20 @@ closePanel.addEventListener("click",()=>{
     panel.classList.remove("active");
 
 });
+
+
+
 /* ===========================
-   MUSIC
+   MUSIC BUTTON
 =========================== */
+
+let music=false;
 
 musicButton.addEventListener("click",()=>{
 
-    if(!bgm) return;
+    music=!music;
 
-    if(musicOn){
-
-        bgm.pause();
-
-        musicOn=false;
-
-        musicButton.innerHTML="🔇";
-
-    }
-
-    else{
-
-        bgm.volume=.35;
-
-        bgm.play().catch(()=>{});
-
-        musicOn=true;
-
-        musicButton.innerHTML="🔊";
-
-    }
+    musicButton.innerHTML=music ? "🔊" : "🔇";
 
 });
 
@@ -248,13 +192,23 @@ function createMeteor(){
 
     meteor.className="meteor";
 
-    meteor.style.top=Math.random()*35+"%";
+    meteor.style.position="absolute";
+
+    meteor.style.width="3px";
+
+    meteor.style.height="3px";
+
+    meteor.style.borderRadius="50%";
+
+    meteor.style.background="white";
+
+    meteor.style.boxShadow="0 0 10px white";
 
     meteor.style.left=(70+Math.random()*30)+"%";
 
-    meteor.style.animation=
+    meteor.style.top=(Math.random()*40)+"%";
 
-        "meteorFly "+(2+Math.random()*2)+"s linear forwards";
+    meteor.style.animation="meteorFly 3s linear forwards";
 
     meteorField.appendChild(meteor);
 
@@ -262,98 +216,35 @@ function createMeteor(){
 
         meteor.remove();
 
-    },4000);
+    },3000);
 
 }
 
-
-
 setInterval(createMeteor,1800);
-
-
-
 /* ===========================
    PARALLAX
 =========================== */
 
+const background=document.getElementById("background");
+
 document.addEventListener("mousemove",(e)=>{
+
+    if(!background) return;
 
     const x=(e.clientX/window.innerWidth-.5)*18;
 
     const y=(e.clientY/window.innerHeight-.5)*18;
 
-    const bg=document.getElementById("background");
+    background.style.transform=
 
-    if(bg){
-
-        bg.style.transform=
-
-            `translate(${x}px,${y}px)`;
-
-    }
+        `translate(${x}px,${y}px)`;
 
 });
 
 
 
 /* ===========================
-   EASTER EGG
-=========================== */
-
-let secret=[];
-
-const answer=[
-
-"c",
-
-"o",
-
-"s",
-
-"m",
-
-"o",
-
-"s"
-
-];
-
-
-
-document.addEventListener("keydown",(e)=>{
-
-    secret.push(e.key.toLowerCase());
-
-    if(secret.length>answer.length){
-
-        secret.shift();
-
-    }
-
-    if(secret.join("")===answer.join("")){
-
-        const egg=document.getElementById("easterEgg");
-
-        if(egg){
-
-            egg.classList.add("show");
-
-            setTimeout(()=>{
-
-                egg.classList.remove("show");
-
-            },3500);
-
-        }
-
-    }
-
-});
-
-
-
-/* ===========================
-   ESC
+   ESC CLOSE PANEL
 =========================== */
 
 document.addEventListener("keydown",(e)=>{
@@ -369,46 +260,76 @@ document.addEventListener("keydown",(e)=>{
 
 
 /* ===========================
-   DOUBLE CLICK SUN
+   EASTER EGG
+=========================== */
+
+const secret=[];
+
+const answer=[
+
+    "c",
+
+    "o",
+
+    "s",
+
+    "m",
+
+    "o",
+
+    "s"
+
+];
+
+const easterEgg=document.getElementById("easterEgg");
+
+document.addEventListener("keydown",(e)=>{
+
+    secret.push(e.key.toLowerCase());
+
+    if(secret.length>answer.length){
+
+        secret.shift();
+
+    }
+
+    if(secret.join("")===answer.join("")){
+
+        if(easterEgg){
+
+            easterEgg.classList.add("show");
+
+            setTimeout(()=>{
+
+                easterEgg.classList.remove("show");
+
+            },3500);
+
+        }
+
+    }
+
+});
+
+
+
+/* ===========================
+   SUN EFFECT
 =========================== */
 
 const sun=document.getElementById("sun");
 
-
-
 if(sun){
 
-    sun.addEventListener("dblclick",()=>{
+    sun.addEventListener("mouseenter",()=>{
 
-        sun.animate(
+        sun.style.transform="scale(1.08)";
 
-        [
+    });
 
-            {
+    sun.addEventListener("mouseleave",()=>{
 
-                transform:"scale(1)"
-
-            },
-
-            {
-
-                transform:"scale(1.2)"
-
-            },
-
-            {
-
-                transform:"scale(1)"
-
-            }
-
-        ],
-
-        {
-
-            duration:900
-
-        });
+        sun.style.transform="scale(1)";
 
     });
 
@@ -417,169 +338,24 @@ if(sun){
 
 
 /* ===========================
-   RANDOM STAR FLASH
-=========================== */
-
-setInterval(()=>{
-
-    const stars=[
-
-        "stars-layer-1",
-
-        "stars-layer-2",
-
-        "stars-layer-3"
-
-    ];
-
-
-
-    const target=document.getElementById(
-
-        stars[Math.floor(Math.random()*stars.length)]
-
-    );
-
-
-
-    if(target){
-
-        target.animate(
-
-        [
-
-            {
-
-                opacity:.3
-
-            },
-
-            {
-
-                opacity:1
-
-            },
-
-            {
-
-                opacity:.3
-
-            }
-
-        ],
-
-        {
-
-            duration:900
-
-        });
-
-    }
-
-},2200);
-
-
-
-/* ===========================
-   WINDOW RESIZE
-=========================== */
-
-window.addEventListener("resize",()=>{
-
-    panel.classList.remove("active");
-
-});
-
-
-
-/* ===========================
-   START COMPLETE
-=========================== */
-
-console.log(
-
-"%cCOSMOS : Solar System Explorer",
-
-"color:#53d6ff;font-size:20px;font-weight:bold;"
-
-);
-
-console.log(
-
-"%cProject Loaded Successfully",
-
-"color:#ffffff;font-size:14px;"
-
-);
-/* ===========================
-   PLANET HOVER EFFECT
+   PLANET HOVER
 =========================== */
 
 planets.forEach((planet)=>{
 
     planet.addEventListener("mouseenter",()=>{
 
-        planet.animate(
+        planet.style.filter=
 
-            [
-
-                {
-
-                    transform:"translateY(-50%) scale(1)"
-
-                },
-
-                {
-
-                    transform:"translateY(-50%) scale(1.18)"
-
-                }
-
-            ],
-
-            {
-
-                duration:250,
-
-                fill:"forwards"
-
-            }
-
-        );
+            "brightness(1.35)";
 
     });
 
-
-
     planet.addEventListener("mouseleave",()=>{
 
-        planet.animate(
+        planet.style.filter=
 
-            [
-
-                {
-
-                    transform:"translateY(-50%) scale(1.18)"
-
-                },
-
-                {
-
-                    transform:"translateY(-50%) scale(1)"
-
-                }
-
-            ],
-
-            {
-
-                duration:250,
-
-                fill:"forwards"
-
-            }
-
-        );
+            "brightness(1)";
 
     });
 
@@ -588,137 +364,7 @@ planets.forEach((planet)=>{
 
 
 /* ===========================
-   PANEL ANIMATION
-=========================== */
-
-function openPlanetPanel(){
-
-    panel.classList.add("active");
-
-
-
-    panel.animate(
-
-        [
-
-            {
-
-                opacity:0,
-
-                transform:"translateY(-50%) translateX(100px)"
-
-            },
-
-            {
-
-                opacity:1,
-
-                transform:"translateY(-50%) translateX(0)"
-
-            }
-
-        ],
-
-        {
-
-            duration:350,
-
-            easing:"ease-out"
-
-        }
-
-    );
-
-}
-
-
-
-/* ===========================
-   INTRO FADE
-=========================== */
-
-if(introScreen){
-
-    introScreen.animate(
-
-        [
-
-            {
-
-                opacity:0
-
-            },
-
-            {
-
-                opacity:1
-
-            }
-
-        ],
-
-        {
-
-            duration:1200,
-
-            fill:"forwards"
-
-        }
-
-    );
-
-}
-
-
-
-/* ===========================
-   SUN GLOW
-=========================== */
-
-setInterval(()=>{
-
-    if(!sun) return;
-
-
-
-    sun.animate(
-
-        [
-
-            {
-
-                filter:"brightness(1)"
-
-            },
-
-            {
-
-                filter:"brightness(1.35)"
-
-            },
-
-            {
-
-                filter:"brightness(1)"
-
-            }
-
-        ],
-
-        {
-
-            duration:1800
-
-        }
-
-    );
-
-},5000);
-
-
-
-/* ===========================
-   AUTO PANEL CLOSE
+   AUTO CLOSE PANEL
 =========================== */
 
 let panelTimer;
@@ -733,11 +379,75 @@ planets.forEach((planet)=>{
 
             panel.classList.remove("active");
 
-        },12000);
+        },15000);
 
     });
 
 });
+
+
+
+/* ===========================
+   STAR FLASH
+=========================== */
+
+setInterval(()=>{
+
+    const stars=[
+
+        document.getElementById("stars-layer-1"),
+
+        document.getElementById("stars-layer-2"),
+
+        document.getElementById("stars-layer-3")
+
+    ];
+
+
+
+    const target=
+
+        stars[Math.floor(Math.random()*stars.length)];
+
+
+
+    if(target){
+
+        target.animate(
+
+            [
+
+                {
+
+                    opacity:.3
+
+                },
+
+                {
+
+                    opacity:1
+
+                },
+
+                {
+
+                    opacity:.3
+
+                }
+
+            ],
+
+            {
+
+                duration:1200
+
+            }
+
+        );
+
+    }
+
+},2500);
 
 
 
@@ -749,21 +459,7 @@ document.addEventListener("visibilitychange",()=>{
 
     if(document.hidden){
 
-        if(bgm){
-
-            bgm.pause();
-
-        }
-
-    }
-
-    else{
-
-        if(musicOn && bgm){
-
-            bgm.play().catch(()=>{});
-
-        }
+        clearInterval();
 
     }
 
@@ -772,11 +468,74 @@ document.addEventListener("visibilitychange",()=>{
 
 
 /* ===========================
-   VERSION
+   STARTUP
 =========================== */
 
-console.log("COSMOS v1.0");
+console.clear();
 
-console.log("Developed with HTML + CSS + JavaScript");
+console.log(
 
-console.log("Solar System Explorer Ready.");
+"%cCOSMOS",
+
+"font-size:28px;color:#53d6ff;font-weight:bold;"
+
+);
+
+console.log(
+
+"%cSolar System Explorer Ready",
+
+"font-size:15px;color:white;"
+
+);
+
+console.log(
+
+"%cVersion 2.0",
+
+"font-size:13px;color:#89d6ff;"
+
+);
+/* ===========================
+   FPS OPTIMIZE
+=========================== */
+
+window.addEventListener("blur",()=>{
+
+    document.body.style.filter="brightness(.95)";
+
+});
+
+window.addEventListener("focus",()=>{
+
+    document.body.style.filter="brightness(1)";
+
+});
+
+
+
+/* ===========================
+   RANDOM TITLE COLOR
+=========================== */
+
+const title=document.querySelector("#introContent h1");
+
+if(title){
+
+    setInterval(()=>{
+
+        title.style.textShadow=
+
+        `0 0 ${20+Math.random()*15}px #53d6ff`;
+
+    },1200);
+
+}
+
+
+
+/* ===========================
+   READY
+=========================== */
+
+console.log("Everything Loaded.");

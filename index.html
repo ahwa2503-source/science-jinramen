@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -9,10 +10,10 @@
 
   <meta
     name="description"
-    content="태양계와 과학의 세계를 탐험하는 인터랙티브 우주 홈페이지"
+    content="과학 단원을 탐험하는 인터랙티브 사이언스 코어"
   />
 
-  <title>SCIENCE CORE | 태양계 탐험</title>
+  <title>SCIENCE CORE</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,125 +27,191 @@
 </head>
 
 <body>
-  <!-- 로딩 화면 -->
-  <div class="loader" id="loader">
-    <div class="loader__core">
-      <div class="loader__orbit loader__orbit--one"></div>
-      <div class="loader__orbit loader__orbit--two"></div>
-      <div class="loader__orbit loader__orbit--three"></div>
-      <div class="loader__dot"></div>
+  <!-- 시작 로딩 화면 -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-core">
+      <span class="loading-core__center"></span>
+      <span class="loading-core__ring loading-core__ring--one"></span>
+      <span class="loading-core__ring loading-core__ring--two"></span>
+      <span class="loading-core__ring loading-core__ring--three"></span>
     </div>
 
-    <p class="loader__text">INITIALIZING SCIENCE CORE</p>
+    <p class="loading-screen__title">
+      SCIENCE CORE INITIALIZING
+    </p>
 
-    <div class="loader__bar">
-      <span id="loaderProgress"></span>
+    <div class="loading-screen__bar">
+      <span id="loadingBar"></span>
     </div>
 
-    <p class="loader__percent" id="loaderPercent">0%</p>
+    <p class="loading-screen__percent" id="loadingPercent">
+      0%
+    </p>
   </div>
 
-  <!-- 마우스 커서 -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-
-  <!-- 전체 배경 -->
-  <div class="universe-background">
-    <canvas id="starCanvas"></canvas>
-
-    <div class="nebula nebula--one"></div>
-    <div class="nebula nebula--two"></div>
-    <div class="nebula nebula--three"></div>
-
-    <div class="noise"></div>
-    <div class="grid-overlay"></div>
-    <div class="vignette"></div>
+  <!-- 커스텀 마우스 -->
+  <div class="cursor">
+    <span class="cursor__dot"></span>
+    <span class="cursor__ring"></span>
   </div>
 
-  <!-- 상단 메뉴 -->
-  <header class="header" id="header">
-    <a href="#home" class="logo">
-      <div class="logo__symbol">
-        <span class="logo__planet"></span>
-        <span class="logo__orbit"></span>
-      </div>
+  <!-- 전체 고정 배경 -->
+  <div class="space-background">
+    <canvas id="spaceCanvas"></canvas>
 
-      <div class="logo__text">
+    <div class="space-background__nebula space-background__nebula--blue"></div>
+    <div class="space-background__nebula space-background__nebula--purple"></div>
+    <div class="space-background__nebula space-background__nebula--cyan"></div>
+
+    <div class="space-background__grid"></div>
+    <div class="space-background__noise"></div>
+    <div class="space-background__vignette"></div>
+  </div>
+
+  <!-- 화면 전환용 워프 -->
+  <div class="warp-transition" id="warpTransition">
+    <div class="warp-transition__flash"></div>
+    <div class="warp-transition__tunnel"></div>
+
+    <div class="warp-transition__lines">
+      <span style="--i: 1"></span>
+      <span style="--i: 2"></span>
+      <span style="--i: 3"></span>
+      <span style="--i: 4"></span>
+      <span style="--i: 5"></span>
+      <span style="--i: 6"></span>
+      <span style="--i: 7"></span>
+      <span style="--i: 8"></span>
+      <span style="--i: 9"></span>
+      <span style="--i: 10"></span>
+      <span style="--i: 11"></span>
+      <span style="--i: 12"></span>
+      <span style="--i: 13"></span>
+      <span style="--i: 14"></span>
+      <span style="--i: 15"></span>
+      <span style="--i: 16"></span>
+      <span style="--i: 17"></span>
+      <span style="--i: 18"></span>
+      <span style="--i: 19"></span>
+      <span style="--i: 20"></span>
+    </div>
+
+    <p class="warp-transition__text">
+      ENTERING SCIENCE DATABASE
+    </p>
+  </div>
+
+  <!-- 상단 헤더 -->
+  <header class="site-header">
+    <button
+      class="site-logo"
+      id="logoButton"
+      type="button"
+      aria-label="메인 화면으로 이동"
+    >
+      <span class="site-logo__symbol">
+        <i class="site-logo__planet"></i>
+        <i class="site-logo__orbit"></i>
+      </span>
+
+      <span class="site-logo__text">
         <strong>SCIENCE</strong>
-        <span>CORE SYSTEM</span>
-      </div>
-    </a>
+        <small>CORE SYSTEM</small>
+      </span>
+    </button>
 
-    <nav class="navigation" id="navigation">
-      <a href="#home" class="navigation__link active">HOME</a>
-      <a href="#solar-system" class="navigation__link">SOLAR</a>
-      <a href="#mission" class="navigation__link">MISSION</a>
-      <a href="#data" class="navigation__link">DATA</a>
-    </nav>
+    <div class="site-header__center">
+      <span class="site-header__line"></span>
+      <span id="screenIndicator">HOME SECTOR</span>
+      <span class="site-header__line"></span>
+    </div>
 
-    <div class="header__status">
-      <span class="status-dot"></span>
+    <div class="system-status">
+      <span class="system-status__dot"></span>
       <span>SYSTEM ONLINE</span>
     </div>
-
-    <button
-      class="menu-button"
-      id="menuButton"
-      type="button"
-      aria-label="메뉴 열기"
-    >
-      <span></span>
-      <span></span>
-    </button>
   </header>
 
-  <main>
-    <!-- 메인 화면 -->
-    <section class="hero section" id="home">
-      <div class="hero__side hero__side--left">
-        <span>LAT 00.000</span>
-        <span>LNG 00.000</span>
-        <span>SECTOR 07-A</span>
-      </div>
+  <!-- 전체 앱 -->
+  <main class="science-app" id="scienceApp">
+    <!-- =====================================================
+         첫 화면
+    ====================================================== -->
+    <section class="screen screen--home active" id="homeScreen">
+      <!-- 왼쪽 HUD -->
+      <aside class="side-hud side-hud--left">
+        <span>SECTOR 08-A</span>
+        <span>LAT 35.856</span>
+        <span>LNG 129.224</span>
+      </aside>
 
-      <div class="hero__content">
-        <div class="hero__eyebrow reveal">
-          <span class="hero__eyebrow-line"></span>
-          <span>INTERSTELLAR SCIENCE PLATFORM</span>
-          <span class="hero__eyebrow-line"></span>
+      <!-- 오른쪽 HUD -->
+      <aside class="side-hud side-hud--right">
+        <span>CORE STABLE</span>
+        <span>ENERGY 99.8%</span>
+        <span>SIGNAL STRONG</span>
+      </aside>
+
+      <!-- 중앙 콘텐츠 -->
+      <div class="home-content">
+        <div class="home-content__eyebrow">
+          <span></span>
+          <p>INTERACTIVE SCIENCE PLATFORM</p>
+          <span></span>
         </div>
 
-        <p class="hero__number reveal">PROJECT 01 / SOLAR EXPLORATION</p>
-
-        <h1 class="hero__title reveal">
-          <span class="hero__title-small">EXPLORE THE</span>
-
-          <span class="hero__title-main">
-            <span class="glitch" data-text="UNIVERSE">UNIVERSE</span>
-          </span>
-
-          <span class="hero__title-outline">BEYOND LIMITS</span>
-        </h1>
-
-        <p class="hero__description reveal">
-          태양에서 시작해 해왕성 너머까지.<br />
-          우리가 살고 있는 거대한 우주의 구조를 탐험해 보세요.
+        <p class="home-content__project">
+          PROJECT 01 / SCIENCE EXPLORATION
         </p>
 
-        <div class="hero__buttons reveal">
-          <a href="#solar-system" class="primary-button magnetic js-start-button">
-            <span class="primary-button__glow"></span>
-            <span class="primary-button__text">시작하기</span>
+        <h1 class="home-content__title">
+          <span class="home-content__title-small">
+            EXPLORE THE
+          </span>
 
-            <span class="primary-button__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
+          <span
+            class="home-content__title-main"
+            data-text="SCIENCE"
+          >
+            SCIENCE
+          </span>
+
+          <span class="home-content__title-outline">
+            BEYOND THE LIMIT
+          </span>
+        </h1>
+
+        <p class="home-content__description">
+          태양계에서 시작해 물질, 에너지, 생명, 지구와 우주까지.<br />
+          과학의 모든 단원을 하나의 거대한 연구 시스템에서 탐험하세요.
+        </p>
+
+        <div class="home-content__actions">
+          <button
+            class="start-button magnetic"
+            id="startButton"
+            type="button"
+          >
+            <span class="start-button__scanner"></span>
+
+            <span class="start-button__text">
+              시작하기
+            </span>
+
+            <span class="start-button__icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
               </svg>
             </span>
-          </a>
+          </button>
 
-          <button class="sound-button magnetic" id="soundButton" type="button">
-            <span class="sound-bars">
+          <button
+            class="sound-button magnetic"
+            id="soundButton"
+            type="button"
+          >
+            <span class="sound-button__bars">
               <i></i>
               <i></i>
               <i></i>
@@ -156,783 +223,524 @@
         </div>
       </div>
 
-      <!-- 중앙 태양계 장식 -->
-      <!-- 메인 화면 뒤쪽 3D 태양계 -->
-<div class="hero-system" aria-hidden="true">
-  <div class="hero-system__sun"></div>
+      <!-- 입체 태양계 -->
+      <div class="solar-visual" id="solarVisual">
+        <div class="solar-visual__energy"></div>
 
-  <div class="hero-orbit hero-orbit--one">
-    <span class="hero-mini-planet hero-mini-planet--mercury"></span>
-  </div>
-
-  <div class="hero-orbit hero-orbit--two">
-    <span class="hero-mini-planet hero-mini-planet--venus"></span>
-  </div>
-
-  <div class="hero-orbit hero-orbit--three">
-    <span class="hero-mini-planet hero-mini-planet--earth"></span>
-  </div>
-
-  <div class="hero-orbit hero-orbit--four">
-    <span class="hero-mini-planet hero-mini-planet--mars"></span>
-  </div>
-</div>
-
-  <!-- 금성 -->
-  <div class="hero-orbit hero-orbit--venus">
-    <div class="hero-planet hero-planet--venus">
-      <span class="hero-planet__surface"></span>
-      <span class="hero-planet__light"></span>
-      <span class="hero-planet__shadow"></span>
-    </div>
-  </div>
-
-  <!-- 지구 -->
-  <div class="hero-orbit hero-orbit--earth">
-    <div class="hero-planet hero-planet--earth">
-      <span class="hero-planet__surface"></span>
-      <span class="hero-planet__clouds"></span>
-      <span class="hero-planet__light"></span>
-      <span class="hero-planet__shadow"></span>
-
-      <span class="hero-moon"></span>
-    </div>
-  </div>
-
-  <!-- 화성 -->
-  <div class="hero-orbit hero-orbit--mars">
-    <div class="hero-planet hero-planet--mars">
-      <span class="hero-planet__surface"></span>
-      <span class="hero-planet__light"></span>
-      <span class="hero-planet__shadow"></span>
-    </div>
-  </div>
-
-  <!-- 목성 -->
-  <div class="hero-orbit hero-orbit--jupiter">
-    <div class="hero-planet hero-planet--jupiter">
-      <span class="hero-planet__surface"></span>
-      <span class="hero-planet__light"></span>
-      <span class="hero-planet__shadow"></span>
-    </div>
-  </div>
-
-  <!-- 토성 -->
-  <div class="hero-orbit hero-orbit--saturn">
-    <div class="hero-planet hero-planet--saturn">
-      <span class="hero-saturn-ring hero-saturn-ring--back"></span>
-
-      <span class="hero-planet__surface"></span>
-      <span class="hero-planet__light"></span>
-      <span class="hero-planet__shadow"></span>
-
-      <span class="hero-saturn-ring hero-saturn-ring--front"></span>
-    </div>
-  </div>
-
-  <!-- 천왕성 -->
-  <div class="hero-orbit hero-orbit--uranus">
-    <div class="hero-planet hero-planet--uranus">
-      <span class="hero-planet__surface"></span>
-      <span class="hero-planet__light"></span>
-      <span class="hero-planet__shadow"></span>
-    </div>
-  </div>
-
-  <!-- 해왕성 -->
-  <div class="hero-orbit hero-orbit--neptune">
-    <div class="hero-planet hero-planet--neptune">
-      <span class="hero-planet__surface"></span>
-      <span class="hero-planet__light"></span>
-      <span class="hero-planet__shadow"></span>
-    </div>
-  </div>
-</div>
-
-      <div class="hero__data-panel glass-panel">
-        <div class="data-panel__header">
-          <span>LIVE UNIVERSE DATA</span>
-          <span class="data-panel__pulse"></span>
+        <!-- 태양 -->
+        <div class="solar-sun">
+          <span class="solar-sun__surface"></span>
+          <span class="solar-sun__flare solar-sun__flare--one"></span>
+          <span class="solar-sun__flare solar-sun__flare--two"></span>
+          <span class="solar-sun__flare solar-sun__flare--three"></span>
         </div>
 
-        <div class="data-panel__row">
-          <span>EARTH DISTANCE</span>
-          <strong>149.6M KM</strong>
+        <!-- 수성 -->
+        <div class="solar-orbit solar-orbit--mercury">
+          <div class="solar-planet solar-planet--mercury">
+            <span class="solar-planet__surface"></span>
+            <span class="solar-planet__shine"></span>
+            <span class="solar-planet__shadow"></span>
+          </div>
         </div>
 
-        <div class="data-panel__row">
-          <span>SOLAR AGE</span>
-          <strong>4.603B YR</strong>
+        <!-- 금성 -->
+        <div class="solar-orbit solar-orbit--venus">
+          <div class="solar-planet solar-planet--venus">
+            <span class="solar-planet__surface"></span>
+            <span class="solar-planet__shine"></span>
+            <span class="solar-planet__shadow"></span>
+          </div>
         </div>
 
-        <div class="data-panel__row">
-          <span>PLANETS FOUND</span>
+        <!-- 지구 -->
+        <div class="solar-orbit solar-orbit--earth">
+          <div class="solar-planet solar-planet--earth">
+            <span class="solar-planet__surface"></span>
+            <span class="solar-planet__cloud"></span>
+            <span class="solar-planet__shine"></span>
+            <span class="solar-planet__shadow"></span>
+            <span class="solar-planet__moon"></span>
+          </div>
+        </div>
+
+        <!-- 화성 -->
+        <div class="solar-orbit solar-orbit--mars">
+          <div class="solar-planet solar-planet--mars">
+            <span class="solar-planet__surface"></span>
+            <span class="solar-planet__shine"></span>
+            <span class="solar-planet__shadow"></span>
+          </div>
+        </div>
+
+        <!-- 목성 -->
+        <div class="solar-orbit solar-orbit--jupiter">
+          <div class="solar-planet solar-planet--jupiter">
+            <span class="solar-planet__surface"></span>
+            <span class="solar-planet__shine"></span>
+            <span class="solar-planet__shadow"></span>
+          </div>
+        </div>
+
+        <!-- 토성 -->
+        <div class="solar-orbit solar-orbit--saturn">
+          <div class="solar-planet solar-planet--saturn">
+            <span class="saturn-ring saturn-ring--back"></span>
+            <span class="solar-planet__surface"></span>
+            <span class="solar-planet__shine"></span>
+            <span class="solar-planet__shadow"></span>
+            <span class="saturn-ring saturn-ring--front"></span>
+          </div>
+        </div>
+
+        <!-- 천왕성 -->
+        <div class="solar-orbit solar-orbit--uranus">
+          <div class="solar-planet solar-planet--uranus">
+            <span class="solar-planet__surface"></span>
+            <span class="solar-planet__shine"></span>
+            <span class="solar-planet__shadow"></span>
+          </div>
+        </div>
+
+        <!-- 해왕성 -->
+        <div class="solar-orbit solar-orbit--neptune">
+          <div class="solar-planet solar-planet--neptune">
+            <span class="solar-planet__surface"></span>
+            <span class="solar-planet__shine"></span>
+            <span class="solar-planet__shadow"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 왼쪽 아래 상태 -->
+      <div class="home-coordinate">
+        <span class="home-coordinate__cross"></span>
+
+        <div>
+          <small>CURRENT LOCATION</small>
+          <strong>SOLAR SYSTEM</strong>
+        </div>
+      </div>
+
+      <!-- 오른쪽 아래 데이터 -->
+      <div class="home-data-panel">
+        <div class="home-data-panel__header">
+          <span>LIVE SCIENCE DATA</span>
+          <i></i>
+        </div>
+
+        <div class="home-data-panel__item">
+          <span>PLANETS</span>
           <strong>08</strong>
         </div>
 
-        <div class="data-panel__graph">
-          <span style="--height: 35%"></span>
-          <span style="--height: 70%"></span>
-          <span style="--height: 48%"></span>
-          <span style="--height: 90%"></span>
-          <span style="--height: 60%"></span>
-          <span style="--height: 82%"></span>
-          <span style="--height: 45%"></span>
-          <span style="--height: 72%"></span>
-          <span style="--height: 55%"></span>
-          <span style="--height: 95%"></span>
+        <div class="home-data-panel__item">
+          <span>MODULES</span>
+          <strong>08</strong>
         </div>
-      </div>
 
-      <div class="hero__scroll">
-        <span>SCROLL TO EXPLORE</span>
-
-        <div class="hero__scroll-line">
-          <i></i>
+        <div class="home-data-panel__item">
+          <span>CORE STATUS</span>
+          <strong>STABLE</strong>
         </div>
-      </div>
 
-      <div class="hero__side hero__side--right">
-        <span>CORE STABLE</span>
-        <span>OXYGEN 99.8%</span>
-        <span>SIGNAL STRONG</span>
+        <div class="home-data-panel__graph">
+          <i style="--height: 40%"></i>
+          <i style="--height: 76%"></i>
+          <i style="--height: 55%"></i>
+          <i style="--height: 90%"></i>
+          <i style="--height: 64%"></i>
+          <i style="--height: 82%"></i>
+          <i style="--height: 50%"></i>
+          <i style="--height: 94%"></i>
+        </div>
       </div>
     </section>
 
-    <!-- 태양계 화면 -->
-    <section class="solar-section section" id="solar-system">
-      <div class="section-heading">
-        <div class="section-heading__number">02</div>
-
-        <div>
-          <span class="section-heading__label">CELESTIAL DATABASE</span>
-          <h2>태양계 행성 탐험</h2>
-          <p>
-            행성을 선택하면 각 천체의 주요 정보와 특징을 확인할 수 있습니다.
-          </p>
-        </div>
+    <!-- =====================================================
+         단원 선택 화면
+    ====================================================== -->
+    <section class="screen screen--chapters" id="chapterScreen">
+      <div class="chapter-background">
+        <div class="chapter-background__core"></div>
+        <div class="chapter-background__ring chapter-background__ring--one"></div>
+        <div class="chapter-background__ring chapter-background__ring--two"></div>
+        <div class="chapter-background__ring chapter-background__ring--three"></div>
       </div>
 
-      <div class="solar-interface">
-        <div class="solar-stage glass-panel">
-          <div class="solar-stage__top">
-            <span>SOLAR SYSTEM MAP</span>
-            <span>REAL-TIME SIMULATION</span>
+      <div class="chapter-interface">
+        <div class="chapter-heading">
+          <div class="chapter-heading__index">
+            02
           </div>
 
-          <div class="solar-map" id="solarMap">
-            <div class="solar-map__center-lines"></div>
+          <div class="chapter-heading__text">
+            <span>SCIENCE MODULE DATABASE</span>
 
-            <button
-              class="sun-object planet-selector"
-              type="button"
-              data-planet="sun"
-              aria-label="태양 정보 보기"
-            >
-              <span class="sun-object__core"></span>
-              <span class="sun-object__flare sun-object__flare--one"></span>
-              <span class="sun-object__flare sun-object__flare--two"></span>
-              <span class="sun-object__flare sun-object__flare--three"></span>
-              <span class="object-label">SUN</span>
-            </button>
+            <h2>
+              연구 단원을 선택하세요
+            </h2>
 
-            <div class="orbit orbit--mercury">
-              <button
-                class="map-planet map-planet--mercury planet-selector"
-                type="button"
-                data-planet="mercury"
-                aria-label="수성 정보 보기"
-              >
-                <span></span>
-              </button>
-            </div>
-
-            <div class="orbit orbit--venus">
-              <button
-                class="map-planet map-planet--venus planet-selector"
-                type="button"
-                data-planet="venus"
-                aria-label="금성 정보 보기"
-              >
-                <span></span>
-              </button>
-            </div>
-
-            <div class="orbit orbit--earth">
-              <button
-                class="map-planet map-planet--earth planet-selector"
-                type="button"
-                data-planet="earth"
-                aria-label="지구 정보 보기"
-              >
-                <span></span>
-                <i class="earth-moon"></i>
-              </button>
-            </div>
-
-            <div class="orbit orbit--mars">
-              <button
-                class="map-planet map-planet--mars planet-selector"
-                type="button"
-                data-planet="mars"
-                aria-label="화성 정보 보기"
-              >
-                <span></span>
-              </button>
-            </div>
-
-            <div class="orbit orbit--jupiter">
-              <button
-                class="map-planet map-planet--jupiter planet-selector"
-                type="button"
-                data-planet="jupiter"
-                aria-label="목성 정보 보기"
-              >
-                <span></span>
-              </button>
-            </div>
-
-            <div class="orbit orbit--saturn">
-              <button
-                class="map-planet map-planet--saturn planet-selector"
-                type="button"
-                data-planet="saturn"
-                aria-label="토성 정보 보기"
-              >
-                <span class="saturn-body"></span>
-                <span class="saturn-ring"></span>
-              </button>
-            </div>
-
-            <div class="orbit orbit--uranus">
-              <button
-                class="map-planet map-planet--uranus planet-selector"
-                type="button"
-                data-planet="uranus"
-                aria-label="천왕성 정보 보기"
-              >
-                <span></span>
-              </button>
-            </div>
-
-            <div class="orbit orbit--neptune">
-              <button
-                class="map-planet map-planet--neptune planet-selector"
-                type="button"
-                data-planet="neptune"
-                aria-label="해왕성 정보 보기"
-              >
-                <span></span>
-              </button>
-            </div>
-
-            <div class="solar-map__coordinates solar-map__coordinates--one">
-              X: 582.119<br />
-              Y: 028.530
-            </div>
-
-            <div class="solar-map__coordinates solar-map__coordinates--two">
-              ORBITAL MAP<br />
-              SCALE 1:500
-            </div>
+            <p>
+              각 에너지 모듈에 커서를 올리면 해당 단원의 정보가 활성화됩니다.
+            </p>
           </div>
 
-          <div class="solar-stage__bottom">
-            <div>
-              <span class="status-dot"></span>
-              <span>SIMULATION ACTIVE</span>
-            </div>
+          <button
+            class="return-button magnetic"
+            id="returnButton"
+            type="button"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M19 12H5"></path>
+              <path d="m11 18-6-6 6-6"></path>
+            </svg>
 
-            <div>
-              <span>OBJECTS</span>
-              <strong>09</strong>
-            </div>
-          </div>
+            <span>메인으로</span>
+          </button>
         </div>
 
-        <!-- 행성 상세 정보 -->
-        <aside class="planet-information glass-panel">
-          <div class="planet-information__top">
-            <div>
-              <span>SELECTED OBJECT</span>
-              <strong id="planetCode">SOL-03</strong>
-            </div>
+        <!-- 8개 단원 -->
+        <div class="chapter-grid" id="chapterGrid">
+          <button
+            class="chapter-module"
+            type="button"
+            data-unit="01"
+            data-title="물질의 구성"
+            data-code="MATTER CORE"
+          >
+            <span class="chapter-module__corner chapter-module__corner--tl"></span>
+            <span class="chapter-module__corner chapter-module__corner--tr"></span>
+            <span class="chapter-module__corner chapter-module__corner--bl"></span>
+            <span class="chapter-module__corner chapter-module__corner--br"></span>
 
-            <span class="planet-information__signal"></span>
-          </div>
+            <span class="chapter-module__scan"></span>
 
-          <div class="planet-preview" id="planetPreview">
-            <div class="preview-radar"></div>
-            <div class="preview-orbit preview-orbit--one"></div>
-            <div class="preview-orbit preview-orbit--two"></div>
+            <span class="chapter-module__number">01</span>
 
-            <div
-              class="preview-planet preview-planet--earth"
-              id="previewPlanet"
-            >
-              <span class="preview-planet__light"></span>
-              <span class="preview-planet__shadow"></span>
-            </div>
-          </div>
-
-          <div class="planet-title">
-            <span id="planetEnglish">EARTH</span>
-            <h3 id="planetKorean">지구</h3>
-            <p id="planetType">TERRESTRIAL PLANET</p>
-          </div>
-
-          <p class="planet-description" id="planetDescription">
-            태양계에서 생명체가 존재하는 것으로 알려진 유일한 행성입니다.
-            풍부한 액체 상태의 물과 산소를 포함한 대기를 가지고 있습니다.
-          </p>
-
-          <div class="planet-stats">
-            <div class="planet-stat">
-              <span>태양과의 거리</span>
-              <strong id="planetDistance">149.6M KM</strong>
-            </div>
-
-            <div class="planet-stat">
-              <span>공전 주기</span>
-              <strong id="planetOrbit">365.25 DAYS</strong>
-            </div>
-
-            <div class="planet-stat">
-              <span>평균 온도</span>
-              <strong id="planetTemperature">15°C</strong>
-            </div>
-
-            <div class="planet-stat">
-              <span>위성</span>
-              <strong id="planetMoons">01</strong>
-            </div>
-          </div>
-
-          <div class="planet-navigation">
-            <button id="previousPlanet" type="button">
-              <svg viewBox="0 0 24 24">
-                <path d="M19 12H5M11 18l-6-6 6-6"></path>
+            <span class="chapter-module__icon">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="8"></circle>
+                <ellipse cx="50" cy="50" rx="36" ry="15"></ellipse>
+                <ellipse
+                  cx="50"
+                  cy="50"
+                  rx="36"
+                  ry="15"
+                  transform="rotate(60 50 50)"
+                ></ellipse>
+                <ellipse
+                  cx="50"
+                  cy="50"
+                  rx="36"
+                  ry="15"
+                  transform="rotate(120 50 50)"
+                ></ellipse>
               </svg>
-            </button>
+            </span>
 
-            <div class="planet-navigation__progress">
-              <span id="planetIndex">03</span>
-              <div>
-                <i id="planetProgress"></i>
-              </div>
-              <span>09</span>
-            </div>
+            <span class="chapter-module__content">
+              <small>MATTER CORE</small>
+              <strong>1단원</strong>
+              <em>물질의 구성</em>
+            </span>
 
-            <button id="nextPlanet" type="button">
-              <svg viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
+            <span class="chapter-module__status">
+              MODULE READY
+            </span>
+          </button>
+
+          <button
+            class="chapter-module"
+            type="button"
+            data-unit="02"
+            data-title="전기와 자기"
+            data-code="ENERGY FIELD"
+          >
+            <span class="chapter-module__corner chapter-module__corner--tl"></span>
+            <span class="chapter-module__corner chapter-module__corner--tr"></span>
+            <span class="chapter-module__corner chapter-module__corner--bl"></span>
+            <span class="chapter-module__corner chapter-module__corner--br"></span>
+
+            <span class="chapter-module__scan"></span>
+
+            <span class="chapter-module__number">02</span>
+
+            <span class="chapter-module__icon">
+              <svg viewBox="0 0 100 100">
+                <path d="M55 8 25 56h23l-4 36 31-50H52z"></path>
               </svg>
-            </button>
-          </div>
-        </aside>
-      </div>
+            </span>
 
-      <!-- 행성 카드 -->
-      <div class="planet-list">
-        <button class="planet-card planet-selector" data-planet="mercury">
-          <span class="planet-card__number">01</span>
-          <div class="planet-card__image planet-card__image--mercury"></div>
-          <div>
-            <strong>MERCURY</strong>
-            <span>수성</span>
-          </div>
-        </button>
+            <span class="chapter-module__content">
+              <small>ENERGY FIELD</small>
+              <strong>2단원</strong>
+              <em>전기와 자기</em>
+            </span>
 
-        <button class="planet-card planet-selector" data-planet="venus">
-          <span class="planet-card__number">02</span>
-          <div class="planet-card__image planet-card__image--venus"></div>
-          <div>
-            <strong>VENUS</strong>
-            <span>금성</span>
-          </div>
-        </button>
+            <span class="chapter-module__status">
+              MODULE READY
+            </span>
+          </button>
 
-        <button
-          class="planet-card planet-card--active planet-selector"
-          data-planet="earth"
-        >
-          <span class="planet-card__number">03</span>
-          <div class="planet-card__image planet-card__image--earth"></div>
-          <div>
-            <strong>EARTH</strong>
-            <span>지구</span>
-          </div>
-        </button>
+          <button
+            class="chapter-module"
+            type="button"
+            data-unit="03"
+            data-title="생명 시스템"
+            data-code="BIO SYSTEM"
+          >
+            <span class="chapter-module__corner chapter-module__corner--tl"></span>
+            <span class="chapter-module__corner chapter-module__corner--tr"></span>
+            <span class="chapter-module__corner chapter-module__corner--bl"></span>
+            <span class="chapter-module__corner chapter-module__corner--br"></span>
 
-        <button class="planet-card planet-selector" data-planet="mars">
-          <span class="planet-card__number">04</span>
-          <div class="planet-card__image planet-card__image--mars"></div>
-          <div>
-            <strong>MARS</strong>
-            <span>화성</span>
-          </div>
-        </button>
+            <span class="chapter-module__scan"></span>
 
-        <button class="planet-card planet-selector" data-planet="jupiter">
-          <span class="planet-card__number">05</span>
-          <div class="planet-card__image planet-card__image--jupiter"></div>
-          <div>
-            <strong>JUPITER</strong>
-            <span>목성</span>
-          </div>
-        </button>
+            <span class="chapter-module__number">03</span>
 
-        <button class="planet-card planet-selector" data-planet="saturn">
-          <span class="planet-card__number">06</span>
-          <div class="planet-card__image planet-card__image--saturn"></div>
-          <div>
-            <strong>SATURN</strong>
-            <span>토성</span>
-          </div>
-        </button>
+            <span class="chapter-module__icon">
+              <svg viewBox="0 0 100 100">
+                <path d="M30 8c34 14 6 70 40 84"></path>
+                <path d="M70 8C36 22 64 78 30 92"></path>
+                <path d="M37 22h26"></path>
+                <path d="M31 39h38"></path>
+                <path d="M31 61h38"></path>
+                <path d="M37 78h26"></path>
+              </svg>
+            </span>
 
-        <button class="planet-card planet-selector" data-planet="uranus">
-          <span class="planet-card__number">07</span>
-          <div class="planet-card__image planet-card__image--uranus"></div>
-          <div>
-            <strong>URANUS</strong>
-            <span>천왕성</span>
-          </div>
-        </button>
+            <span class="chapter-module__content">
+              <small>BIO SYSTEM</small>
+              <strong>3단원</strong>
+              <em>생명 시스템</em>
+            </span>
 
-        <button class="planet-card planet-selector" data-planet="neptune">
-          <span class="planet-card__number">08</span>
-          <div class="planet-card__image planet-card__image--neptune"></div>
-          <div>
-            <strong>NEPTUNE</strong>
-            <span>해왕성</span>
-          </div>
-        </button>
-      </div>
-    </section>
+            <span class="chapter-module__status">
+              MODULE READY
+            </span>
+          </button>
 
-    <!-- 미션 화면 -->
-    <section class="mission-section section" id="mission">
-      <div class="mission-section__background">
-        <div class="mission-planet"></div>
-      </div>
+          <button
+            class="chapter-module"
+            type="button"
+            data-unit="04"
+            data-title="지구의 구조"
+            data-code="EARTH SECTOR"
+          >
+            <span class="chapter-module__corner chapter-module__corner--tl"></span>
+            <span class="chapter-module__corner chapter-module__corner--tr"></span>
+            <span class="chapter-module__corner chapter-module__corner--bl"></span>
+            <span class="chapter-module__corner chapter-module__corner--br"></span>
 
-      <div class="section-heading">
-        <div class="section-heading__number">03</div>
+            <span class="chapter-module__scan"></span>
 
-        <div>
-          <span class="section-heading__label">DEEP SPACE MISSION</span>
-          <h2>우주 탐사 임무</h2>
-          <p>
-            인류는 끊임없이 미지의 세계를 향해 탐사 범위를 넓히고 있습니다.
-          </p>
-        </div>
-      </div>
+            <span class="chapter-module__number">04</span>
 
-      <div class="mission-grid">
-        <article class="mission-card glass-panel">
-          <div class="mission-card__number">01</div>
+            <span class="chapter-module__icon">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="38"></circle>
+                <path d="M18 42c14-13 23 0 33-10 10-9 14-17 28-10"></path>
+                <path d="M16 59c18-8 25 8 39 1 16-8 18 8 31 3"></path>
+                <path d="M48 12c-3 13 8 17 4 30-4 12-16 15-13 30"></path>
+              </svg>
+            </span>
 
-          <div class="mission-card__icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2l4 7-4 13-4-13 4-7z"></path>
-              <path d="M8 9l-4 5 5-1"></path>
-              <path d="M16 9l4 5-5-1"></path>
-            </svg>
-          </div>
+            <span class="chapter-module__content">
+              <small>EARTH SECTOR</small>
+              <strong>4단원</strong>
+              <em>지구의 구조</em>
+            </span>
 
-          <span class="mission-card__status">ACTIVE</span>
-          <h3>ORBITAL RESEARCH</h3>
-          <p>
-            행성들의 궤도와 움직임을 분석해 태양계의 구조를 연구합니다.
-          </p>
+            <span class="chapter-module__status">
+              MODULE READY
+            </span>
+          </button>
 
-          <div class="mission-card__progress">
-            <div>
-              <span>진행률</span>
-              <strong>84%</strong>
-            </div>
+          <button
+            class="chapter-module"
+            type="button"
+            data-unit="05"
+            data-title="빛과 파동"
+            data-code="WAVE SIGNAL"
+          >
+            <span class="chapter-module__corner chapter-module__corner--tl"></span>
+            <span class="chapter-module__corner chapter-module__corner--tr"></span>
+            <span class="chapter-module__corner chapter-module__corner--bl"></span>
+            <span class="chapter-module__corner chapter-module__corner--br"></span>
 
-            <div class="progress-bar">
-              <i style="--progress: 84%"></i>
-            </div>
-          </div>
-        </article>
+            <span class="chapter-module__scan"></span>
 
-        <article class="mission-card glass-panel">
-          <div class="mission-card__number">02</div>
+            <span class="chapter-module__number">05</span>
 
-          <div class="mission-card__icon">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M2 12h6M16 12h6M12 2v6M12 16v6"></path>
-            </svg>
-          </div>
+            <span class="chapter-module__icon">
+              <svg viewBox="0 0 100 100">
+                <path d="M5 50c12-38 22 38 34 0s22 38 34 0 18-14 22 0"></path>
+              </svg>
+            </span>
 
-          <span class="mission-card__status">ANALYZING</span>
-          <h3>EXOPLANET SEARCH</h3>
-          <p>
-            태양계 바깥에서 생명체가 존재할 가능성이 있는 행성을 찾습니다.
-          </p>
+            <span class="chapter-module__content">
+              <small>WAVE SIGNAL</small>
+              <strong>5단원</strong>
+              <em>빛과 파동</em>
+            </span>
 
-          <div class="mission-card__progress">
-            <div>
-              <span>진행률</span>
-              <strong>67%</strong>
-            </div>
+            <span class="chapter-module__status">
+              MODULE READY
+            </span>
+          </button>
 
-            <div class="progress-bar">
-              <i style="--progress: 67%"></i>
-            </div>
-          </div>
-        </article>
+          <button
+            class="chapter-module"
+            type="button"
+            data-unit="06"
+            data-title="힘과 운동"
+            data-code="MOTION DRIVE"
+          >
+            <span class="chapter-module__corner chapter-module__corner--tl"></span>
+            <span class="chapter-module__corner chapter-module__corner--tr"></span>
+            <span class="chapter-module__corner chapter-module__corner--bl"></span>
+            <span class="chapter-module__corner chapter-module__corner--br"></span>
 
-        <article class="mission-card glass-panel">
-          <div class="mission-card__number">03</div>
+            <span class="chapter-module__scan"></span>
 
-          <div class="mission-card__icon">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="8"></circle>
-              <path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"></path>
-            </svg>
-          </div>
+            <span class="chapter-module__number">06</span>
 
-          <span class="mission-card__status">RECEIVING</span>
-          <h3>DEEP SPACE SIGNAL</h3>
-          <p>
-            심우주에서 전송되는 신호와 데이터를 수신하고 분석합니다.
-          </p>
+            <span class="chapter-module__icon">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="13"></circle>
+                <path d="M50 5v23"></path>
+                <path d="M50 72v23"></path>
+                <path d="M5 50h23"></path>
+                <path d="M72 50h23"></path>
+                <path d="m19 19 16 16"></path>
+                <path d="m65 65 16 16"></path>
+                <path d="m81 19-16 16"></path>
+                <path d="m35 65-16 16"></path>
+              </svg>
+            </span>
 
-          <div class="mission-card__progress">
-            <div>
-              <span>진행률</span>
-              <strong>92%</strong>
-            </div>
+            <span class="chapter-module__content">
+              <small>MOTION DRIVE</small>
+              <strong>6단원</strong>
+              <em>힘과 운동</em>
+            </span>
 
-            <div class="progress-bar">
-              <i style="--progress: 92%"></i>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+            <span class="chapter-module__status">
+              MODULE READY
+            </span>
+          </button>
 
-    <!-- 데이터 화면 -->
-    <section class="data-section section" id="data">
-      <div class="section-heading">
-        <div class="section-heading__number">04</div>
+          <button
+            class="chapter-module"
+            type="button"
+            data-unit="07"
+            data-title="화학 반응"
+            data-code="REACTION LAB"
+          >
+            <span class="chapter-module__corner chapter-module__corner--tl"></span>
+            <span class="chapter-module__corner chapter-module__corner--tr"></span>
+            <span class="chapter-module__corner chapter-module__corner--bl"></span>
+            <span class="chapter-module__corner chapter-module__corner--br"></span>
 
-        <div>
-          <span class="section-heading__label">UNIVERSE ANALYTICS</span>
-          <h2>실시간 관측 데이터</h2>
-          <p>수집된 우주 데이터를 시각화하여 보여줍니다.</p>
-        </div>
-      </div>
+            <span class="chapter-module__scan"></span>
 
-      <div class="analytics-grid">
-        <div class="analytics-card analytics-card--large glass-panel">
-          <div class="analytics-card__header">
-            <div>
-              <span>SIGNAL FREQUENCY</span>
-              <strong>DEEP SPACE NETWORK</strong>
-            </div>
+            <span class="chapter-module__number">07</span>
 
-            <div class="analytics-card__live">
-              <i></i>
-              LIVE
-            </div>
-          </div>
+            <span class="chapter-module__icon">
+              <svg viewBox="0 0 100 100">
+                <path d="M37 8h26"></path>
+                <path d="M43 8v30L20 82c-4 8 2 12 10 12h40c8 0 14-4 10-12L57 38V8"></path>
+                <path d="M30 70h40"></path>
+                <circle cx="40" cy="79" r="3"></circle>
+                <circle cx="58" cy="84" r="4"></circle>
+              </svg>
+            </span>
 
-          <div class="wave-chart">
-            <svg
-              viewBox="0 0 1000 320"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient id="waveGradient" x1="0" x2="1">
-                  <stop offset="0%" stop-color="#26d9ff" />
-                  <stop offset="50%" stop-color="#8c6cff" />
-                  <stop offset="100%" stop-color="#26d9ff" />
-                </linearGradient>
+            <span class="chapter-module__content">
+              <small>REACTION LAB</small>
+              <strong>7단원</strong>
+              <em>화학 반응</em>
+            </span>
 
-                <linearGradient id="waveArea" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="0%"
-                    stop-color="#3fdfff"
-                    stop-opacity=".32"
-                  />
-                  <stop
-                    offset="100%"
-                    stop-color="#3fdfff"
-                    stop-opacity="0"
-                  />
-                </linearGradient>
-              </defs>
+            <span class="chapter-module__status">
+              MODULE READY
+            </span>
+          </button>
 
-              <path
-                class="wave-area"
-                d="M0,230 C40,205 70,250 110,210 C150,170 170,230 220,195 C270,160 300,105 350,155 C400,205 420,85 470,125 C520,165 540,245 590,200 C640,155 660,55 715,105 C770,155 790,225 840,180 C890,135 920,85 1000,125 L1000,320 L0,320 Z"
-              ></path>
+          <button
+            class="chapter-module"
+            type="button"
+            data-unit="08"
+            data-title="태양계와 우주"
+            data-code="COSMIC CORE"
+          >
+            <span class="chapter-module__corner chapter-module__corner--tl"></span>
+            <span class="chapter-module__corner chapter-module__corner--tr"></span>
+            <span class="chapter-module__corner chapter-module__corner--bl"></span>
+            <span class="chapter-module__corner chapter-module__corner--br"></span>
 
-              <path
-                class="wave-line"
-                d="M0,230 C40,205 70,250 110,210 C150,170 170,230 220,195 C270,160 300,105 350,155 C400,205 420,85 470,125 C520,165 540,245 590,200 C640,155 660,55 715,105 C770,155 790,225 840,180 C890,135 920,85 1000,125"
-              ></path>
-            </svg>
+            <span class="chapter-module__scan"></span>
 
-            <div class="wave-chart__grid"></div>
+            <span class="chapter-module__number">08</span>
 
-            <div class="wave-chart__labels">
-              <span>00:00</span>
-              <span>04:00</span>
-              <span>08:00</span>
-              <span>12:00</span>
-              <span>16:00</span>
-              <span>20:00</span>
-              <span>24:00</span>
-            </div>
-          </div>
+            <span class="chapter-module__icon">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="17"></circle>
+                <ellipse cx="50" cy="50" rx="44" ry="17" transform="rotate(-16 50 50)"></ellipse>
+                <circle cx="82" cy="35" r="4"></circle>
+              </svg>
+            </span>
+
+            <span class="chapter-module__content">
+              <small>COSMIC CORE</small>
+              <strong>8단원</strong>
+              <em>태양계와 우주</em>
+            </span>
+
+            <span class="chapter-module__status">
+              MODULE READY
+            </span>
+          </button>
         </div>
 
-        <div class="analytics-card glass-panel">
-          <div class="analytics-card__header">
-            <div>
-              <span>SOLAR ENERGY</span>
-              <strong>OUTPUT LEVEL</strong>
-            </div>
+        <!-- 선택 정보 바 -->
+        <div class="chapter-info">
+          <div class="chapter-info__signal">
+            <span></span>
+            <i></i>
           </div>
 
-          <div class="energy-circle">
-            <svg viewBox="0 0 180 180">
-              <circle class="energy-circle__background" cx="90" cy="90" r="72"></circle>
-              <circle class="energy-circle__value" cx="90" cy="90" r="72"></circle>
-            </svg>
+          <div class="chapter-info__text">
+            <small>SELECTED MODULE</small>
 
-            <div>
-              <strong data-counter="92">0</strong>
-              <span>%</span>
-            </div>
+            <strong id="selectedUnit">
+              단원을 선택하세요
+            </strong>
           </div>
 
-          <div class="analytics-mini-data">
-            <div>
-              <span>CORE TEMP</span>
-              <strong>15.7M°C</strong>
-            </div>
+          <div class="chapter-info__code">
+            <small>MODULE CODE</small>
 
-            <div>
-              <span>STATUS</span>
-              <strong>STABLE</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="analytics-card glass-panel">
-          <div class="analytics-card__header">
-            <div>
-              <span>DISCOVERED</span>
-              <strong>SPACE OBJECTS</strong>
-            </div>
+            <strong id="selectedCode">
+              WAITING
+            </strong>
           </div>
 
-          <div class="object-counter">
-            <strong data-counter="5842">0</strong>
-            <span>CATALOGUED OBJECTS</span>
-          </div>
-
-          <div class="object-bars">
-            <div>
-              <span>PLANETS</span>
-              <i style="--value: 78%"></i>
-            </div>
-
-            <div>
-              <span>STARS</span>
-              <i style="--value: 94%"></i>
-            </div>
-
-            <div>
-              <span>GALAXIES</span>
-              <i style="--value: 62%"></i>
-            </div>
+          <div class="chapter-info__progress">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
-      </div>
-
-      <div class="final-cta glass-panel">
-        <div class="final-cta__rings">
-          <i></i>
-          <i></i>
-          <i></i>
-        </div>
-
-        <span class="final-cta__label">THE NEXT DISCOVERY BEGINS HERE</span>
-
-        <h2>
-          우주의 비밀을 향한<br />
-          탐험을 시작하세요.
-        </h2>
-
-        <a href="#solar-system" class="primary-button magnetic js-start-button">
-          <span class="primary-button__glow"></span>
-          <span class="primary-button__text">지금 시작하기</span>
-
-          <span class="primary-button__icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </span>
-        </a>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer__logo">
-      <strong>SCIENCE CORE</strong>
-      <span>INTERSTELLAR RESEARCH SYSTEM</span>
-    </div>
-
-    <p>© 2026 SCIENCE CORE. UNIVERSE EXPLORATION PROJECT.</p>
-
-    <a href="#home">BACK TO TOP ↑</a>
-  </footer>
-
-  <!-- 탐구 주제 선택 오버레이 -->
-  <div class="topics-overlay" id="topicsOverlay" aria-hidden="true">
-    <div class="topics-overlay__backdrop" id="topicsBackdrop"></div>
-
-    <button
-      class="topics-overlay__close"
-      id="topicsClose"
-      type="button"
-      aria-label="닫기"
-    >
-      <span></span>
-      <span></span>
-    </button>
-
-    <div class="topics-overlay__panel">
-      <div class="topics-overlay__heading">
-        <span class="topics-overlay__eyebrow">
-          <span class="topics-overlay__eyebrow-line"></span>
-          SELECT YOUR MISSION
-          <span class="topics-overlay__eyebrow-line"></span>
-        </span>
-
-        <h2>탐구할 주제를 선택하세요</h2>
-        <p>8개의 과학 단원 중 하나를 선택하면 해당 탐구 페이지로 이동합니다.</p>
-      </div>
-
-      <ul class="topics-list" id="topicsList">
-        <!-- script.js가 8개 항목을 순서대로 생성합니다 -->
-      </ul>
-    </div>
-  </div>
-
-  <!-- 임시 안내 토스트 -->
-  <div class="topics-toast" id="topicsToast"></div>
+  <!-- 스파크가 생성될 레이어 -->
+  <div class="spark-layer" id="sparkLayer"></div>
 
   <script src="script.js"></script>
 </body>

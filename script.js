@@ -893,3 +893,120 @@ window.addEventListener("load", () => {
       element.style.transform = "translateY(0)";
     });
 });
+
+/* =========================================================
+   탐구 주제 선택 오버레이
+   - "시작하기" 버튼 클릭 시 8개 캡션이 아래에서부터
+     순서대로 올라오며 나타남
+   - 각 항목의 href를 나중에 실제 페이지 경로로 바꿔주면 됨
+========================================================= */
+
+const topicsData = [
+  { code: "UNIT-01", title: "물질의 특성", href: "#" },
+  { code: "UNIT-02", title: "지권의 변화", href: "#" },
+  { code: "UNIT-03", title: "빛과 파동", href: "#" },
+  { code: "UNIT-04", title: "물질의 구성", href: "#" },
+  { code: "UNIT-05", title: "식물과 에너지", href: "#" },
+  { code: "UNIT-06", title: "동물과 에너지", href: "#" },
+  { code: "UNIT-07", title: "전기와 자기", href: "#" },
+  { code: "UNIT-08", title: "별과 우주", href: "#" },
+];
+
+const topicsOverlay = document.getElementById("topicsOverlay");
+const topicsBackdrop = document.getElementById("topicsBackdrop");
+const topicsClose = document.getElementById("topicsClose");
+const topicsList = document.getElementById("topicsList");
+const topicsToast = document.getElementById("topicsToast");
+const startButtons = document.querySelectorAll(".js-start-button");
+
+let topicsToastTimer = null;
+
+function buildTopicsList() {
+  topicsList.innerHTML = "";
+
+  topicsData.forEach((topic, index) => {
+    const item = document.createElement("li");
+    item.className = "topics-item";
+
+    item.innerHTML = `
+      <a
+        href="${topic.href}"
+        class="topics-item__link"
+        data-href="${topic.href}"
+      >
+        <span class="topics-item__number">${String(index + 1).padStart(2, "0")}</span>
+        <span class="topics-item__text">${topic.title}</span>
+        <span class="topics-item__code">${topic.code}</span>
+        <span class="topics-item__arrow">→</span>
+      </a>
+    `;
+
+    topicsList.appendChild(item);
+  });
+}
+
+function openTopicsOverlay() {
+  buildTopicsList();
+
+  topicsOverlay.classList.add("active");
+  topicsOverlay.setAttribute("aria-hidden", "false");
+  document.body.classList.add("menu-open");
+
+  const items = topicsList.querySelectorAll(".topics-item");
+
+  items.forEach((item, index) => {
+    setTimeout(() => {
+      item.classList.add("show");
+    }, 150 + index * 90);
+  });
+}
+
+function closeTopicsOverlay() {
+  topicsOverlay.classList.remove("active");
+  topicsOverlay.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("menu-open");
+
+  topicsList.querySelectorAll(".topics-item").forEach((item) => {
+    item.classList.remove("show");
+  });
+}
+
+function showTopicsToast(message) {
+  topicsToast.textContent = message;
+  topicsToast.classList.add("show");
+
+  clearTimeout(topicsToastTimer);
+
+  topicsToastTimer = setTimeout(() => {
+    topicsToast.classList.remove("show");
+  }, 2200);
+}
+
+startButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    openTopicsOverlay();
+  });
+});
+
+topicsClose.addEventListener("click", closeTopicsOverlay);
+topicsBackdrop.addEventListener("click", closeTopicsOverlay);
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && topicsOverlay.classList.contains("active")) {
+    closeTopicsOverlay();
+  }
+});
+
+topicsList.addEventListener("click", (event) => {
+  const link = event.target.closest(".topics-item__link");
+
+  if (!link) return;
+
+  const href = link.dataset.href;
+
+  if (!href || href === "#") {
+    event.preventDefault();
+    showTopicsToast("🚧 아직 준비 중인 페이지예요. 곧 연결될 예정입니다!");
+  }
+});

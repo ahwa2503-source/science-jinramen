@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCIENCE CORE</title>
-  <meta name="description" content="3D 태양계와 과학 단원 선택 인터랙티브 홈페이지">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="3D 태양계와 과학 단원 선택 인터랙티브 홈페이지" />
+  <title>SCIENCE CORE V2</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="loader">
-    <div class="loader-core"><i></i><i></i><i></i><b></b></div>
+  <div class="loader" id="loader">
+    <div class="loader-core">
+      <span></span><span></span><span></span><b></b>
+    </div>
     <p>SCIENCE CORE INITIALIZING</p>
-    <div class="loader-bar"><span id="loaderBar"></span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
     <small id="loaderText">0%</small>
   </div>
 
   <canvas id="spaceCanvas"></canvas>
 
+  <div class="screen-noise"></div>
+  <div class="screen-vignette"></div>
+
   <header class="topbar">
-    <button id="logoBtn" class="logo" aria-label="메인으로">
-      <span class="logo-mark"><i></i><b></b></span>
-      <span class="logo-copy"><strong>SCIENCE</strong><small>CORE SYSTEM</small></span>
+    <button class="brand" id="homeButton" type="button">
+      <span class="brand-symbol"><i></i><b></b></span>
+      <span class="brand-copy">
+        <strong>SCIENCE</strong>
+        <small>CORE SYSTEM</small>
+      </span>
     </button>
 
-    <div class="sector"><i></i><span id="sectorText">HOME SECTOR</span><i></i></div>
-    <div class="online"><b></b>SYSTEM ONLINE</div>
+    <div class="sector">
+      <i></i>
+      <span id="sectorText">HOME SECTOR</span>
+      <i></i>
+    </div>
+
+    <div class="system-status">
+      <b></b>
+      <span>SYSTEM ONLINE</span>
+    </div>
   </header>
 
   <main>
-    <section id="home" class="screen active">
-      <div class="side side-left">SECTOR 08-A · SOLAR NETWORK · ONLINE</div>
-      <div class="side side-right">ENERGY 99.8% · SIGNAL STRONG · CORE STABLE</div>
+    <section class="screen active" id="homeScreen">
+      <div class="edge-data edge-data-left">SECTOR 08-A · SOLAR NETWORK · ONLINE</div>
+      <div class="edge-data edge-data-right">ENERGY 99.8% · SIGNAL STRONG · CORE STABLE</div>
 
       <div class="hero">
         <div class="eyebrow"><i></i>INTERACTIVE SCIENCE PLATFORM<i></i></div>
-        <p class="project">PROJECT 01 / COSMIC EDUCATION SYSTEM</p>
+        <p class="project-code">PROJECT 01 / COSMIC EDUCATION SYSTEM</p>
 
         <h1>
           <span>EXPLORE THE</span>
@@ -45,15 +62,18 @@
           <em>BEYOND THE LIMIT</em>
         </h1>
 
-        <p class="desc">
-          태양계에서 물질, 에너지, 생명, 지구와 우주까지.<br>
+        <p class="hero-description">
+          태양계에서 물질, 에너지, 생명, 지구와 우주까지.<br />
           과학의 모든 단원을 하나의 거대한 연구 시스템에서 탐험하세요.
         </p>
 
-        <div class="actions">
-          <button id="startBtn" class="primary magnetic"><span>시작하기</span><b>→</b></button>
+        <div class="hero-actions">
+          <button class="primary-button magnetic" id="startButton" type="button">
+            <span>시작하기</span>
+            <b>→</b>
+          </button>
 
-          <button id="soundBtn" class="sound magnetic">
+          <button class="sound-button magnetic" id="soundButton" type="button">
             <i><b></b><b></b><b></b><b></b></i>
             <span>SOUND OFF</span>
           </button>
@@ -70,43 +90,78 @@
         <div><span>PLANETS</span><strong>08</strong></div>
         <div><span>MODULES</span><strong>08</strong></div>
         <div><span>STATUS</span><strong>STABLE</strong></div>
+        <aside>
+          <i style="--h:35%"></i><i style="--h:78%"></i><i style="--h:52%"></i>
+          <i style="--h:90%"></i><i style="--h:62%"></i><i style="--h:85%"></i>
+        </aside>
       </div>
     </section>
 
-    <section id="chapters" class="screen">
-      <div class="chapter-wrap">
-        <div class="chapter-head">
+    <section class="screen" id="chapterScreen">
+      <div class="chapter-shell">
+        <div class="chapter-heading">
           <div>
             <small>SCIENCE MODULE DATABASE</small>
             <h2>연구 단원을 선택하세요</h2>
             <p>커서를 올리면 모듈 주변에 전기 스파크와 에너지 입자가 발생합니다.</p>
           </div>
-          <button id="backBtn" class="back magnetic">← 메인으로</button>
+          <button class="back-button magnetic" id="backButton" type="button">← 메인으로</button>
         </div>
 
         <div class="chapter-grid">
-          <button class="module" data-code="MATTER CORE" data-title="물질의 구성"><b>01</b><i>⚛</i><small>MATTER CORE</small><strong>1단원</strong><em>물질의 구성</em></button>
-          <button class="module" data-code="ENERGY FIELD" data-title="전기와 자기"><b>02</b><i>ϟ</i><small>ENERGY FIELD</small><strong>2단원</strong><em>전기와 자기</em></button>
-          <button class="module" data-code="BIO SYSTEM" data-title="생명 시스템"><b>03</b><i>⌁</i><small>BIO SYSTEM</small><strong>3단원</strong><em>생명 시스템</em></button>
-          <button class="module" data-code="EARTH SECTOR" data-title="지구의 구조"><b>04</b><i>◉</i><small>EARTH SECTOR</small><strong>4단원</strong><em>지구의 구조</em></button>
-          <button class="module" data-code="WAVE SIGNAL" data-title="빛과 파동"><b>05</b><i>∿</i><small>WAVE SIGNAL</small><strong>5단원</strong><em>빛과 파동</em></button>
-          <button class="module" data-code="MOTION DRIVE" data-title="힘과 운동"><b>06</b><i>✦</i><small>MOTION DRIVE</small><strong>6단원</strong><em>힘과 운동</em></button>
-          <button class="module" data-code="REACTION LAB" data-title="화학 반응"><b>07</b><i>⌬</i><small>REACTION LAB</small><strong>7단원</strong><em>화학 반응</em></button>
-          <button class="module" data-code="COSMIC CORE" data-title="태양계와 우주"><b>08</b><i>◌</i><small>COSMIC CORE</small><strong>8단원</strong><em>태양계와 우주</em></button>
+          <button class="module" data-title="물질의 구성" data-code="MATTER CORE">
+            <b>01</b><i>⚛</i><small>MATTER CORE</small><strong>1단원</strong><em>물질의 구성</em>
+          </button>
+          <button class="module" data-title="전기와 자기" data-code="ENERGY FIELD">
+            <b>02</b><i>ϟ</i><small>ENERGY FIELD</small><strong>2단원</strong><em>전기와 자기</em>
+          </button>
+          <button class="module" data-title="생명 시스템" data-code="BIO SYSTEM">
+            <b>03</b><i>⌁</i><small>BIO SYSTEM</small><strong>3단원</strong><em>생명 시스템</em>
+          </button>
+          <button class="module" data-title="지구의 구조" data-code="EARTH SECTOR">
+            <b>04</b><i>◉</i><small>EARTH SECTOR</small><strong>4단원</strong><em>지구의 구조</em>
+          </button>
+          <button class="module" data-title="빛과 파동" data-code="WAVE SIGNAL">
+            <b>05</b><i>∿</i><small>WAVE SIGNAL</small><strong>5단원</strong><em>빛과 파동</em>
+          </button>
+          <button class="module" data-title="힘과 운동" data-code="MOTION DRIVE">
+            <b>06</b><i>✦</i><small>MOTION DRIVE</small><strong>6단원</strong><em>힘과 운동</em>
+          </button>
+          <button class="module" data-title="화학 반응" data-code="REACTION LAB">
+            <b>07</b><i>⌬</i><small>REACTION LAB</small><strong>7단원</strong><em>화학 반응</em>
+          </button>
+          <button class="module" data-title="태양계와 우주" data-code="COSMIC CORE">
+            <b>08</b><i>◌</i><small>COSMIC CORE</small><strong>8단원</strong><em>태양계와 우주</em>
+          </button>
         </div>
 
         <div class="module-info">
-          <span class="pulse"></span>
-          <div><small>SELECTED MODULE</small><strong id="selectedTitle">단원을 선택하세요</strong></div>
-          <div><small>MODULE CODE</small><strong id="selectedCode">WAITING</strong></div>
+          <span class="module-pulse"></span>
+
+          <div>
+            <small>SELECTED MODULE</small>
+            <strong id="selectedTitle">단원을 선택하세요</strong>
+          </div>
+
+          <div>
+            <small>MODULE CODE</small>
+            <strong id="selectedCode">WAITING</strong>
+          </div>
+
           <aside><i></i><i></i><i></i><i></i><i></i></aside>
         </div>
       </div>
     </section>
   </main>
 
-  <div id="warp"><div></div><b></b><p>ENTERING SCIENCE DATABASE</p></div>
-  <div id="sparks"></div>
+  <div class="warp" id="warp">
+    <div></div>
+    <b></b>
+    <p>ENTERING SCIENCE DATABASE</p>
+  </div>
+
+  <div id="sparkLayer"></div>
+
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
 

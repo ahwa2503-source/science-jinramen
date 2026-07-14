@@ -132,7 +132,7 @@
         </p>
 
         <div class="hero__buttons reveal">
-          <a href="#solar-system" class="primary-button magnetic">
+          <a href="#solar-system" class="primary-button magnetic js-start-button">
             <span class="primary-button__glow"></span>
             <span class="primary-button__text">시작하기</span>
 
@@ -874,7 +874,7 @@
           탐험을 시작하세요.
         </h2>
 
-        <a href="#solar-system" class="primary-button magnetic">
+        <a href="#solar-system" class="primary-button magnetic js-start-button">
           <span class="primary-button__glow"></span>
           <span class="primary-button__text">지금 시작하기</span>
 
@@ -898,6 +898,41 @@
 
     <a href="#home">BACK TO TOP ↑</a>
   </footer>
+
+  <!-- 탐구 주제 선택 오버레이 -->
+  <div class="topics-overlay" id="topicsOverlay" aria-hidden="true">
+    <div class="topics-overlay__backdrop" id="topicsBackdrop"></div>
+
+    <button
+      class="topics-overlay__close"
+      id="topicsClose"
+      type="button"
+      aria-label="닫기"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="topics-overlay__panel">
+      <div class="topics-overlay__heading">
+        <span class="topics-overlay__eyebrow">
+          <span class="topics-overlay__eyebrow-line"></span>
+          SELECT YOUR MISSION
+          <span class="topics-overlay__eyebrow-line"></span>
+        </span>
+
+        <h2>탐구할 주제를 선택하세요</h2>
+        <p>8개의 과학 단원 중 하나를 선택하면 해당 탐구 페이지로 이동합니다.</p>
+      </div>
+
+      <ul class="topics-list" id="topicsList">
+        <!-- script.js가 8개 항목을 순서대로 생성합니다 -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- 임시 안내 토스트 -->
+  <div class="topics-toast" id="topicsToast"></div>
 
   <script src="script.js"></script>
 </body>

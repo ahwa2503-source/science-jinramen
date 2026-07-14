@@ -1,31 +1,270 @@
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const renderer=new THREE.WebGLRenderer({canvas:$("#space"),antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
-const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x02040b,.028);const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,300);camera.position.set(0,3,22);scene.add(new THREE.AmbientLight(0x284a76,1.1));const light=new THREE.PointLight(0xffb44a,26,80,2);scene.add(light);const rim=new THREE.DirectionalLight(0x55baff,3);rim.position.set(-8,5,8);scene.add(rim);
-const root=new THREE.Group();root.rotation.x=-.2;scene.add(root);function sphere(s,c,r=.72){return new THREE.Mesh(new THREE.SphereGeometry(s,64,64),new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:.03}))}
-const sun=sphere(1.25,0xff8a18,.45);sun.material.emissive=new THREE.Color(0xff4b0b);sun.material.emissiveIntensity=2.5;root.add(sun);const glow=sphere(1.55,0xff7a00,1);glow.material=new THREE.MeshBasicMaterial({color:0xff7a00,transparent:true,opacity:.12,blending:THREE.AdditiveBlending,depthWrite:false});root.add(glow);
-const data=[['Mercury',2.2,.22,0x8d8379,.022],['Venus',3.1,.34,0xd48a35,.016],['Earth',4.15,.4,0x147ddb,.012],['Mars',5.3,.3,0xb9482a,.009],['Jupiter',6.9,.83,0xc79b6a,.005],['Saturn',8.7,.68,0xcdb274,.0035],['Uranus',10.5,.52,0x73cbd5,.0025],['Neptune',12.2,.52,0x335ad8,.0018]], systems=[];
-data.forEach((p,i)=>{const[rn,r,s,c,v]=p;const pts=Array.from({length:180},(_,k)=>new THREE.Vector3(Math.cos(k/180*Math.PI*2)*r,0,Math.sin(k/180*Math.PI*2)*r*.45));root.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x4ecfff,transparent:true,opacity:.13})));const pivot=new THREE.Group();pivot.rotation.y=i*.8;root.add(pivot);const m=sphere(s,c,.78);m.position.set(r,0,0);if(rn==='Saturn'){const ring=new THREE.Mesh(new THREE.RingGeometry(s*1.35,s*2.1,96),new THREE.MeshStandardMaterial({color:0xd8c392,side:THREE.DoubleSide,transparent:true,opacity:.78}));ring.rotation.x=Math.PI/2.25;m.add(ring)}pivot.add(m);systems.push({pivot,m,v})});
-const g=new THREE.BufferGeometry(),n=4500,a=new Float32Array(n*3);for(let i=0;i<n;i++){const r=40+Math.random()*120,t=Math.random()*Math.PI*2;a[i*3]=Math.cos(t)*r;a[i*3+1]=(Math.random()-.5)*70;a[i*3+2]=Math.sin(t)*r+(Math.random()-.5)*90}g.setAttribute('position',new THREE.BufferAttribute(a,3));scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:.055,transparent:true,opacity:.85})));
-let tx=0,ty=0,mx=0,my=0;addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5});function loop(t){requestAnimationFrame(loop);sun.rotation.y+=.002;glow.scale.setScalar(1+Math.sin(t*.002)*.035);systems.forEach(s=>{s.pivot.rotation.y+=s.v;s.m.rotation.y+=.006});camera.position.x+=(tx*2.2-camera.position.x)*.035;camera.position.y+=(3-ty*1.3-camera.position.y)*.035;camera.lookAt(0,0,0);renderer.render(scene,camera)}loop(0);addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
-let load=0;const li=setInterval(()=>{load=Math.min(100,load+Math.ceil(Math.random()*9));$('#bar').style.width=load+'%';$('#percent').textContent=load+'%';if(load===100){clearInterval(li);setTimeout(()=>$('#loader').classList.add('hide'),300)}},65);
-const home=$('#home'),chap=$('#chapters'),warp=$('#warp'),sector=$('#sector');function swap(to){warp.classList.add('active');setTimeout(()=>{home.classList.toggle('active',to==='home');chap.classList.toggle('active',to==='chapters');sector.textContent=to==='home'?'HOME SECTOR':'MODULE SECTOR';root.visible=to==='home'},420);setTimeout(()=>warp.classList.remove('active'),950)}$('#startBtn').onclick=()=>swap('chapters');$('#backBtn').onclick=()=>swap('home');$('#homeBtn').onclick=()=>swap('home');
-const dot=$('.cursor-dot'),ring=$('.cursor-ring');let rx=0,ry=0;addEventListener('mousemove',e=>{dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'});(function c(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(c)})();$$('button').forEach(b=>{b.onmouseenter=()=>ring.classList.add('on');b.onmouseleave=()=>ring.classList.remove('on')});
-const sparks=$('#sparks');function burst(el,count=12){const r=el.getBoundingClientRect();for(let i=0;i<count;i++){const s=document.createElement('i');s.className='spark';s.style.left=r.left+Math.random()*r.width+'px';s.style.top=r.top+Math.random()*r.height+'px';const q=Math.random()*Math.PI*2,d=20+Math.random()*80;s.style.setProperty('--x',Math.cos(q)*d+'px');s.style.setProperty('--y',Math.sin(q)*d+'px');sparks.appendChild(s);setTimeout(()=>s.remove(),700)}}$$('.module').forEach(m=>{let timer;m.addEventListener('mouseenter',()=>{burst(m,16);timer=setInterval(()=>burst(m,4),140);$('#selectedTitle').textContent=m.dataset.title;$('#selectedCode').textContent=m.dataset.code});m.addEventListener('mouseleave',()=>clearInterval(timer));m.addEventListener('mousemove',e=>{const r=m.getBoundingClientRect();m.style.setProperty('--mx',(e.clientX-r.left)/r.width*100+'%');m.style.setProperty('--my',(e.clientY-r.top)/r.height*100+'%')})});
-let audio,osc,gain,on=false;$('#soundBtn').onclick=()=>{on=!on;$('#soundBtn').textContent=on?'SOUND ON':'SOUND OFF';if(on&&!audio){audio=new (window.AudioContext||window.webkitAudioContext)();osc=audio.createOscillator();gain=audio.createGain();osc.frequency.value=55;gain.gain.value=.025;osc.connect(gain).connect(audio.destination);osc.start()}if(audio)gain.gain.setTargetAtTime(on?.025:0,audio.currentTime,.15)};
+const canvas=$("#spaceCanvas");
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.25;
 
-<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SCIENCE CORE</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
-<div id="loader"><div class="core"><i></i><i></i><i></i><b></b></div><p>SCIENCE CORE INITIALIZING</p><div class="bar"><span id="bar"></span></div><small id="percent">0%</small></div>
-<canvas id="space"></canvas>
-<header><button id="homeBtn" class="logo"><span class="mark"><i></i><b></b></span><span><strong>SCIENCE</strong><small>CORE SYSTEM</small></span></button><div class="sector"><i></i><span id="sector">HOME SECTOR</span><i></i></div><div class="online"><b></b>SYSTEM ONLINE</div></header>
-<main><section id="home" class="screen active"><div class="hero"><div class="eyebrow"><i></i>INTERACTIVE SCIENCE PLATFORM<i></i></div><p class="project">PROJECT 01 / COSMIC EDUCATION SYSTEM</p><h1><span>EXPLORE THE</span><strong>SCIENCE</strong><em>BEYOND THE LIMIT</em></h1><p class="desc">태양계에서 물질, 에너지, 생명, 지구와 우주까지.<br>과학의 모든 단원을 하나의 거대한 연구 시스템에서 탐험하세요.</p><div class="actions"><button id="startBtn" class="primary">시작하기 <b>→</b></button><button id="soundBtn" class="sound">SOUND OFF</button></div></div><div class="hud left"><small>CURRENT LOCATION</small><strong>SOLAR SYSTEM</strong><span>LAT 35.856 / LNG 129.224</span></div><div class="hud right"><div><span>PLANETS</span><strong>08</strong></div><div><span>MODULES</span><strong>08</strong></div><div><span>STATUS</span><strong>STABLE</strong></div></div></section>
-<section id="chapters" class="screen"><div class="wrap"><div class="head"><div><small>SCIENCE MODULE DATABASE</small><h2>연구 단원을 선택하세요</h2><p>커서를 올리면 전기 스파크와 에너지 입자가 활성화됩니다.</p></div><button id="backBtn" class="back">← 메인으로</button></div><div class="grid">
-<button class="module" data-code="MATTER CORE" data-title="물질의 구성"><b>01</b><i>⚛</i><small>MATTER CORE</small><strong>1단원</strong><em>물질의 구성</em></button>
-<button class="module" data-code="ENERGY FIELD" data-title="전기와 자기"><b>02</b><i>ϟ</i><small>ENERGY FIELD</small><strong>2단원</strong><em>전기와 자기</em></button>
-<button class="module" data-code="BIO SYSTEM" data-title="생명 시스템"><b>03</b><i>⌁</i><small>BIO SYSTEM</small><strong>3단원</strong><em>생명 시스템</em></button>
-<button class="module" data-code="EARTH SECTOR" data-title="지구의 구조"><b>04</b><i>◉</i><small>EARTH SECTOR</small><strong>4단원</strong><em>지구의 구조</em></button>
-<button class="module" data-code="WAVE SIGNAL" data-title="빛과 파동"><b>05</b><i>∿</i><small>WAVE SIGNAL</small><strong>5단원</strong><em>빛과 파동</em></button>
-<button class="module" data-code="MOTION DRIVE" data-title="힘과 운동"><b>06</b><i>✦</i><small>MOTION DRIVE</small><strong>6단원</strong><em>힘과 운동</em></button>
-<button class="module" data-code="REACTION LAB" data-title="화학 반응"><b>07</b><i>⌬</i><small>REACTION LAB</small><strong>7단원</strong><em>화학 반응</em></button>
-<button class="module" data-code="COSMIC CORE" data-title="태양계와 우주"><b>08</b><i>◌</i><small>COSMIC CORE</small><strong>8단원</strong><em>태양계와 우주</em></button></div><div class="info"><span class="pulse"></span><div><small>SELECTED MODULE</small><strong id="selectedTitle">단원을 선택하세요</strong></div><div><small>MODULE CODE</small><strong id="selectedCode">WAITING</strong></div></div></div></section></main>
-<div id="warp"><div></div><b></b><p>ENTERING SCIENCE DATABASE</p></div><div id="sparks"></div><div class="cursor-dot"></div><div class="cursor-ring"></div>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script><script src="script.js"></script></body></html>
+const scene=new THREE.Scene();
+scene.fog=new THREE.FogExp2(0x02040b,.028);
+const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,300);
+camera.position.set(0,3,22);
+
+scene.add(new THREE.AmbientLight(0x284a76,1.1));
+const sunLight=new THREE.PointLight(0xffb44a,26,80,2);
+scene.add(sunLight);
+const rim=new THREE.DirectionalLight(0x55baff,3.2);
+rim.position.set(-8,5,8);
+scene.add(rim);
+
+const root=new THREE.Group();
+root.rotation.x=-.2;
+scene.add(root);
+
+function sphere(size,color,rough=.72,metal=.04){
+  return new THREE.Mesh(
+    new THREE.SphereGeometry(size,64,64),
+    new THREE.MeshStandardMaterial({color,roughness:rough,metalness:metal})
+  );
+}
+
+function textureBands(colors){
+  const c=document.createElement("canvas");
+  c.width=512;c.height=256;
+  const x=c.getContext("2d");
+  const g=x.createLinearGradient(0,0,0,256);
+  colors.forEach((v,i)=>g.addColorStop(i/(colors.length-1),v));
+  x.fillStyle=g;x.fillRect(0,0,512,256);
+  for(let i=0;i<35;i++){
+    x.fillStyle=`rgba(255,255,255,${Math.random()*.08})`;
+    x.fillRect(0,Math.random()*256,512,Math.random()*5+1);
+  }
+  const t=new THREE.CanvasTexture(c);
+  t.colorSpace=THREE.SRGBColorSpace;
+  return t;
+}
+
+const sun=sphere(1.25,0xff8a18,.45,0);
+sun.material.emissive=new THREE.Color(0xff4b0b);
+sun.material.emissiveIntensity=2.5;
+root.add(sun);
+
+const glow=sphere(1.55,0xff7a00,1,0);
+glow.material=new THREE.MeshBasicMaterial({
+  color:0xff7a00,transparent:true,opacity:.12,
+  blending:THREE.AdditiveBlending,depthWrite:false
+});
+root.add(glow);
+
+const data=[
+  ["Mercury",2.2,.22,0x8d8379,.022],
+  ["Venus",3.1,.34,0xd48a35,.016],
+  ["Earth",4.15,.4,0x147ddb,.012],
+  ["Mars",5.3,.3,0xb9482a,.009],
+  ["Jupiter",6.9,.83,0xc79b6a,.005],
+  ["Saturn",8.7,.68,0xcdb274,.0035],
+  ["Uranus",10.5,.52,0x73cbd5,.0025],
+  ["Neptune",12.2,.52,0x335ad8,.0018]
+];
+
+const systems=[];
+data.forEach((p,i)=>{
+  const [name,radius,size,color,speed]=p;
+
+  const points=Array.from({length:180},(_,k)=>{
+    const a=k/180*Math.PI*2;
+    return new THREE.Vector3(Math.cos(a)*radius,0,Math.sin(a)*radius*.45);
+  });
+
+  const orbit=new THREE.LineLoop(
+    new THREE.BufferGeometry().setFromPoints(points),
+    new THREE.LineBasicMaterial({color:0x4ecfff,transparent:true,opacity:.13})
+  );
+  root.add(orbit);
+
+  const pivot=new THREE.Group();
+  pivot.rotation.y=i*.8;
+  root.add(pivot);
+
+  const planet=sphere(size,color,.8,.02);
+  planet.position.set(radius,0,0);
+
+  if(name==="Earth") planet.material.map=textureBands(["#0a3c85","#1c8ed8","#4fb8ec","#0a3c85"]);
+  if(name==="Jupiter") planet.material.map=textureBands(["#6f4636","#d4a878","#f0d1aa","#9c6547","#e2bd8b"]);
+  if(name==="Saturn") planet.material.map=textureBands(["#826941","#d4bd83","#f0dfab","#a88753"]);
+
+  if(name==="Saturn"){
+    const ring=new THREE.Mesh(
+      new THREE.RingGeometry(size*1.35,size*2.1,96),
+      new THREE.MeshStandardMaterial({
+        color:0xd8c392,side:THREE.DoubleSide,
+        transparent:true,opacity:.78,roughness:.8
+      })
+    );
+    ring.rotation.x=Math.PI/2.25;
+    planet.add(ring);
+  }
+
+  pivot.add(planet);
+  systems.push({pivot,planet,speed});
+});
+
+const starCount=4500;
+const positions=new Float32Array(starCount*3);
+for(let i=0;i<starCount;i++){
+  const r=40+Math.random()*120;
+  const a=Math.random()*Math.PI*2;
+  positions[i*3]=Math.cos(a)*r;
+  positions[i*3+1]=(Math.random()-.5)*70;
+  positions[i*3+2]=Math.sin(a)*r+(Math.random()-.5)*90;
+}
+const starGeo=new THREE.BufferGeometry();
+starGeo.setAttribute("position",new THREE.BufferAttribute(positions,3));
+scene.add(new THREE.Points(
+  starGeo,
+  new THREE.PointsMaterial({color:0xffffff,size:.055,transparent:true,opacity:.85})
+));
+
+let mx=0,my=0,targetX=0,targetY=0;
+addEventListener("mousemove",e=>{
+  mx=e.clientX;my=e.clientY;
+  targetX=e.clientX/innerWidth-.5;
+  targetY=e.clientY/innerHeight-.5;
+});
+
+function animate(t){
+  requestAnimationFrame(animate);
+  sun.rotation.y+=.002;
+  glow.scale.setScalar(1+Math.sin(t*.002)*.035);
+
+  systems.forEach((s,i)=>{
+    s.pivot.rotation.y+=s.speed;
+    s.planet.rotation.y+=.006+(i===4?.006:0);
+  });
+
+  camera.position.x+=(targetX*2.2-camera.position.x)*.035;
+  camera.position.y+=(3-targetY*1.3-camera.position.y)*.035;
+  camera.lookAt(0,0,0);
+  renderer.render(scene,camera);
+}
+animate(0);
+
+addEventListener("resize",()=>{
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);
+});
+
+let load=0;
+const timer=setInterval(()=>{
+  load=Math.min(100,load+Math.ceil(Math.random()*9));
+  $("#loaderBar").style.width=load+"%";
+  $("#loaderText").textContent=load+"%";
+  if(load===100){
+    clearInterval(timer);
+    setTimeout(()=>$("#loader").classList.add("hide"),350);
+  }
+},65);
+
+const home=$("#home"),chapters=$("#chapters"),warp=$("#warp"),sector=$("#sectorText");
+
+function switchScreen(name){
+  warp.classList.add("active");
+  setTimeout(()=>{
+    home.classList.toggle("active",name==="home");
+    chapters.classList.toggle("active",name==="chapters");
+    sector.textContent=name==="home"?"HOME SECTOR":"MODULE SECTOR";
+    root.visible=name==="home";
+  },420);
+  setTimeout(()=>warp.classList.remove("active"),950);
+}
+
+$("#startBtn").onclick=()=>switchScreen("chapters");
+$("#backBtn").onclick=()=>switchScreen("home");
+$("#logoBtn").onclick=()=>switchScreen("home");
+
+const dot=$(".cursor-dot"),ring=$(".cursor-ring");
+let rx=0,ry=0;
+addEventListener("mousemove",e=>{
+  dot.style.left=e.clientX+"px";
+  dot.style.top=e.clientY+"px";
+});
+(function cursorLoop(){
+  rx+=(mx-rx)*.16;ry+=(my-ry)*.16;
+  ring.style.left=rx+"px";ring.style.top=ry+"px";
+  requestAnimationFrame(cursorLoop);
+})();
+
+$$("button").forEach(btn=>{
+  btn.addEventListener("mouseenter",()=>ring.classList.add("on"));
+  btn.addEventListener("mouseleave",()=>ring.classList.remove("on"));
+});
+
+const sparks=$("#sparks");
+function burst(el,count=12){
+  const r=el.getBoundingClientRect();
+  for(let i=0;i<count;i++){
+    const s=document.createElement("i");
+    s.className="spark";
+    s.style.left=(r.left+Math.random()*r.width)+"px";
+    s.style.top=(r.top+Math.random()*r.height)+"px";
+    const a=Math.random()*Math.PI*2;
+    const d=20+Math.random()*80;
+    s.style.setProperty("--x",Math.cos(a)*d+"px");
+    s.style.setProperty("--y",Math.sin(a)*d+"px");
+    sparks.appendChild(s);
+    setTimeout(()=>s.remove(),700);
+  }
+}
+
+$$(".module").forEach(module=>{
+  let sparkTimer;
+
+  module.addEventListener("mouseenter",()=>{
+    burst(module,16);
+    sparkTimer=setInterval(()=>burst(module,4),140);
+    $("#selectedTitle").textContent=module.dataset.title;
+    $("#selectedCode").textContent=module.dataset.code;
+  });
+
+  module.addEventListener("mouseleave",()=>clearInterval(sparkTimer));
+
+  module.addEventListener("mousemove",e=>{
+    const r=module.getBoundingClientRect();
+    module.style.setProperty("--mx",((e.clientX-r.left)/r.width*100)+"%");
+    module.style.setProperty("--my",((e.clientY-r.top)/r.height*100)+"%");
+  });
+});
+
+$$(".magnetic").forEach(el=>{
+  el.addEventListener("mousemove",e=>{
+    const r=el.getBoundingClientRect();
+    el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.12}px,${(e.clientY-r.top-r.height/2)*.12}px)`;
+  });
+  el.addEventListener("mouseleave",()=>el.style.transform="");
+});
+
+let audio,osc,gain,sound=false;
+$("#soundBtn").onclick=()=>{
+  sound=!sound;
+  const btn=$("#soundBtn");
+  btn.classList.toggle("active",sound);
+  btn.querySelector("span").textContent=sound?"SOUND ON":"SOUND OFF";
+
+  if(sound&&!audio){
+    audio=new (window.AudioContext||window.webkitAudioContext)();
+    osc=audio.createOscillator();
+    gain=audio.createGain();
+    osc.type="sine";
+    osc.frequency.value=55;
+    gain.gain.value=.025;
+    osc.connect(gain).connect(audio.destination);
+    osc.start();
+  }
+
+  if(audio){
+    gain.gain.setTargetAtTime(sound?.025:0,audio.currentTime,.15);
+  }
+};

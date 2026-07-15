@@ -316,6 +316,14 @@ $$(".module").forEach(module=>{
     module.style.setProperty("--mx",((event.clientX-rect.left)/rect.width*100)+"%");
     module.style.setProperty("--my",((event.clientY-rect.top)/rect.height*100)+"%");
   });
+
+  module.addEventListener("click",()=>{
+    const link=module.dataset.link;
+
+    if(link){
+      window.location.href=link;
+    }
+  });
 });
 
 $$(".magnetic").forEach(element=>{

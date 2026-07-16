@@ -321,10 +321,28 @@ $$(".module").forEach(module=>{
     const link=module.dataset.link;
 
     if(link){
-      window.location.href=link;
+      openIframeOverlay(link,module.dataset.code||module.dataset.title);
     }
   });
 });
+
+const iframeOverlay=$("#iframeOverlay");
+const iframeFrame=$("#iframeFrame");
+const iframeTitle=$("#iframeTitle");
+const iframeClose=$("#iframeClose");
+
+function openIframeOverlay(link,title){
+  iframeTitle.textContent=title||"MODULE VIEW";
+  iframeFrame.src=link;
+  iframeOverlay.classList.add("active");
+}
+
+function closeIframeOverlay(){
+  iframeOverlay.classList.remove("active");
+  iframeFrame.src="";
+}
+
+iframeClose.addEventListener("click",closeIframeOverlay);
 
 $$(".magnetic").forEach(element=>{
   element.addEventListener("mousemove",event=>{
